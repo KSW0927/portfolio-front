@@ -8,8 +8,8 @@ import type { AuthUser } from "@/types/types";
 const REMEMBER_LOGIN_ID_KEY = 'remember_login_id';
 
 const text = {
-  titleStrong: "동시성 처리",
-  title: "데모 포트폴리오",
+  titleStrong: "NOTI-FLOW",
+  title: "",
   idLabel: "아이디",
   idPlaceholder: "이메일을 입력해주세요.",
   passwordLabel: "비밀번호",
@@ -83,7 +83,7 @@ export default function Login() {
         jbpsCd: '',
         state: '',
         taskNm: '',
-        userSe: 'USR',
+        userSe: 'MNG',
         language: 'ko',
       };
       login(userData);
@@ -173,7 +173,7 @@ export default function Login() {
           )}
         </div>
 
-        <div className="login-footer">KSS LINE LTD.</div>
+        <div className="login-footer">NOTI-FLOW</div>
       </div>
   );
 };

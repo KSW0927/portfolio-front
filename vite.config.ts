@@ -10,6 +10,11 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react()],
+    // sockjs-client(realtime-gateway-service WebSocket 연결용)가 Node의 global을 참조하는데
+    // Vite는 이걸 자동으로 polyfill 안 해줘서 브라우저에서 "global is not defined" 에러가 남 - 수동 매핑.
+    define: {
+      global: 'globalThis',
+    },
     server: {
       port: devServerPort,
       proxy: {

@@ -8,7 +8,7 @@ import { ProductStockPanel } from "./components/ProductStockPanel";
 import { useOrderSimulationStore, type OrderRow, type OrderStatus } from "@/store/orderSimulationStore";
 
 /* 주문 시뮬레이션
- * @description order-coupon-service의 실제 주문 API(Pessimistic Lock 기반 재고 차감)를 호출해서
+ * @description order-service의 실제 주문 API(Pessimistic Lock 기반 재고 차감)를 호출해서
  * 동시 주문 처리 흐름을 그리드에 실시간으로 보여줍니다.
  * 구매자는 로그인한 나 한 명이 아니라, 2000명짜리 테스트 구매자 풀 중 매 건마다 랜덤으로 배정해서
  * "여러 명이 동시에 주문한 것"처럼 재현합니다. 요청 자체는 내 로그인 토큰으로 인증됨.
@@ -51,8 +51,12 @@ export default function Main() {
         const statusStyleMap: Record<OrderStatus, { bg: string; color: string }> = {
             '대기': { bg: '#2A2F3A', color: '#9098A6' },
             '처리중': { bg: '#3A331F', color: '#F5C242' },
-            '성공': { bg: '#1F3326', color: '#4ADE80' },
-            '실패': { bg: '#3A2C34', color: '#FF6B6B' },
+            // 재고 차감(주문 확정)은 이미 끝났지만 결제가 아직 안 끝난 상태 - 처리중과는 다른 톤으로 구분
+            '결제대기': { bg: '#1F2E3A', color: '#5AA9E6' },
+            '결제완료': { bg: '#1F3326', color: '#4ADE80' },
+            '품절': { bg: '#3A2C34', color: '#FF6B6B' },
+            // 오버셀 사후 취소 - 품절과 구분되는 톤(보라)으로 "일단 성공했다가 취소됨"을 표시
+            '결제취소': { bg: '#332038', color: '#C77DFF' },
         };
 
         return [
@@ -79,10 +83,12 @@ export default function Main() {
         ];
     }, []);
 
-    const filteredRows = useMemo(
-        () => statusFilter === '전체' ? orderRows : orderRows.filter(r => r.status === statusFilter),
-        [orderRows, statusFilter]
-    );
+    const filteredRows = useMemo(() => {
+        if (statusFilter === '전체') return orderRows;
+        // '주문' 필터는 결제 진행 상태(결제대기/결제완료)와 무관하게 재고 차감에 성공한 건을 전부 포함
+        if (statusFilter === '주문') return orderRows.filter(r => r.status === '결제대기' || r.status === '결제완료');
+        return orderRows.filter(r => r.status === statusFilter);
+    }, [orderRows, statusFilter]);
 
     return (
         <>

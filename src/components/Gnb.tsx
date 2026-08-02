@@ -208,16 +208,6 @@ export const GNB = ({ onMobileMenuOpen }: GbnProps) => {
 
                 <div className="gnb-right">
                     <div className="gnb-right">
-                        <div className="gnb-utils">
-                            <div className="gnb-util-wrap">
-                                <Button
-                                    variant="text" size="sm" aria-label="알림"
-                                    leftIcon={<Icon name="bell" size={32} />}
-                                    aria-expanded={activePopup === "notification"}
-                                    onClick={() => togglePopup("notification")}
-                                />
-                            </div>
-                        </div>
 
                         <div className="gnb-user-info">
                             <div className="user-profile-wrap">

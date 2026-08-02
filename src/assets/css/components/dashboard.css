@@ -32,7 +32,7 @@
     --dash-bg-info-wrap:#F5F5F5;
     --dash-bg-box:transparent;
     --dash-bg-leave:transparent;
-    --dash-bg-approval-box:transparent;
+    --dash-bg-option-box:transparent;
     --dash-bg-oil-box:transparent;
     --dash-bg-exchange-box:transparent;
     --dash-bg-interest-rate-box:transparent;
@@ -178,7 +178,7 @@
     /* Info / Box */
     --dash-bg-info-wrap:#182029;
     --dash-bg-leave:#182029;
-    --dash-bg-approval-box:#182029;
+    --dash-bg-option-box:#182029;
     --dash-bg-oil-box:#182029;
     --dash-bg-exchange-box:#182029;
     --dash-bg-interest-rate-box:#182029;
@@ -306,6 +306,15 @@
    ---------------------------------------------------------------- */
 .widget-grid {display:grid; gap:2.0rem; grid-template-columns:repeat(3, 1fr); grid-auto-rows:28.4rem; grid-auto-flow:dense;}
 
+@media screen and (width <= 1200px) {
+    .widget-grid {grid-template-columns:repeat(2, 1fr);}
+}
+
+@media screen and (width <= 768px) {
+    .widget-grid {grid-template-columns:1fr; grid-auto-rows:auto; gap:1.4rem;}
+    .widget-card.-size-md, .widget-card.-size-lg {grid-row:auto;}
+}
+
 /* --- Widget Card --- */
 .widget-card {display:flex; flex-direction:column; overflow:hidden; padding:0; border:1px solid var(--dash-border-card); border-radius:2.0rem; background-color:var(--dash-bg-card); box-shadow:0 0.6rem 2.0rem 0 var(--dash-fixed-shadow-card); transition:box-shadow 0.2s ease, border-color 0.2s ease; will-change:transform;}
 .widget-card .card-header {padding:2.4rem 2.0rem;}
@@ -318,22 +327,23 @@
 .widget-card.-size-lg {grid-row:span 3;}
 
 /* --- Widget - Profile --- */
-.widget-card.profile {display:flex; flex-direction:column; height:100%; border:none; border-radius:2.0rem; background-color:var(--dash-bg-card-profile);}
-.widget-card.profile .card-header {align-items:flex-start; padding-bottom:1.0rem;}
-.widget-card.profile .card-header-wrap {background-repeat:no-repeat; background-position:center top; background-size:cover;}
-.widget-card.profile .card-header-wrap .avatar {overflow:hidden; width:9.2rem; height:9.2rem; border-radius:50%;}
-.widget-card.profile .card-header-wrap .avatar img {width:100%; height:100%; object-fit:cover;}
-.widget-card.profile .summary-wrap {margin-top:3.2rem; padding:2.2rem 0; background-color:var(--dash-fixed-black-overlay);}
-.widget-card.profile .card-body .title-wrap {position:sticky; top:0; left:0; padding-top:0.8rem; background-color:var(--dash-bg-profile-title);}
-.widget-card.profile .card-body .alarm-wrap .box {background-color:var(--dash-bg-profile-alarm);}
-.widget-card.profile .card-body .alarm-wrap .box:first-child {background-color:var(--dash-bg-profile-alarm-first);}
-.widget-card.profile .card-body .alarm-wrap .box .text-ellipsis {flex:1;}
+.widget-card.notify {display:flex; flex-direction:column; height:100%; border:none; border-radius:2.0rem; background-color:var(--dash-bg-card-profile);}
+.widget-card.notify .card-header {align-items:flex-start; padding-bottom:1.0rem;}
+.widget-card.notify .card-header-wrap {background-repeat:no-repeat; background-position:center top; background-size:cover;}
+.widget-card.notify .card-header-wrap .avatar {overflow:hidden; width:9.2rem; height:9.2rem; border-radius:50%;}
+.widget-card.notify .card-header-wrap .avatar img {width:100%; height:100%; object-fit:cover;}
+.widget-card.notify .summary-wrap {margin-top:3.2rem; padding:2.2rem 0; background-color:var(--dash-fixed-black-overlay);}
+.widget-card.notify .card-body .title-wrap {position:sticky; top:0; left:0; padding-top:0.8rem; background-color:var(--dash-bg-profile-title);}
+.widget-card.notify .card-body .alarm-wrap .box {background-color:var(--dash-bg-profile-alarm);}
+.widget-card.notify .card-body .alarm-wrap .box.is-oversell {background-color:rgba(255, 107, 107, 0.12); border:1px solid #FF6B6B;}
+.widget-card.notify .card-body .alarm-wrap .box.is-oversell .text-ellipsis {color:#FF6B6B !important;}
+.widget-card.notify .card-body .alarm-wrap .box.is-active {background-color:var(--dash-bg-profile-alarm-first);}
+/* 오버셀 알림은 클릭(is-active)해도 파란 효과로 바뀌지 않고 빨간 강조를 유지 */
+.widget-card.notify .card-body .alarm-wrap .box.is-oversell.is-active {background-color:rgba(255, 107, 107, 0.12); border:1px solid #FF6B6B;}
+.widget-card.notify .card-body .alarm-wrap .box .text-ellipsis {flex:1;}
 
 /* --- Widget - 나의 연차 --- */
 .widget-leave-content {display:flex; flex-direction:row; align-items:center; margin-top:auto;}
-
-/* --- Widget - 전자결재 --- */
-.widget-approval-content {display:grid; gap:1.2rem; grid-template-columns:repeat(2, 1fr); margin-top:auto;}
 
 /* --- Widget - 배너--- */
 .widget-card.banner {border:none;}
@@ -535,15 +545,20 @@
 [data-theme="dark"] .widget-card {box-shadow:0 0.6rem 2.0rem 0 var(--dash-fixed-shadow-dark);}
 
 /* --- Widget - Profile --- */
-[data-theme="dark"] .widget-card.profile .card-body .alarm-wrap .box {background-color:var(--dash-bg-profile-alarm);}
-[data-theme="dark"] .widget-card.profile .card-body .alarm-wrap .box:first-child {border:1px solid #3690E6; background:var(--dash-bg-profile-alarm-first); box-shadow:0 1.0rem 2.0rem 0 var(--dash-fixed-shadow-alarm);}
-[data-theme="dark"] .widget-card.profile .card-body .alarm-wrap .box:first-child .text-ellipsis {color:var(--dash-text-setting-btn-hover) !important;}
+[data-theme="dark"] .widget-card.notify .card-body .alarm-wrap .box {background-color:var(--dash-bg-profile-alarm);}
+[data-theme="dark"] .widget-card.notify .card-body .alarm-wrap .box.is-oversell {border:1px solid #FF6B6B; background:rgba(255, 107, 107, 0.12); box-shadow:0 1.0rem 2.0rem 0 var(--dash-fixed-shadow-alarm);}
+[data-theme="dark"] .widget-card.notify .card-body .alarm-wrap .box.is-oversell .text-ellipsis {color:#FF6B6B !important;}
+[data-theme="dark"] .widget-card.notify .card-body .alarm-wrap .box.is-active {border:1px solid #3690E6; background:var(--dash-bg-profile-alarm-first); box-shadow:0 1.0rem 2.0rem 0 var(--dash-fixed-shadow-alarm);}
+[data-theme="dark"] .widget-card.notify .card-body .alarm-wrap .box.is-active .text-ellipsis {color:var(--dash-text-setting-btn-hover) !important;}
+/* 오버셀 알림은 클릭(is-active)해도 파란 효과로 바뀌지 않고 빨간 강조를 유지 */
+[data-theme="dark"] .widget-card.notify .card-body .alarm-wrap .box.is-oversell.is-active {border:1px solid #FF6B6B; background:rgba(255, 107, 107, 0.12); box-shadow:0 1.0rem 2.0rem 0 var(--dash-fixed-shadow-alarm);}
+[data-theme="dark"] .widget-card.notify .card-body .alarm-wrap .box.is-oversell.is-active .text-ellipsis {color:#FF6B6B !important;}
 
 /* --- Widget - 나의 연차 --- */
 [data-theme="dark"] .widget-leave-content {background-color:var(--dash-bg-leave);}
 
-/* --- Widget - 전자결재 --- */
-[data-theme="dark"] .widget-approval-content .box {background-color:var(--dash-bg-approval-box);}
+/* --- Widget - 옵션 설정 --- */
+[data-theme="dark"] .widget-option-content .box {background-color:var(--dash-bg-option-box);}
 
 /* --- Widget - 유가 --- */
 [data-theme="dark"] .widget-oil-content .box {background-color:var(--dash-bg-oil-box);}
@@ -586,5 +601,39 @@
 [data-theme="dark"] .widget-interest-rate-content {background-color:var(--dash-bg-interest-rate-box);}
 
 /* --- Scrollbar --- */
-[data-theme="dark"] *::-webkit-scrollbar-track {background-color:var(--dash-scrollbar-track) !important;} 
+[data-theme="dark"] *::-webkit-scrollbar-track {background-color:var(--dash-scrollbar-track) !important;}
 [data-theme="dark"] *::-webkit-scrollbar-thumb {background-color:var(--dash-scrollbar-thumb) !important;}
+
+/* ----------------------------------------------------------------
+   SweetAlert2 - 위젯 카드 톤에 맞춘 커스텀 스타일 (AlertService.ts에서 customClass로 부착)
+   ---------------------------------------------------------------- */
+.dash-swal-popup {
+    border:1px solid var(--dash-border-card);
+    border-radius:1.6rem;
+    background-color:var(--dash-bg-card) !important;
+    box-shadow:0 0.6rem 2.0rem 0 var(--dash-fixed-shadow-card);
+}
+.dash-swal-title {color:var(--dash-text-primary) !important; font-size:1.9rem !important;}
+.dash-swal-html {color:var(--dash-text-secondary) !important; font-size:1.4rem !important;}
+.dash-swal-confirm {
+    border-radius:0.8rem !important;
+    background-color:var(--dash-accent-primary) !important;
+    box-shadow:none !important;
+}
+.dash-swal-cancel {
+    border-radius:0.8rem !important;
+    background-color:var(--dash-bg-muted) !important;
+    color:var(--dash-text-secondary) !important;
+    box-shadow:none !important;
+}
+.dash-swal-toast {
+    border:1px solid var(--dash-border-card);
+    border-radius:1.2rem;
+    background-color:var(--dash-bg-card) !important;
+}
+.dash-swal-toast-title {color:var(--dash-text-primary) !important; font-size:1.4rem !important;}
+
+[data-theme="dark"] .dash-swal-popup,
+[data-theme="dark"] .dash-swal-toast {
+    box-shadow:0 0.6rem 2.0rem 0 var(--dash-fixed-shadow-dark);
+}

@@ -108,7 +108,7 @@ export const WidgetRenderer: React.FC<WidgetRendererProps> = (props: WidgetRende
             {visibleWidgets.map((widget) => {
                 const widgetDetail = getWidgetDetailById(widget.id);
                 const WidgetContent = widgetDetail?.component;
-                const addstrWidgetType = (widgetDetail && ["profile", "banner", "orgList"].includes(widgetDetail.type)) ? widgetDetail.type : "";
+                const addstrWidgetType = (widgetDetail && ["notify", "banner", "orgList"].includes(widgetDetail.type)) ? widgetDetail.type : "";
 
                 return (
                     <Card

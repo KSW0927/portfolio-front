@@ -6,7 +6,19 @@
 
 /* Login
    ---------------------------------------------------------------- */
-.login-wrap {display:flex; justify-content:center; align-items:center; position:relative; width:100vw; height:100vh; background:url("/src/assets/img/general/common/bg-login.png"); background-repeat:no-repeat; background-position:center center; background-size:cover;}
+/* 배경은 외부 이미지 대신 순수 CSS로 구성한 네트워크/노드 패턴.
+   어두운 남색 바탕에 은은한 파란 글로우 두 개 + 점 격자를 얹어서
+   "실시간 이벤트가 오가는 네트워크"를 은유함(로그인 패널의 파란 테두리 그라데이션과 톤을 맞춤). */
+.login-wrap {
+    display:flex; justify-content:center; align-items:center; position:relative; width:100vw; height:100vh;
+    background-color:#0B1220;
+    background-image:
+        radial-gradient(circle at 18% 24%, rgba(115, 187, 255, 0.22) 0%, transparent 42%),
+        radial-gradient(circle at 82% 76%, rgba(29, 90, 148, 0.35) 0%, transparent 48%),
+        radial-gradient(circle, rgba(115, 187, 255, 0.35) 1px, transparent 1.5px);
+    background-repeat:no-repeat, no-repeat, repeat;
+    background-size:auto, auto, 32px 32px;
+}
 .login-panel {position:relative; z-index:10; width:63.5rem; padding:8.0rem 7.0rem; border-radius:6.0rem; background:rgba(0, 0, 0, 0.4); box-shadow:0.9rem 0.3rem 3.0rem 0 rgba(0, 0, 0, 0.15);}
 .login-panel::before {content:""; position:absolute; padding:2px; border-radius:6.0rem; background:linear-gradient(180deg, #73BBFF 0%, #1D5A94 100%); pointer-events:none; -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0); inset:0; -webkit-mask-composite:xor; mask-composite:exclude;}
 .login-title {margin-bottom:3.0rem; color:#fff; font-weight:700; font-size:3.4rem; text-align:center;}
@@ -194,7 +206,6 @@
 @media screen and (width <= 768px) {
     /* Login
       ---------------------------------------------------------------- */
-    .login-wrap {background-position:18% top;}
     .login-panel {width:100%; padding:0 3.5rem; border-radius:0; background:transparent; box-shadow:none;}
     .login-panel::before {display:none;}
     .login-title {margin-bottom:2.0rem; font-size:2.4rem;}

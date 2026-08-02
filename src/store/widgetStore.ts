@@ -7,12 +7,10 @@ import type { WidgetSize, WidgetData } from "@/types/types";
  * 제공 위젯 목록
  */
 export const INITIAL_WIDGETS: Record<string, WidgetData> = {
-    approval:     { component: W.ApprovalWidget,     id: "w1",  type: "approval",     size: "sm", title: "옵션 설정",        iconEdit: "bank" },
-    leave:        { component: W.LeaveWidget,        id: "w2",  type: "leave",        size: "sm", title: "처리 현황",        iconEdit: "leave-line" },
-    profile:      { component: W.ProfileWidget,      id: "w3",  type: "profile",      size: "md", title: "알림",            iconEdit: "user" },
-    oil:          { component: W.OilWidget,          id: "w5",  type: "oil",          size: "sm", title: "응답시간",         iconEdit: "oil-prices", icon: "oil" },
-    exchange:     { component: W.ExchangeWidget,     id: "w17", type: "exchange",     size: "sm", title: "처리량",           iconEdit: "global",     icon: "exchange" },
-    // interestRate: { component: W.InterestRateWidget, id: "w18", type: "interestRate", size: "sm", title: "실패율",           iconEdit: "bank_line",  icon: "interest-rate" },
+    option:     { component: W.OptionWidget,     id: "w1",  type: "option",     size: "sm", title: "옵션 설정",        iconEdit: "bank" },
+    status:        { component: W.StatusWidget,        id: "w2",  type: "status",        size: "md", title: "처리 현황",        iconEdit: "leave-line" },
+    notify:      { component: W.NotifyWidget,      id: "w3",  type: "notify",      size: "md", title: "알림",            iconEdit: "user" },
+    latency:          { component: W.LatencyWidget,          id: "w5",  type: "latency",          size: "sm", title: "응답시간",         iconEdit: "oil-prices", icon: "oil" },
 }
 
 /**

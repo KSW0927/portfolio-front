@@ -1,4 +1,6 @@
 import type { ProductItem } from "@/api/order";
+import { Card, Layout, Space, Typography } from "@/components";
+import { useIsDark } from "@/hooks/useIsDark";
 
 interface ProductStockPanelProps {
     products: ProductItem[];
@@ -29,51 +31,49 @@ function groupByModel(products: ProductItem[]): ProductGroup[] {
  * 제품별 남은 재고 패널
  * @description 주문 시뮬레이션 진행 중 실시간으로 갱신되는 제품별 재고 현황.
  * 모델별로 줄을 나눠서 표시하고, 품절(0개)은 빨간색으로 강조.
+ * 위젯 카드(widget-card)와 동일한 컨테이너 스타일을 써서 대시보드 톤을 맞춘다.
  */
 export function ProductStockPanel({ products }: ProductStockPanelProps) {
+    const isDark = useIsDark();
     if (products.length === 0) return null;
 
     const groups = groupByModel(products);
     const totalStock = products.reduce((sum, p) => sum + p.stock, 0);
 
     return (
-        <>
-            <h2>재고 (총 {totalStock}개)</h2>
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 8,
-                    maxHeight: 250,
-                    overflowY: "auto",
-                    padding: 10,
-                    border: "1px solid #2A2F3A",
-                    borderRadius: 8,
-                }}
-            >
-                {groups.map((group) => (
-                    <div key={group.model} style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 6 }}>
-                        <span style={{ fontSize: "1.2rem", fontWeight: 700, color: "var(--dash-text-primary)", minWidth: 150 }}>
-                            {group.model}
-                        </span>
-                        {group.items.map((p) => (
-                            <span
-                                key={p.detailId}
-                                style={{
-                                    padding: "4px 10px",
-                                    borderRadius: 999,
-                                    fontSize: "1.2rem",
-                                    fontWeight: 600,
-                                    backgroundColor: p.stock === 0 ? "#3A2C34" : "#252B3A",
-                                    color: p.stock === 0 ? "#FF6B6B" : "#C7CCD6",
-                                }}
-                            >
-                                {p.storage} {p.color}: {p.stock}
-                            </span>
-                        ))}
-                    </div>
-                ))}
-            </div>
-        </>
+        <Card className="widget-card -size-lg">
+            <Card.Header extra={<Typography variant="body-md" as="span" color={isDark ? "var(--dash-text-tertiary)" : "var(--dash-text-secondary)"}>총 {totalStock}개</Typography>}>
+                <Typography variant="heading-sm" color={isDark ? "var(--dash-text-primary)" : "var(--dash-text-primary)"}>재고</Typography>
+            </Card.Header>
+
+            <Card.Body>
+                <Layout.Row layout="vertical" gap={10} style={{ maxHeight: 250, overflowY: "auto" }}>
+                    {groups.map((group) => (
+                        <Layout.Row key={group.model} gap={6} style={{ flexWrap: "wrap", alignItems: "center" }}>
+                            <Typography variant="body-sm" weight="semibold" style={{ minWidth: 150 }} color={isDark ? "var(--dash-text-primary)" : "var(--dash-text-primary)"}>
+                                {group.model}
+                            </Typography>
+                            <Space size={6} style={{ flexWrap: "wrap" }}>
+                                {group.items.map((p) => (
+                                    <span
+                                        key={p.detailId}
+                                        style={{
+                                            padding: "4px 10px",
+                                            borderRadius: 999,
+                                            fontSize: "1.2rem",
+                                            fontWeight: 600,
+                                            backgroundColor: p.stock === 0 ? "#3A2C34" : "var(--dash-bg-info-wrap)",
+                                            color: p.stock === 0 ? "#FF6B6B" : "var(--dash-text-secondary)",
+                                        }}
+                                    >
+                                        {p.storage} {p.color}: {p.stock}
+                                    </span>
+                                ))}
+                            </Space>
+                        </Layout.Row>
+                    ))}
+                </Layout.Row>
+            </Card.Body>
+        </Card>
     );
 }

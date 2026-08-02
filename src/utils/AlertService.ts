@@ -6,6 +6,21 @@ import i18n from 'i18next';
 const SonSwal = withReactContent(Swal);
 
 // 공통 스타일 설정
+// 대시보드 위젯 카드와 톤을 맞추기 위한 커스텀 클래스(실제 스타일은 dashboard.css의 .dash-swal-* 참고).
+// confirmButtonColor/cancelButtonColor 같은 인라인 색상 옵션은 CSS보다 우선 적용되어 테마 전환을
+// 방해하므로 쓰지 않고, 버튼 색도 전부 customClass로만 제어한다.
+const SWAL_CUSTOM_CLASS = {
+    popup: 'dash-swal-popup',
+    title: 'dash-swal-title',
+    htmlContainer: 'dash-swal-html',
+    confirmButton: 'dash-swal-confirm',
+    cancelButton: 'dash-swal-cancel',
+    denyButton: 'dash-swal-cancel',
+};
+const SWAL_TOAST_CUSTOM_CLASS = {
+    popup: 'dash-swal-toast',
+    title: 'dash-swal-toast-title',
+};
 
 /**
  * 전역 공통 팝업 서비스
@@ -64,30 +79,32 @@ export const AlertService = {
             html: text,
             icon,
             confirmButtonText: i18n.t('ok'),
-            confirmButtonColor: '#3085D6',
             cancelButtonText: i18n.t('cancel'),
-            cancelButtonColor: '#AAAAAA',
+            customClass: SWAL_CUSTOM_CLASS,
         });
     },
     success: (message: string, title?: string): Promise<SweetAlertResult> => {
         return SonSwal.fire({
             title: title || 'Success',
             text: message,
-            icon: 'success'
+            icon: 'success',
+            customClass: SWAL_CUSTOM_CLASS,
         });
     },
     error: (message: string, title?: string): Promise<SweetAlertResult> => {
         return SonSwal.fire({
             title: title || 'Error',
             text: message,
-            icon: 'error'
+            icon: 'error',
+            customClass: SWAL_CUSTOM_CLASS,
         });
     },
     warning: (message: string, title?: string): Promise<SweetAlertResult> => {
         return SonSwal.fire({
             title: title || 'Warning',
             text: message,
-            icon: 'warning'
+            icon: 'warning',
+            customClass: SWAL_CUSTOM_CLASS,
         });
     },
     // 확인/취소 선택 알림
@@ -98,9 +115,8 @@ export const AlertService = {
             icon: 'question',
             showCancelButton: true,
             confirmButtonText: i18n.t('ok'),
-            confirmButtonColor: '#3085D6',
             cancelButtonText: i18n.t('cancel'),
-            cancelButtonColor: '#AAAAAA',
+            customClass: SWAL_CUSTOM_CLASS,
         });
         return result.isConfirmed;
     },
@@ -112,6 +128,7 @@ export const AlertService = {
             showConfirmButton: false,
             timer: 2000,
             timerProgressBar: true,
+            customClass: SWAL_TOAST_CUSTOM_CLASS,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', SonSwal.stopTimer);
                 toast.addEventListener('mouseleave', SonSwal.resumeTimer);
@@ -127,9 +144,8 @@ export const AlertService = {
             inputPlaceholder: placeholder,
             showCancelButton: true,
             confirmButtonText: i18n.t('ok'),
-            confirmButtonColor: '#3085D6',
             cancelButtonText: i18n.t('cancel'),
-            cancelButtonColor: '#AAAAAA',
+            customClass: SWAL_CUSTOM_CLASS,
         });
         return value || null;
     },
@@ -138,6 +154,7 @@ export const AlertService = {
         SonSwal.fire({
             title,
             allowOutsideClick: false,
+            customClass: SWAL_CUSTOM_CLASS,
             didOpen: () => {
                 SonSwal.showLoading();
             }
@@ -150,9 +167,8 @@ export const AlertService = {
             html: content,
             showCancelButton: true,
             confirmButtonText: i18n.t('ok'),
-            confirmButtonColor: '#3085D6',
             cancelButtonText: i18n.t('cancel'),
-            cancelButtonColor: '#AAAAAA',
+            customClass: SWAL_CUSTOM_CLASS,
             ...options,
         });
     },

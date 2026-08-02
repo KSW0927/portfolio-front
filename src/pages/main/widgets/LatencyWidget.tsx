@@ -1,13 +1,13 @@
 import { useIsDark } from "@/hooks/useIsDark";
-import { Box, Card, Icon, Layout, Space, Typography } from "@/components";
-import type { WidgetCardProps } from "@/types/types.ts";
+import { Box, Card, Layout, Space, Typography } from "@/components";
+import type { WidgetCardProps } from "@/types/types";
 import { useOrderSimulationStore } from "@/store/orderSimulationStore";
 
 /**
- * 응답시간 위젯 컴포넌트 (기존 유가 위젯 슬롯 재활용)
+ * 응답시간 위젯 컴포넌트
  * @description 주문 시뮬레이션의 평균/P50/P95/P99 응답시간(ms)을 실시간으로 표시.
  */
-export const OilWidget = (props: WidgetCardProps) => {
+export const LatencyWidget = (props: WidgetCardProps) => {
     const { } = props;
     const isDark = useIsDark();
     const { orderStats, isRunning } = useOrderSimulationStore();
@@ -37,9 +37,6 @@ export const OilWidget = (props: WidgetCardProps) => {
                                         <Typography variant="heading-md" primary={!isDark} color={isDark ? "#68B8FF" : ""}>{orderStats.avgLatency}</Typography>
                                         <Typography variant="body-lg" primary={!isDark} color={isDark ? "#68B8FF" : ""}>ms</Typography>
                                     </Space>
-                                </Space>
-                                <Space size={4} align="center" justify="end">
-                                    <Typography variant="body-xs" as="span" color={isDark ? "var(--dash-text-tertiary)" : ""}>성공 {orderStats.success} / 실패 {orderStats.fail}</Typography>
                                 </Space>
                             </Layout.Col>
                         </Box>
@@ -79,4 +76,4 @@ export const OilWidget = (props: WidgetCardProps) => {
         </>
     );
 }
-OilWidget.displayName = 'OilWidget';
+LatencyWidget.displayName = 'LatencyWidget';
