@@ -1,0 +1,12 @@
+{
+  "lang": "kor",
+  "searchEnabled": true,
+  "printEnabled": false,
+  "downloadEnabled": true,
+  "pageTransitionDirection": "vertical",
+  "initialScaleValue": {
+    "pdf": "fitWidth",
+    "doc": "fitWidth",
+    "all": "fitWidth"
+  }
+}

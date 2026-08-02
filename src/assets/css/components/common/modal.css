@@ -1,0 +1,38 @@
+/* ============================================================
+   modal.css
+   ============================================================ */
+.modal-container {display:flex; flex-direction:column; overflow:hidden; max-height:90vh; padding-bottom:2.4rem; border-radius:1.0rem; background-color:var(--color-bg-modal); box-shadow:var(--shadow-modal); animation:slide-up 0.3s ease-out;}
+.modal-header {display:flex; flex-shrink:0; justify-content:space-between; align-items:center; padding:2.4rem 2.4rem 1.8rem;}
+.modal-header .title {color:var(--color-text-modal-title);}
+.modal-header .button-close:hover .ico {--ic-mode-bg:none; --ic-mode-mask:var(--ic-url); --ic-mode-color:#666;}
+.modal-body {flex:1; gap:2.0rem; overflow-y:auto; padding:0 2.4rem;}
+.modal-body .title {padding-bottom:0.8rem; color:var(--color-text-modal-title);}
+.modal-content {display:flex; flex-direction:column; gap:2.0rem;}
+.modal-footer {display:flex; flex-shrink:0; justify-content:flex-end; align-items:center; gap:0.8rem; z-index:1; padding:1.4rem 2.4rem 0; background-color:var(--color-bg-modal);}
+
+/* --- Sizes --- */
+.modal-sm {width:46.8rem;}
+.modal-md {width:84.8rem;}
+.modal-lg {width:118.8rem;}
+.modal-xl {width:133.6rem;}
+
+/* --- Overlay --- */
+.modal-overlay {display:flex; justify-content:center; align-items:center; position:fixed; top:0; left:0; z-index:1000; width:100vw; height:100vh; background-color:var(--color-bg-dimmed); animation:fade-in 0.2s ease-in-out;}
+
+/* --- Animations --- */
+@keyframes fade-in {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+@keyframes slide-up {
+    from {opacity:0; transform:translateY(2.0rem);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+/* ============================================================
+   Media Query
+   ============================================================ */
+@media screen and (width <= 768px) {
+    .modal-container {width:100%; height:100vh; max-height:100vh; border-radius:0;}
+    .modal-footer .button {flex:1;}
+}

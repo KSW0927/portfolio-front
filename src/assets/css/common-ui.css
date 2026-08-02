@@ -1,0 +1,628 @@
+@charset "utf-8";
+
+/* =========================================================
+   Common
+   ---------------------------------------------------------
+   전역 기본 환경 및 디자인 토큰 정의
+   (reset, font, variables, base styles)
+   ========================================================= */
+
+/* --- Reset --- */
+*, *::before, *::after {margin:0; padding:0; border:none; outline:none; user-select:none; box-sizing:border-box; -webkit-touch-callout:none; -webkit-tap-highlight-color:transparent;}
+ul, ol, dl {list-style:none;}
+img {max-width:100%; vertical-align:top;}
+a {color:inherit; text-decoration:none;}
+button {border:none; cursor:pointer;}
+input, textarea {user-select:auto;}
+button, input, textarea {color:inherit; font:inherit; line-height:inherit; letter-spacing:inherit; appearance:none;}
+html {font-size:62.5% !important; -webkit-overflow-scrolling:auto;}
+
+/* --- Font --- */
+@font-face {font-style:normal; font-weight:100; font-family:Pretendard; font-display:swap; src:url("../fonts/Pretendard-Thin.woff2") format("woff2"), url("../fonts/Pretendard-Thin.woff") format("woff"), url("../fonts/Pretendard-Thin.otf") format("opentype");}
+@font-face {font-style:normal; font-weight:200; font-family:Pretendard; font-display:swap; src:url("../fonts/Pretendard-ExtraLight.woff2") format("woff2"), url("../fonts/Pretendard-ExtraLight.woff") format("woff"), url("../fonts/Pretendard-ExtraLight.otf") format("opentype");}
+@font-face {font-style:normal; font-weight:300; font-family:Pretendard; font-display:swap; src:url("../fonts/Pretendard-Light.woff2") format("woff2"), url("../fonts/Pretendard-Light.woff") format("woff"), url("../fonts/Pretendard-Light.otf") format("opentype");}
+@font-face {font-style:normal; font-weight:400; font-family:Pretendard; font-display:swap; src:url("../fonts/Pretendard-Regular.woff2") format("woff2"), url("../fonts/Pretendard-Regular.woff") format("woff"), url("../fonts/Pretendard-Regular.otf") format("opentype");}
+@font-face {font-style:normal; font-weight:500; font-family:Pretendard; font-display:swap; src:url("../fonts/Pretendard-Medium.woff2") format("woff2"), url("../fonts/Pretendard-Medium.woff") format("woff"), url("../fonts/Pretendard-Medium.otf") format("opentype");}
+@font-face {font-style:normal; font-weight:600; font-family:Pretendard; font-display:swap; src:url("../fonts/Pretendard-SemiBold.woff2") format("woff2"), url("../fonts/Pretendard-SemiBold.woff") format("woff"), url("../fonts/Pretendard-SemiBold.otf") format("opentype");}
+@font-face {font-style:normal; font-weight:700; font-family:Pretendard; font-display:swap; src:url("../fonts/Pretendard-Bold.woff2") format("woff2"), url("../fonts/Pretendard-Bold.woff") format("woff"), url("../fonts/Pretendard-Bold.otf") format("opentype");}
+@font-face {font-style:normal; font-weight:800; font-family:Pretendard; font-display:swap; src:url("../fonts/Pretendard-ExtraBold.woff2") format("woff2"), url("../fonts/Pretendard-ExtraBold.woff") format("woff"), url("../fonts/Pretendard-ExtraBold.otf") format("opentype");}
+@font-face {font-style:normal; font-weight:900; font-family:Pretendard; font-display:swap; src:url("../fonts/Pretendard-Black.woff2") format("woff2"), url("../fonts/Pretendard-Black.woff") format("woff"), url("../fonts/Pretendard-Black.otf") format("opentype");}
+
+/* --- Variables --- */
+:root {
+    --font-base:"Pretendard", "DroidSans", "Apple SD Gothic Neo", "AppleGothic", sans-serif;
+
+    /* Color — Base & Gray */
+    --color-base-white:#FFF;
+    --color-base-black:#000;
+    --color-gray-01:#FCFCFC;
+    --color-gray-02:#F4F4F4;
+    --color-gray-03:#EEE;
+    --color-gray-04:#DDD;
+    --color-gray-05:#CCC;
+    --color-gray-06:#BBB;
+    --color-gray-07:#949494;
+    --color-gray-08:#777;
+    --color-gray-09:#666;
+    --color-gray-10:#555;
+    --color-gray-11:#333;
+    --color-gray-12:#111;
+
+    /* Color — Neutral */
+    --color-coolgray-01:#F1F3F8;
+    --color-coolgray-02:#A2A2A2;
+    --color-coolgray-03:#999;
+    --color-coolgray-04:#6D7882;
+    --color-coolgray-05:#55585C;
+
+    /* Color — Blue */
+    --color-blue-01:#F3F9FF;
+    --color-blue-02:#EFF8FF;
+    --color-blue-03:#E0F0FF;
+    --color-blue-04:#D5EBFF;
+    --color-blue-05:#C6D9F8;
+    --color-blue-06:#1D59F0;
+    --color-blue-07:#005BAA; /* Primary */
+    --color-blue-08:#004A8C;
+    --color-blue-09:#004586;
+    --color-blue-10:#003261;
+
+    /* Color — Red */
+    --color-red-01:#FFF0F0;
+    --color-red-02:#FFEAEA;
+    --color-red-03:#E68181;
+    --color-red-04:#E32020;
+    --color-red-05:#D31616;
+
+    /* Color — Green */
+    --color-green-01:#E2FFE3;
+    --color-green-02:#18C41D;
+    --color-green-03:#1A9835;
+    --color-green-04:#228738;
+    --color-green-05:#267337;
+    --color-green-06:#0B7F44;
+    --color-green-07:#067609;
+    --color-green-08:#006230;
+
+    /* Color — Purple */
+    --color-purple-01:#F8F5FD;
+    --color-purple-02:#EDE3FF;
+    --color-purple-03:#773ED9;
+    --color-purple-04:#5626AA;
+
+    /* Color — Cyan */
+    --color-cyan-01:#E3FCFF;
+    --color-cyan-02:#78F6FF;
+    --color-cyan-03:#1ABFD2;
+    --color-cyan-04:#0E7581;
+
+    /* Color — Orange & Yellow */
+    --color-yellow-01:#FFCE0A;
+    --color-orange-01:#FFF1E4;
+    --color-orange-02:#FF861C;
+    --color-orange-03:#B25300;
+
+    /* Brand */
+    --color-primary:var(--color-blue-07);                           /* #005BAA */
+    --color-primary-hover:var(--color-blue-08);                     /* #004A8C */
+
+    /* Status */
+    --color-info:;
+    --color-success:;
+    --color-warning:;
+    --color-error:var(--color-red-04);                              /* #E32020 */
+
+    /* Text */
+    --color-text-base:var(--color-gray-11);                         /* #333 */
+    --color-text-white:var(--color-base-white);                     /* #FFF */
+    --color-text-black:var(--color-base-black);                     /* #000 */
+    --color-text-primary:var(--color-primary);                      /* #005BAA */
+    --color-text-secondary:var(--color-gray-09);                    /* #666 */
+    --color-text-tertiary:var(--color-coolgray-03);                 /* #999 */
+    --color-text-disabled:var(--color-coolgray-02);                 /* #A2A2A2 */
+    --color-text-link:var(--color-blue-09);                         /* #004586 */
+
+    /* Border */
+    --color-border-base:var(--color-gray-05);                       /* #CCC */
+    --color-border-strong:var(--color-gray-09);                     /* #666 */
+    --color-border-focus:var(--color-primary);                      /* #005BAA */
+    --color-border-divider:var(--color-gray-04);                    /* #DDD */
+    
+    /* Background */
+    --color-bg-base:var(--color-base-white);                        /* #FFF */
+    --color-bg-white:var(--color-base-white);                       /* #FFF */
+    --color-bg-box:var(--color-coolgray-01);                        /* #F1F3F8 */
+    --color-bg-card:var(--color-base-white);                        /* #FFF */
+    --color-bg-search:var(--color-gray-02);                         /* #F4F4F4 */
+    --color-bg-widget:var(--color-blue-05);                         /* #C6D9F8 */
+    --color-bg-dimmed:rgba(0, 0, 0, 0.65);
+    
+    /* Shadow */
+    --shadow-none:none;
+    --shadow-sm:0 0.3rem 0.5rem 0 rgba(63, 75, 93, 0.05);
+    --shadow-base:0 0.6rem 2.0rem 0 rgba(63, 75, 93, 0.1);        /* widget, box, calendar */
+    --shadow-modal:0 0.4rem 3.0rem 0 rgba(0, 0, 0, 0.15);
+    
+    /* Layout */
+    --gnb-height:6.4rem;
+    --lnb-width:21.6rem;
+    --lnb-collapsed-width:6.4rem;
+    --color-bg-gnb:var(--color-bg-white);
+    --color-bg-global-search:#F6F9FF;
+    --color-bg-gnb-menu-active:var(--color-primary);
+    --color-text-gnb-menu-active:var(--color-text-white);
+    --color-bg-lnb-default:var(--color-primary);
+    --color-bg-lnb-hover:var(--color-primary-hover);
+    --color-text-lnb-default:var(--color-text-white);
+    --color-text-lnb-active:var(--color-cyan-02);
+    
+    /* Data Grid */
+    --grid-height:5.5rem;
+    --color-text-grid-total:var(--color-text-black);                        /* #000 */
+    --color-text-grid-header:var(--color-text-base);                        /* #333 */
+    --color-text-grid-body:var(--color-text-base);                          /* #333 */
+    --color-text-pagination-default:var(--color-text-tertiary);             /* #999 */
+    --color-text-pagination-active:var(--color-text-white);                 /* #FFF */
+    --color-bg-grid-header:#F0F5F9;
+    --color-bg-grid-body-default:var(--color-bg-white);                     /* #FFF */
+    --color-bg-grid-body-hover:var(--color-blue-01);                        /* #F3F9FF */
+    --color-border-grid:#D6E0EA;
+    --color-bg-pagination-active:var(--color-primary);                      /* #005BAA */
+    --color-bg-pagination-hover:var(--color-gray-02);                       /* #F4F4F4 */
+    
+    /* Form */
+    --color-text-form-label-default:var(--color-text-base);                 /* #333 */
+    --color-text-form-active:var(--color-primary);                          /* #005BAA */
+    --color-text-form-value:var(--color-text-base);                         /* #333 */
+    --color-text-form-placeholder:var(--color-gray-09);                     /* #666 */
+    --color-text-form-disabled:var(--color-coolgray-02);                    /* #A2A2A2 */
+    --color-text-form-error:var(--color-red-05);                            /* #D31616 */
+    --color-border-form-default:var(--color-gray-05);                       /* #CCC */
+    --color-border-form-active:var(--color-primary);                        /* #005BAA */
+    --color-border-form-disabled:var(--color-gray-05);                      /* #CCC */
+    --color-bg-form-default:var(--color-bg-white);                          /* #FFF */
+    --color-bg-form-active:var(--color-primary);                            /* #005BAA */
+    --color-bg-form-disabled:var(--color-gray-02);                          /* #F4F4F4 */
+    --form-size-lg:3.6rem;
+    --form-size-md:2.6rem;
+    --form-size-sm:;
+    --form-border-radius-lg:0.5rem;
+    --form-border-radius-md:0.5rem;
+    --form-border-radius-sm:0.5rem;
+    --form-font-weight:500;
+    --form-font-size-lg:1.4rem;
+    --form-font-size-md:1.3rem;
+    --form-font-size-sm:;
+
+    /* Button */
+    --color-text-button-disabled:var(--color-text-form-disabled);           /* #A2A2A2 */
+    --color-bg-button-disabled:var(--color-gray-02);                        /* #F4F4F4 */
+
+    /* Button — Solid */
+    --color-text-button-solid-default:var(--color-text-white);              /* #FFF */
+    
+    /* Button — Outlined */
+    --color-bg-button-outlined-default:var(--color-text-white);             /* #FFF */
+    
+    /* Button — Text */
+    --color-text-button-text-default:var(--color-text-base);                /* #333 */
+    --color-text-button-text-hover:var(--color-blue-09);                    /* #004586 */
+    --color-text-button-text-pressed:var(--color-primary);                  /* #005BAA */
+    
+    /* Button — Primary */
+    --color-bg-button-solid-primary-default:var(--color-primary);           /* #005BAA */
+    --color-bg-button-solid-primary-hover:var(--color-primary-hover);       /* #004A8C */
+    --color-bg-button-filled-primary-default:var(--color-blue-02);          /* #EFF8FF */
+    --color-bg-button-filled-primary-hover:var(--color-blue-04);            /* #D5EBFF */
+    --color-text-button-outlined-primary-default:var(--color-gray-09);      /* #666 */
+    --color-border-button-outlined-primary-default:var(--color-gray-05);    /* #CCC */
+
+    /* Button — Green */
+    --color-bg-button-solid-green-default:var(--color-green-06);            /* #0B7F44 */
+    --color-bg-button-solid-green-hover:var(--color-green-08);              /* #006230 */
+    --color-bg-button-filled-green-default:var(--color-green-02);
+    --color-bg-button-filled-green-hover:var(--color-green-04);
+    --color-text-button-outlined-green-default:var(--color-gray-09);
+    --color-border-button-outlined-green-default:var(--color-gray-05);
+
+    /* Button — Misc */
+    --color-text-button-alarm-default:var(--color-red-05);                  /* #D31616 */
+    --color-text-button-alarm-active:var(--color-base-white);               /* #FFF */
+    --color-bg-button-alarm-default:transparent;
+    --color-bg-button-alarm-active:var(--color-red-04);                     /* #E32020 */
+    --color-border-button-alarm-default:var(--color-red-04);                /* #E32020 */
+    --color-border-button-alarm-active:var(--color-red-04); 
+
+    /* Switch */
+    --color-bg-switch-off:#E4E4E4;
+    --color-bg-switch-on:var(--color-primary);                              /* #005BAA */
+    --color-bg-switch-thumb:var(--color-bg-white);                          /* #FFF */
+
+    /* Badge — Solid */
+    --color-text-badge-solid:var(--color-base-white);                       /* #FFF */
+    --color-bg-badge-solid-blue:var(--color-blue-06);                       /* #1D59F0 */
+    --color-bg-badge-solid-gray:var(--color-coolgray-04);                   /* #6D7882 */
+    --color-bg-badge-solid-red:var(--color-red-04);                         /* #E32020 */
+    --color-bg-badge-solid-green:var(--color-green-03);                     /* #1A9835 */
+    --color-bg-badge-solid-yellow:#FFBE32;
+
+    /* Badge — Filled */
+    --color-text-badge-filled-blue:var(--color-blue-07);                    /* #005BAA */
+    --color-bg-badge-filled-blue:#E7F2FC;
+    --color-text-badge-filled-gray:var(--color-coolgray-05);                /* #55585C */
+    --color-bg-badge-filled-gray:#E6E8EA;
+    --color-text-badge-filled-red:var(--color-red-05);                      /* #D31616 */
+    --color-bg-badge-filled-red:#FBEFF0;
+    --color-text-badge-filled-green:var(--color-green-05);                  /* #267337 */
+    --color-bg-badge-filled-green:#EAF6EC;
+
+    /* Badge — Outlined */
+    --color-bg-badge-outlined:var(--color-bg-white);                        /* #FFF */
+    --color-text-badge-outlined-blue:var(--color-blue-07);                  /* #005BAA */
+    --color-border-badge-outlined-blue:var(--color-blue-07);                /* #005BAA */
+    --color-text-badge-outlined-gray:var(--color-coolgray-05);              /* #55585C */
+    --color-border-badge-outlined-gray:var(--color-coolgray-04);            /* #6D7882 */
+    --color-text-badge-outlined-red:var(--color-red-05);                    /* #D31616 */
+    --color-border-badge-outlined-red:var(--color-red-04);                  /* #E32020 */
+    --color-text-badge-outlined-green:var(--color-green-05);                /* #267337 */
+    --color-border-badge-outlined-green:var(--color-green-04);              /* #228738 */
+    
+    /* Card — Default */
+    --color-bg-card-default:var(--color-bg-white);                          /* #FFF */
+    --color-border-card-default:var(--color-border-base);                   /* #CCC */
+    
+    /* Card — Light */
+    --color-bg-card-light:var(--color-bg-white);                            /* #FFF */
+    --color-bg-card-light-active:var(--color-blue-01);                      /* #F3F9FF */
+    --color-border-card-light:var(--color-gray-04);                         /* #DDD */
+
+    /* Card — Filled */
+    --color-bg-card-filled:var(--color-gray-01);                            /* #FCFCFC */
+    --color-bg-card-filled-active:var(--color-bg-white);                    /* #FFF */
+    --color-border-card-filled:var(--color-gray-04);                        /* #DDD */
+    --color-border-card-filled-active:var(--color-border-focus);            /* #005BAA */
+
+    /* Modal */
+    --color-text-modal-title:var(--color-text-black);
+    --color-bg-modal:var(--color-bg-white);                                 /* #FFF */
+
+    /* Calendar */
+    --color-text-calendar-header:var(--color-text-primary);                 /* #005BAA */
+    --color-text-calendar-sunday:var(--color-red-05);                       /* #D31616 */
+    --color-text-calendar-holiday:var(--color-red-05);                      /* #D31616 */
+    --color-bg-calendar:var(--color-bg-white);                              /* #FFF */
+    --color-bg-calendar-header:var(--color-blue-01);                        /* #F3F9FF */
+    --color-bg-calendar-list-header:var(--color-coolgray-01);               /* #F1F3F8 */
+    --color-bg-calendar-today:var(--color-blue-01);                         /* #F3F9FF */
+    --color-border-calendar:var(--color-border-base);                       /* #CCC */
+    --color-border-calendar-today:var(--color-border-focus);                /* #005BAA */
+
+    /* Tree List */
+    --color-text-tree-sub:var(--color-text-secondary);                      /* #666 */
+    --color-text-tree-selected:var(--color-primary);                        /* #005BAA */
+    --color-bg-tree-selected:var(--color-blue-01);                         /* #F3F9FF */
+
+    /* Collapse */
+    --color-text-collapse-title-default:var(--color-text-secondary);       /* #666 */
+    --color-text-collapse-title-active:var(--color-text-base);             /* #333 */
+
+    /* Tab */
+    --color-text-tab-default:var(--color-text-secondary);                   /* #666 */
+    --color-text-tab-active:var(--color-primary);                           /* #005BAA */
+    --color-border-tab-default:var(--color-border-base);                    /* #CCC */
+    --color-border-tab-active:var(--color-border-focus);                    /* #005BAA */
+    --color-text-tab-chip-default:var(--color-text-secondary);              /* #666 */
+    --color-text-tab-chip-active:var(--color-text-white);                   /* #FFF */
+    --color-bg-tab-chip-default:var(--color-bg-white);                      /* #FFF */
+    --color-bg-tab-chip-active:var(--color-gray-11);                        /* #333 */
+    --color-border-tab-chip-default:var(--color-border-base);               /* #CCC */
+    --color-border-tab-chip-active:var(--color-gray-11);                    /* #333 */
+
+    /* Icons — 18px */
+    --ico-add-x18:url("../img/ico/x18/ico-add.svg");
+    --ico-arrow-down-x18:url("../img/ico/x18/ico-arrow_down.svg");
+    --ico-arrow-left-x18:url("../img/ico/x18/ico-arrow_left.svg");
+    --ico-arrow-right-x18:url("../img/ico/x18/ico-arrow_right.svg");
+    --ico-arrow-up-x18:url("../img/ico/x18/ico-arrow_up.svg");
+    --ico-ascending-x18:url("../img/ico/x18/ico-ascending.svg");
+    --ico-asterisk-x18:url("../img/ico/x18/ico-asterisk.svg");
+    --ico-attachment-x18:url("../img/ico/x18/ico-attachment.svg");
+    --ico-banner-x18:url("../img/ico/x18/ico-banner.svg");
+    --ico-bell-x18:url("../img/ico/x18/ico-bell.svg");
+    --ico-blank-x18:url("../img/ico/x18/ico-blank.svg");
+    --ico-calendar-x18:url("../img/ico/x18/ico-calendar.svg");
+    --ico-call-x18:url("../img/ico/x18/ico-call.svg");
+    --ico-chart-x18:url("../img/ico/x18/ico-chart.svg");
+    --ico-checklist-x18:url("../img/ico/x18/ico-checklist.svg");
+    --ico-close-x18:url("../img/ico/x18/ico-close.svg");
+    --ico-community-x18:url("../img/ico/x18/ico-community.svg");
+    --ico-contents-x18:url("../img/ico/x18/ico-contents.svg");
+    --ico-descending-x18:url("../img/ico/x18/ico-descending.svg");
+    --ico-down-x18:url("../img/ico/x18/ico-down.svg");
+    --ico-download-x18:url("../img/ico/x18/ico-download.svg");
+    --ico-education-x18:url("../img/ico/x18/ico-education.svg");
+    --ico-email-x18:url("../img/ico/x18/ico-email.svg");
+    --ico-erp-x18:url("../img/ico/x18/ico-erp.svg");
+    --ico-excel-x18:url("../img/ico/x18/ico-excel.svg");
+    --ico-expandable-list-x18:url("../img/ico/x18/ico-expandable_list.svg");
+    --ico-external-link-x18:url("../img/ico/x18/ico-external_link.svg");
+    --ico-first-x18:url("../img/ico/x18/ico-first.svg");
+    --ico-folder-x18:url("../img/ico/x18/ico-folder.svg");
+    --ico-home-x18:url("../img/ico/x18/ico-home.svg");
+    --ico-inbox-x18:url("../img/ico/x18/ico-inbox.svg");
+    --ico-info-x18:url("../img/ico/x18/ico-info.svg");
+    --ico-info-filled-x18:url("../img/ico/x18/ico-info-filled.svg");
+    --ico-infor-x18:url("../img/ico/x18/ico-infor.svg");
+    --ico-last-x18:url("../img/ico/x18/ico-last.svg");
+    --ico-left-x18:url("../img/ico/x18/ico-left.svg");
+    --ico-location-x18:url("../img/ico/x18/ico-location.svg");
+    --ico-management-x18:url("../img/ico/x18/ico-management.svg");
+    --ico-menu-x18:url("../img/ico/x18/ico-menu.svg");
+    --ico-menu2-x18:url("../img/ico/x18/ico-menu2.svg");
+    --ico-message-x18:url("../img/ico/x18/ico-message.svg");
+    --ico-new-x18:url("../img/ico/x18/ico-new.svg");
+    --ico-org-char-x18:url("../img/ico/x18/ico-org_char.svg");
+    --ico-pencil-x18:url("../img/ico/x18/ico-pencil.svg");
+    --ico-popup-x18:url("../img/ico/x18/ico-popup.svg");
+    --ico-port-x18:url("../img/ico/x18/ico-port.svg");
+    --ico-price-x18:url("../img/ico/x18/ico-price.svg");
+    --ico-reset-x18:url("../img/ico/x18/ico-reset.svg");
+    --ico-right-x18:url("../img/ico/x18/ico-right.svg");
+    --ico-search-x18:url("../img/ico/x18/ico-search.svg");
+    --ico-settings-x18:url("../img/ico/x18/ico-settings.svg");
+    --ico-site-x18:url("../img/ico/x18/ico-site.svg");
+    --ico-star-x18:url("../img/ico/x18/ico-star.svg");
+    --ico-survey-x18:url("../img/ico/x18/ico-survey.svg");
+    --ico-technology-x18:url("../img/ico/x18/ico-technology.svg");
+    --ico-tree-view-minus-x18:url("../img/ico/x18/ico-tree_view_minus.svg");
+    --ico-tree-view-plus-x18:url("../img/ico/x18/ico-tree_view_plus.svg");
+    --ico-up-x18:url("../img/ico/x18/ico-up.svg");
+    --ico-user-x18:url("../img/ico/x18/ico-user.svg");
+    --ico-user-check-x18:url("../img/ico/x18/ico-user_check.svg");
+    --ico-up-down-x18:url("../img/ico/x18/ico-up_down.svg");
+    --ico-vote-x18:url("../img/ico/x18/ico-vote.svg");
+    --ico-warning-x18:url("../img/ico/x18/ico-warning.svg");
+    --ico-bank-x18:url("../img/ico/x18/ico-bank.svg");
+    --ico-bank-line-x18:url("../img/ico/x18/ico-bank_line.svg");
+    --ico-calculating-machine-x18:url("../img/ico/x18/ico-calculating_machine.svg");
+    --ico-company-vehicle-x18:url("../img/ico/x18/ico-company_vehicle.svg");
+    --ico-global-x18:url("../img/ico/x18/ico-global.svg");
+    --ico-leave-line-x18:url("../img/ico/x18/ico-leave_line.svg");
+    --ico-meeting-line-x18:url("../img/ico/x18/ico-meeting_line.svg");
+    --ico-menu-w-x18:url("../img/ico/x18/ico-menu_w.svg");
+    --ico-oil-prices-x18:url("../img/ico/x18/ico-oil_prices.svg");
+    --ico-relaxation-x18:url("../img/ico/x18/ico-relaxation.svg");
+    --ico-speaker-x18:url("../img/ico/x18/ico-speaker.svg");
+    --ico-stock-price-x18:url("../img/ico/x18/ico-stock_price.svg");
+    --ico-register-x18:url("../img/ico/x18/ico-register.svg");
+
+    /* Icons — 20px */
+    --ico-approval-x20:url("../img/ico/x20/ico-approval.svg");
+    --ico-calendar2-x20:url("../img/ico/x20/ico-calendar2.svg");
+    --ico-completed-x20:url("../img/ico/x20/ico-completed.svg");
+    --ico-education-x20:url("../img/ico/x20/ico-education.svg");
+    --ico-favorite-x20:url("../img/ico/x20/ico-favorite.svg");
+    --ico-kebab-x20:url("../img/ico/x20/ico-kabab.svg");
+    --ico-leave-x20:url("../img/ico/x20/ico-leave.svg");
+    --ico-meeting-x20:url("../img/ico/x20/ico-meeting.svg");
+    --ico-message2-x20:url("../img/ico/x20/ico-message2.svg");
+    --ico-notice-x20:url("../img/ico/x20/ico-notice.svg");
+    --ico-organization-x20:url("../img/ico/x20/ico-organization.svg");
+    --ico-pending-x20:url("../img/ico/x20/ico-pending.svg");
+    --ico-post-latest-x20:url("../img/ico/x20/ico-post_latest.svg");
+    --ico-rejected-x20:url("../img/ico/x20/ico-rejected.svg");
+    --ico-request-x20:url("../img/ico/x20/ico-request.svg");
+    --ico-scheduled-x20:url("../img/ico/x20/ico-scheduled.svg");
+    --ico-survey-x20:url("../img/ico/x20/ico-survey.svg");
+    --ico-vote2-x20:url("../img/ico/x20/ico-vote2.svg");
+    --ico-oil-x20:url("../img/ico/x20/ico-oil.svg");
+    --ico-data-search-x20:url("../img/ico/x20/ico-data_search.svg");
+    --ico-exchange-x20:url("../img/ico/x20/ico-exchange.svg");
+    --ico-interest-rate-x20:url("../img/ico/x20/ico-interest_rate.svg");
+
+    /* Icons — 24px */
+    --ico-add-x24:url("../img/ico/x24/ico-add.svg");
+    --ico-arrow-down-x24:url("../img/ico/x24/ico-arrow_down.svg");
+    --ico-arrow-left-x24:url("../img/ico/x24/ico-arrow_left.svg");
+    --ico-arrow-right-x24:url("../img/ico/x24/ico-arrow_right.svg");
+    --ico-arrow-up-x24:url("../img/ico/x24/ico-arrow_up.svg");
+    --ico-attachment-x24:url("../img/ico/x24/ico-attachment.svg");
+    --ico-banner-x24:url("../img/ico/x24/ico-banner.svg");
+    --ico-bell-x24:url("../img/ico/x24/ico-bell.svg");
+    --ico-blank-x24:url("../img/ico/x24/ico-blank.svg");
+    --ico-calendar-x24:url("../img/ico/x24/ico-calendar.svg");
+    --ico-call-x24:url("../img/ico/x24/ico-call.svg");
+    --ico-chart-x24:url("../img/ico/x24/ico-chart.svg");
+    --ico-checklist-x24:url("../img/ico/x24/ico-checklist.svg");
+    --ico-close-x24:url("../img/ico/x24/ico-close.svg");
+    --ico-community-x24:url("../img/ico/x24/ico-community.svg");
+    --ico-contents-x24:url("../img/ico/x24/ico-contents.svg");
+    --ico-download-x24:url("../img/ico/x24/ico-download.svg");
+    --ico-education-x24:url("../img/ico/x24/ico-education.svg");
+    --ico-email-x24:url("../img/ico/x24/ico-email.svg");
+    --ico-erp-x24:url("../img/ico/x24/ico-erp.svg");
+    --ico-excel-x24:url("../img/ico/x24/ico-excel.svg");
+    --ico-external-link-x24:url("../img/ico/x24/ico-external_link.svg");
+    --ico-first-x24:url("../img/ico/x24/ico-first.svg");
+    --ico-folder-x24:url("../img/ico/x24/ico-folder.svg");
+    --ico-home-x24:url("../img/ico/x24/ico-home.svg");
+    --ico-inbox-x24:url("../img/ico/x24/ico-inbox.svg");
+    --ico-info-x24:url("../img/ico/x24/ico-info.svg");
+    --ico-infor-x24:url("../img/ico/x24/ico-infor.svg");
+    --ico-last-x24:url("../img/ico/x24/ico-last.svg");
+    --ico-location-x24:url("../img/ico/x24/ico-location.svg");
+    --ico-management-x24:url("../img/ico/x24/ico-management.svg");
+    --ico-menu-x24:url("../img/ico/x24/ico-menu.svg");
+    --ico-message-x24:url("../img/ico/x24/ico-message.svg");
+    --ico-money-x24:url("../img/ico/x24/ico-money.svg");
+    --ico-new-x24:url("../img/ico/x24/ico-new.svg");
+    --ico-org-char-x24:url("../img/ico/x24/ico-org_char.svg");
+    --ico-pencil-x24:url("../img/ico/x24/ico-pencil.svg");
+    --ico-popup-x24:url("../img/ico/x24/ico-popup.svg");
+    --ico-port-x24:url("../img/ico/x24/ico-port.svg");
+    --ico-price-x24:url("../img/ico/x24/ico-price.svg");
+    --ico-reset-x24:url("../img/ico/x24/ico-reset.svg");
+    --ico-search-x24:url("../img/ico/x24/ico-search.svg");
+    --ico-settings-x24:url("../img/ico/x24/ico-settings.svg");
+    --ico-site-x24:url("../img/ico/x24/ico-site.svg");
+    --ico-star-x24:url("../img/ico/x24/ico-star.svg");
+    --ico-survey-x24:url("../img/ico/x24/ico-survey.svg");
+    --ico-technology-x24:url("../img/ico/x24/ico-technology.svg");
+    --ico-user-x24:url("../img/ico/x24/ico-user.svg");
+    --ico-user-check-x24:url("../img/ico/x24/ico-user_check.svg");
+    --ico-up-down-x24:url("../img/ico/x24/ico-up_down.svg");
+    --ico-vote-x24:url("../img/ico/x24/ico-vote.svg");
+    --ico-warning-x24:url("../img/ico/x24/ico-warning.svg");
+    --ico-siren-x24:url("../img/ico/x24/ico-siren.svg");
+    
+    /* Icons — 32px */
+    --ico-add-x32:url("../img/ico/x32/ico-add.svg");
+    --ico-arrow-down-x32:url("../img/ico/x32/ico-arrow_down.svg");
+    --ico-arrow-left-x32:url("../img/ico/x32/ico-arrow_left.svg");
+    --ico-arrow-right-x32:url("../img/ico/x32/ico-arrow_right.svg");
+    --ico-arrow-up-x32:url("../img/ico/x32/ico-arrow_up.svg");
+    --ico-attachment-x32:url("../img/ico/x32/ico-attachment.svg");
+    --ico-banner-x32:url("../img/ico/x32/ico-banner.svg");
+    --ico-bell-x32:url("../img/ico/x32/ico-bell.svg");
+    --ico-blank-x32:url("../img/ico/x32/ico-blank.svg");
+    --ico-calendar-x32:url("../img/ico/x32/ico-calendar.svg");
+    --ico-call-x32:url("../img/ico/x32/ico-call.svg");
+    --ico-chart-x32:url("../img/ico/x32/ico-chart.svg");
+    --ico-checklist-x32:url("../img/ico/x32/ico-checklist.svg");
+    --ico-close-x32:url("../img/ico/x32/ico-close.svg");
+    --ico-community-x32:url("../img/ico/x32/ico-community.svg");
+    --ico-contents-x32:url("../img/ico/x32/ico-contents.svg");
+    --ico-download-x32:url("../img/ico/x32/ico-download.svg");
+    --ico-education-x32:url("../img/ico/x32/ico-education.svg");
+    --ico-email-x32:url("../img/ico/x32/ico-email.svg");
+    --ico-erp-x32:url("../img/ico/x32/ico-erp.svg");
+    --ico-excel-x32:url("../img/ico/x32/ico-excel.svg");
+    --ico-external-link-x32:url("../img/ico/x32/ico-external_link.svg");
+    --ico-first-x32:url("../img/ico/x32/ico-first.svg");
+    --ico-folder-x32:url("../img/ico/x32/ico-folder.svg");
+    --ico-home-x32:url("../img/ico/x32/ico-home.svg");
+    --ico-inbox-x32:url("../img/ico/x32/ico-inbox.svg");
+    --ico-info-x32:url("../img/ico/x32/ico-info.svg");
+    --ico-infor-x32:url("../img/ico/x32/ico-infor.svg");
+    --ico-last-x32:url("../img/ico/x32/ico-last.svg");
+    --ico-location-x32:url("../img/ico/x32/ico-location.svg");
+    --ico-management-x32:url("../img/ico/x32/ico-management.svg");
+    --ico-menu-x32:url("../img/ico/x32/ico-menu.svg");
+    --ico-menu2-x32:url("../img/ico/x32/ico-menu2.svg");
+    --ico-message-x32:url("../img/ico/x32/ico-message.svg");
+    --ico-org-char-x32:url("../img/ico/x32/ico-org_char.svg");
+    --ico-pencil-x32:url("../img/ico/x32/ico-pencil.svg");
+    --ico-popup-x32:url("../img/ico/x32/ico-popup.svg");
+    --ico-port-x32:url("../img/ico/x32/ico-port.svg");
+    --ico-price-x32:url("../img/ico/x32/ico-price.svg");
+    --ico-reset-x32:url("../img/ico/x32/ico-reset.svg");
+    --ico-search-x32:url("../img/ico/x32/ico-search.svg");
+    --ico-settings-x32:url("../img/ico/x32/ico-settings.svg");
+    --ico-site-x32:url("../img/ico/x32/ico-site.svg");
+    --ico-star-x32:url("../img/ico/x32/ico-star.svg");
+    --ico-star-filled-x32:url("../img/ico/x32/ico-star-filled.svg");
+    --ico-survey-x32:url("../img/ico/x32/ico-survey.svg");
+    --ico-technology-x32:url("../img/ico/x32/ico-technology.svg");
+    --ico-user-x32:url("../img/ico/x32/ico-user.svg");
+    --ico-user-check-x32:url("../img/ico/x32/ico-user_check.svg");
+    --ico-up-down-x32:url("../img/ico/x32/ico-up_down.svg");
+    --ico-vote-x32:url("../img/ico/x32/ico-vote.svg");
+    --ico-warning-x32:url("../img/ico/x32/ico-warning.svg");
+    --ico-siren-x32:url("../img/ico/x32/ico-siren.svg");
+}
+
+/* TODO: 다크모드, Theme variable 추가 */
+[data-theme="dark"] {
+    /* Text */
+    --color-text-base:var(--color-text-white);
+
+    /* Primary(Brand) — 시안 계열로 오버라이드 */
+    --color-primary:#0891B2;
+    --color-primary-hover:#0E7490;
+
+    /* Grid Toolbar */
+    --color-text-grid-total:var(--color-text-white);
+
+    /* Dropdown Arrow Icon */
+    --color-gray-11:#FFF;
+    --color-coolgray-03:#B4BEBE;
+
+    /* Icons — 20px */
+    --ico-approval-x20:url("../img/ico/x20/dark/ico-approval.svg");
+    --ico-calendar2-x20:url("../img/ico/x20/dark/ico-calendar2.svg");
+    --ico-completed-x20:url("../img/ico/x20/dark/ico-completed.svg");
+    --ico-education-x20:url("../img/ico/x20/dark/ico-education.svg");
+    --ico-favorite-x20:url("../img/ico/x20/dark/ico-favorite.svg");
+    --ico-leave-x20:url("../img/ico/x20/dark/ico-leave.svg");
+    --ico-meeting-x20:url("../img/ico/x20/dark/ico-meeting.svg");
+    --ico-message2-x20:url("../img/ico/x20/dark/ico-message2.svg");
+    --ico-notice-x20:url("../img/ico/x20/dark/ico-notice.svg");
+    --ico-organization-x20:url("../img/ico/x20/dark/ico-organization.svg");
+    --ico-pending-x20:url("../img/ico/x20/dark/ico-pending.svg");
+    --ico-post-latest-x20:url("../img/ico/x20/dark/ico-post_latest.svg");
+    --ico-rejected-x20:url("../img/ico/x20/dark/ico-rejected.svg");
+    --ico-request-x20:url("../img/ico/x20/dark/ico-request.svg");
+    --ico-scheduled-x20:url("../img/ico/x20/dark/ico-scheduled.svg");
+    --ico-survey-x20:url("../img/ico/x20/dark/ico-survey.svg");
+    --ico-vote2-x20:url("../img/ico/x20/dark/ico-vote2.svg");
+    --ico-oil-x20:url("../img/ico/x20/dark/ico-oil.svg");
+    --ico-data-search-x20:url("../img/ico/x20/dark/ico-data_search.svg");
+    --ico-exchange-x20:url("../img/ico/x20/dark/ico-exchange.svg");
+    --ico-interest-rate-x20:url("../img/ico/x20/dark/ico-interest_rate.svg");
+}
+
+/* --- Base --- */
+body {background-color:var(--color-bg-base); color:var(--color-text-base); font-size:1.6rem; line-height:1.5; font-family:var(--font-base); letter-spacing:-0.06em; word-break:keep-all; overflow-wrap:anywhere; caret-color:var(--color-primary);}
+
+/* --- Utilities --- */
+.hidden {opacity:0; overflow:hidden; position:absolute; width:1px; height:1px; pointer-events:none;}
+.sr-only {overflow:hidden; position:absolute; width:1px; height:1px; margin:-1px; padding:0; border:0; white-space:nowrap; clip-path:inset(50%);}
+.text-ellipsis {overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+.text-ellipsis-2 {display:-webkit-box; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:2; line-clamp:2; -webkit-box-orient:vertical;}
+.text-center {text-align:center !important;}
+.text-left {text-align:left !important;}
+.text-right {text-align:right !important;}
+
+/* --- Scrollbar --- */
+*::-webkit-scrollbar {width:6px !important; height:6px !important;} 
+*::-webkit-scrollbar-track {border-radius:99.9rem !important; background-color:#FFF !important;} 
+*::-webkit-scrollbar-thumb {border-radius:99.9rem !important; background-color:#949494 !important;} 
+*::-webkit-scrollbar-button {display:none !important; width:0 !important; height:0 !important;}
+
+/* --- Typography --- */
+
+/* display */
+.display-xl {font-weight:700; font-size:5.0rem;} 
+.display-lg {font-weight:700; font-size:3.8rem;}
+
+/* heading */
+.heading-xl {font-weight:700; font-size:2.6rem;} 
+.heading-lg {font-weight:700; font-size:2.4rem;} 
+.heading-md {font-weight:700; font-size:2.2rem;} 
+.heading-sm {font-weight:700; font-size:1.8rem;} 
+.heading-xs {font-weight:600; font-size:1.6rem;}
+
+/* body */
+.body-lg-semibold {font-weight:600; font-size:1.6rem;} 
+.body-md-semibold {font-weight:600; font-size:1.4rem;} 
+.body-sm-semibold {font-weight:600; font-size:1.3rem;} 
+.body-xs-semibold {font-weight:600; font-size:1.2rem;} 
+.body-lg-medium {font-weight:500; font-size:1.6rem;} 
+.body-md-medium {font-weight:500; font-size:1.4rem;} 
+.body-sm-medium {font-weight:500; font-size:1.3rem;} 
+.body-xs-medium {font-weight:500; font-size:1.2rem;}
+
+/* inline */
+.text-inline {display:inline-block !important;}
+
+/* color */
+.text-primary {color:var(--color-text-primary) !important;}             /* #005BAA */
+.text-secondary {color:var(--color-text-secondary) !important;}         /* #666 */
+.text-tertiary {color:var(--color-text-tertiary) !important;}           /* #999 */
+.text-red {color:var(--color-red-05) !important;}                       /* #D31616 */
+
+/* ============================================================
+   Media Query
+   ============================================================ */
+@media screen and (width <= 768px) {
+}

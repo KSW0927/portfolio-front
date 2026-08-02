@@ -1,0 +1,49 @@
+/* ============================================================
+   checkbox.css
+   ============================================================ */
+.checkbox-wrap {display:inline-flex; align-items:center; gap:0.8rem; position:relative; cursor:pointer;}
+.checkbox-wrap:has(.checkbox-desc) {align-items:flex-start;}
+.checkbox-wrap.-disabled {cursor:not-allowed;}
+
+/* --- Checkbox Group --- */
+.checkbox-group {display:flex; gap:4.0rem;}
+.checkbox-group.-horizontal {flex-flow:row wrap;}
+.checkbox-group.-vertical {flex-direction:column; gap:2.1rem;}
+
+/* --- Checkbox --- */
+.checkbox-box {display:inline-flex; flex-shrink:0; justify-content:center; align-items:center; width:1.8rem; height:1.8rem; border:1px solid var(--color-border-form-default); border-radius:0.4rem; background-color:var(--color-bg-form-default); cursor:inherit; transition:border 0.2s ease-in-out;}
+
+/* --- Label & Content --- */
+.checkbox-content {display:flex; flex-direction:column;}
+.checkbox-content .form-label {margin-bottom:0; font-weight:500; font-size:1.6rem;}
+.checkbox-wrap:has(.checkbox-desc) .checkbox-box {transform:translateY(0.3rem);}
+.checkbox-desc {margin-top:1.1rem; color:var(--color-text-secondary); font-weight:500; font-size:1.3rem; cursor:inherit;}
+.checkbox-wrap.-disabled .form-label,
+.checkbox-wrap.-disabled .checkbox-desc {color:var(--color-text-form-disabled); cursor:not-allowed;}
+
+/* --- Check Icon --- */
+.checkbox-icon {width:1.1rem; height:0.7rem; transition:stroke-dashoffset 0.2s ease-in-out; fill:none; stroke:white; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:15; stroke-dashoffset:15;}
+
+/* --- States --- */
+.checkbox-input:focus-visible + .checkbox-box {outline:2px solid var(--color-primary); outline-offset:2px;}
+.checkbox-wrap:not(.-readonly, .-disabled) .checkbox-input:checked ~ .checkbox-content .form-label {color:var(--color-text-form-active);}
+.checkbox-wrap:not(.-readonly, .-disabled) .checkbox-input:checked ~ .checkbox-box {border-color:var(--color-border-form-active); background-color:var(--color-bg-form-active);}
+.checkbox-wrap:not(.-readonly, .-disabled) .checkbox-input:checked ~ .checkbox-box .checkbox-icon {stroke-dashoffset:0;}
+.checkbox-wrap.-readonly {cursor:default;}
+.checkbox-wrap.-readonly .checkbox-content .form-label {cursor:default;}
+.checkbox-wrap.-readonly .checkbox-box {border-color:var(--color-border-form-default); background-color:var(--color-bg-form-disabled);}
+.checkbox-wrap.-readonly .checkbox-input:checked ~ .checkbox-box .checkbox-icon {stroke-dashoffset:0;}
+.checkbox-wrap.-readonly .checkbox-input:checked ~ .checkbox-box .checkbox-icon path {stroke:var(--color-border-form-disabled);}
+.checkbox-input:disabled ~ .checkbox-box {border-color:var(--color-border-form-disabled); background-color:var(--color-bg-form-disabled);}
+.checkbox-input:disabled:checked ~ .checkbox-box {border-color:var(--color-border-form-disabled); background-color:var(--color-bg-form-disabled);}
+.checkbox-input:disabled:checked ~ .checkbox-box .checkbox-icon {stroke-dashoffset:0;}
+.checkbox-input:disabled:checked ~ .checkbox-box .checkbox-icon path {stroke:var(--color-border-form-disabled);}
+.checkbox-wrap:not(.-readonly, .-disabled):hover .checkbox-box {border-color:var(--color-border-form-active);}
+
+/* --- Box variant --- */
+.checkbox-wrap.-box {display:flex; width:100%; padding:1.45rem 2.0rem; border:1px solid var(--color-border-form-default); border-radius:1.0rem; background-color:var(--color-bg-form-default); transition:border-color 0.2s ease-in-out, background-color 0.2s ease-in-out; box-sizing:border-box;}
+.checkbox-wrap.-box:not(.-readonly, .-disabled):hover {border-color:var(--color-border-form-active);}
+.checkbox-wrap.-box:has(.checkbox-input:checked) {border-color:var(--color-primary); background-color:var(--color-blue-01);}
+.checkbox-wrap.-box:has(.checkbox-input:disabled) {border-color:var(--color-border-form-disabled); background-color:var(--color-bg-form-disabled);}
+.checkbox-wrap.-box:has(.checkbox-input:disabled:checked) .checkbox-icon {stroke-dashoffset:0;}
+.checkbox-wrap.-box:has(.checkbox-input:disabled:checked) .checkbox-icon path {stroke:var(--color-border-form-disabled);}

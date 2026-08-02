@@ -1,0 +1,32 @@
+/* ============================================================
+   box.css
+   ============================================================ */
+.box {display:flex; flex-direction:column; width:100%; border-radius:1.0rem;}
+.box.-h-full {height:100%;}
+.box-header {margin:0 -2.0rem 1.4rem; padding:0 2.0rem 1.4rem; border-bottom:1px solid var(--color-border-base);}
+
+/* --- Variants --- */
+.box-default {padding:2.0rem; background-color:var(--color-bg-box);} 
+.box-info {padding:1.4rem; background-color:var(--color-bg-box);} 
+.box-inner {padding:2.0rem; background-color:var(--color-bg-white);}
+
+/* --- Sizes --- */
+.box.-lg {padding:3.0rem; background-color:var(--color-bg-box);}
+.box-info.-lg {padding:2.4rem; background-color:var(--color-bg-box);}
+
+/* --- Shape --- */
+.box.-square {border-radius:0;}
+
+/* --- Color --- */
+.box.-blue {background-color:var(--color-blue-01);}
+
+/* ============================================================
+   Media Query
+   ============================================================ */
+@media screen and (width <= 768px) {
+    /* BI-001: 경영혁신과제 > 총괄현황 
+      ---------------------------------------------------------------- */
+
+    /* --- Box has slider --- */
+    .box:has( > [class$="-slider"]) {width:calc(100% - 2.0rem); margin-left:2.0rem; padding-right:0; border-top-right-radius:0; border-bottom-right-radius:0;}
+}

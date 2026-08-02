@@ -1,0 +1,69 @@
+<html>
+<head>
+	<title>DefaultWordBreak</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />	
+	<meta name="author" content="JIRANSOFT Co., Ltd." />
+	<link rel="stylesheet" href="../images/linkstyle.css" />
+</head>
+<body>
+<table class="main top">
+    <tr>
+        <td class="on">
+            <p class="pme2">Param</p>
+        </td>
+        <td class="off">
+            <p class="pme">Method</p>
+        </td>
+        <td class="off">
+            <p class="pme">Event</p>
+        </td>
+        <td width="10%">
+            <p class="pme">&nbsp;</p>
+        </td>
+        <td width="50%">
+            <p class="pme">&nbsp;</p>
+        </td>
+    </tr>
+</table>
+<table class="main">
+    <tr>
+        <td>
+            <h1>DefaultWordBreak<sub>v4.1.0.05 or higher</sub></h1>
+            <p class="dscrpt">body, table 속성에 줄바꿈 스타일(word-break:break-all)을 설정합니다.</p>
+            <p class="dscrpt">&nbsp;</p>
+			<p class="dscrpt">한글의 경우 엔터 값을 입력하지 않아도 창 크기에 맞게 줄바꿈 되어 보이지만 숫자/영어의 경우 띄어쓰기나 엔터 값이 없으면 줄바꿈 없이 계속 입력됩니다.</p>
+			<p class="dscrpt">이는 한글은 2byte, 숫자/영어는 1byte 문자로 처리가 다르기 때문입니다.</p>
+			<p class="dscrpt">동일하게 줄바꿈 되도록 하려면 DefaultWordBreak 설정을 합니다.</p>
+			<p class="dscrpt">&nbsp;</p>
+			
+            <h4>Parameters</h4>
+            <table class="paradsc2">
+                <tr>
+                    <td class="eee">            
+                        <p align="center">TRUE</p>
+                    </td>
+                    <td>
+                        <p>설정</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="eee">            
+                        <p align="center">FALSE</p>
+                    </td>
+                    <td>
+                        <p>설정 안 함 (기본 값)</p>
+                    </td>
+                </tr>
+            </table>            
+			<p class="dscrpt">&nbsp;</p>
+			
+			<h4>Sample Codes</h4>
+            <pre class="scodedsc">var CrossEditor = new NamoSE(&quot;test&quot;);
+CrossEditor.params.<strong>DefaultWordBreak</strong> = true;
+CrossEditor.EditorStart();</pre>            
+			<p class="dscrpt">&nbsp;</p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

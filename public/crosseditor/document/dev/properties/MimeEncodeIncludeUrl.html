@@ -1,0 +1,77 @@
+<html>
+<head>
+	<title>MimeEncodeIncludeUrl</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />	
+	<meta name="author" content="JIRANSOFT Co., Ltd." />
+	<link rel="stylesheet" href="../images/linkstyle.css" />
+</head>
+<body>
+<table class="main top">
+    <tr>
+        <td class="on">
+            <p class="pme2">Param</p>
+        </td>
+        <td class="off">
+            <p class="pme">Method</p>
+        </td>
+        <td class="off">
+            <p class="pme">Event</p>
+        </td>
+        <td width="10%">
+            <p class="pme">&nbsp;</p>
+        </td>
+        <td width="50%">
+            <p class="pme">&nbsp;</p>
+        </td>
+    </tr>
+</table>
+<table class="main">
+    <tr>
+        <td>
+            <h1>MimeEncodeIncludeUrl<sub>v4.5.0.01 or higher</sub></h1>
+            <p class="dscrpt">MimeEncodeFileScope가 Local인 경우, MIME 인코딩에 포함시킬 원격 파일의 시작 URL을 설정합니다.</p>
+			<p class="dscrpt">URL을 설정할 때 프로토콜(ftp, http 등) 및 절대 경로와 비교하므로 반드시 절대 경로를 설정해야 합니다.</p>
+			<p class="dscrpt">&nbsp;</p>
+			<p class="dscrpt">URL의 처음 부분만 비교를 하므로 아래의 경우 다른 결과를 가져올 수 있습니다.</p>
+			<table class="paradsc2">
+                <tr>
+					<td class="eee">
+                        <p align="center">MimeEncodeIncludeUrl</p>
+                    </td>
+                    <td class="eee">
+                        <p align="center">동작</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p align="center">http://www.aabbcc.co.kr/image</p>
+                    </td>
+					<td>
+                        <p>설정된 URL로 시작되는 모든 리소스가 포함<br/>예) http://www.aabbcc.co.kr/image_news.gif 등</p>
+                    </td>
+                </tr>
+				<tr>
+                    <td>
+                        <p align="center">http://www.aabbcc.co.kr/image/</p>
+                    </td>
+                    <td>
+                        <p>해당 폴더 이하의 리소스가 포함<br/>예) http://www.aabbcc.co.kr/image/news/123456.gif 등</p>
+                    </td>
+                </tr>
+            </table>
+            <p class="dscrpt">&nbsp;</p>
+			
+            <h4>Sample Codes</h4>
+            <pre class="scodedsc">var CrossEditor = new NamoSE(&quot;test&quot;);
+CrossEditor.params.<strong>MimeEncodeIncludeUrl</strong> = &quot;http://www.aabbcc.co.kr/image/&quot;;
+CrossEditor.EditorStart();</pre>
+            <p class="dscrpt">&nbsp;</p>
+			
+			<h4>See Also</h4>
+			<p class="dscrpt"><a href="../methods/GetMimeValue.html">GetMimeValue</a>&nbsp; <a href="../methods/SetMimeValue.html">SetMimeValue</a>&nbsp; <a href="./MimeEncodeRange.html">MimeEncodeRange</a>&nbsp; <a href="./MimeEncodeFileScope.html">MimeEncodeFileScope</a>&nbsp; <a href="./MimeEncodeType.html">MimeEncodeType</a></p>
+			<p class="dscrpt">&nbsp;</p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

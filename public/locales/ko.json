@@ -1,0 +1,66 @@
+{
+  "common": {
+    "save": "저장",
+    "delete": "삭제",
+    "ok": "확인",
+    "cancel": "취소",
+    "preview": "미리보기",
+    "download": "다운로드",
+    "upload": "업로드",
+    "search": "검색"
+  },
+  "select": {
+    "placeholder": "선택"
+  },
+  "componet": {
+    "enable": "활성화",
+    "disable": "비활성화",
+    "file": {
+      "no_attach_file": "첨부된 파일이 없습니다.",
+      "no_attach_image_file": "첨부된 이미지 파일이 없습니다."
+    }
+  },
+  "popup": {
+    "loading": "로딩중...",
+    "ok": "확인",
+    "cancel": "취소"
+  },
+  "menu": {
+    "home": "홈",
+    "about": "소개",
+    "contact": "연락처"
+  },
+  "grid": {
+    "loading": "로딩중...",
+    "no_data": "데이터가 없습니다."
+  },
+  "datepicker": {
+    "placeholder": "날짜 선택",
+    "placeholder_start": "날짜 시작",
+    "placeholder_end": "날짜 종료",
+    "placeholder_range": "시작일 및 종료일 선택"
+  },
+  "sample": {
+    "basic": "기본",
+    "form": "폼(Zod/Validation)",
+    "editor": "에디터",
+    "editor_isEmpty": "에디터 내용 존재여부",
+    "editor_content": "에디터 내용",
+    "focus": "포커스",
+    "reset": "초기화",
+    "input_content_yn": "입력내용 여부",
+    "input_content_check": "입력내용 확인",
+    "grid": "그리드(Toast UI)",
+    "chart": "그래프(ECharts)",
+    "popup": "팝업(SweetAlert2)",
+    "popup_alert": "기본 알림",
+    "popup_success": "성공 알림",
+    "popup_error": "오류 알림",
+    "popup_warning": "경고 알림",
+    "popup_confirm": "선택 팝업",
+    "popup_input": "입력 팝업",
+    "popup_toast_default": "기본 토스트 팝업",
+    "popup_loading": "로딩 팝업",
+    "etc": "기타"
+  }
+}

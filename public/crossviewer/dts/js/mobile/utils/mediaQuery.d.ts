@@ -1,0 +1,30 @@
+import type { BreakpointSettings, DeviceCharacteristics, ResponsiveConfig } from '../../../types';
+import type { MediaQueryContext } from '../../../types/context';
+export declare class MediaQuery {
+    private ctx;
+    private queries;
+    private listeners;
+    private breakpoints;
+    constructor(ctx?: MediaQueryContext);
+    matches(query: string): boolean;
+    matchesBreakpoint(breakpoint: string): boolean;
+    getCurrentBreakpoint(): 'mobile' | 'tablet' | 'desktop';
+    addListener(query: string, callback: (matches: boolean) => void): void;
+    removeListener(query: string): void;
+    onBreakpointChange(callback: (newBreakpoint: string, previousBreakpoint: string) => void): void;
+    onOrientationChange(callback: (orientation: 'portrait' | 'landscape') => void): void;
+    onTouchSupportChange(callback: (isTouch: boolean) => void): void;
+    onColorSchemeChange(callback: (scheme: 'dark' | 'light') => void): void;
+    onReducedMotionChange(callback: (isReduced: boolean) => void): void;
+    addCustomQuery(name: string, query: string): void;
+    getDeviceCharacteristics(): DeviceCharacteristics;
+    createResponsiveConfig(): ResponsiveConfig;
+    getResponsiveConfig(): ResponsiveConfig;
+    getSettingsForBreakpoint(breakpoint: string): BreakpointSettings;
+    addResponsiveClasses(element: HTMLElement): void;
+    updateResponsiveClasses(element: HTMLElement): void;
+    removeResponsiveClasses(element: HTMLElement): void;
+    destroy(): void;
+    testQuery(query: string): boolean;
+    testAllBreakpoints(): void;
+}

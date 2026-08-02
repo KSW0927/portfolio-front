@@ -1,0 +1,37 @@
+import type { OrientationHandlerContext } from '../../types/context';
+import type { ViewerInstance } from '../../types/viewerTypes';
+import type { MobileUI } from './mobileUI';
+type Orientation = 'portrait' | 'landscape';
+export declare class OrientationHandler {
+    private viewer;
+    private ctx;
+    private currentOrientation;
+    private orientationChangeCallbacks;
+    private mobileUI;
+    private _boundHandleOrientationChange;
+    private _boundResizeHandler;
+    private _boundOrientationChangeListener;
+    private _delayedViewportAdjustTimer;
+    private _listenersAttached;
+    private _viewportCleanup;
+    constructor(viewer: ViewerInstance, ctx?: OrientationHandlerContext);
+    init(): void;
+    private addOrientationListeners;
+    private handleOrientationChange;
+    private getOrientation;
+    private adjustViewerLayout;
+    private adjustToolbarForPortrait;
+    private adjustToolbarForLandscape;
+    private adjustRootHeightForOrientation;
+    onOrientationChange(callback: (newOrientation: Orientation, previousOrientation: Orientation) => void): void;
+    setMobileUI(mobileUIInstance: MobileUI): void;
+    private handleMobileUIOrientationChange;
+    private adjustDynamicUIElements;
+    private handleTitleTooltipOnOrientationChange;
+    getCurrentOrientation(): Orientation;
+    isPortrait(): boolean;
+    isLandscape(): boolean;
+    destroy(): void;
+    private debounce;
+}
+export {};

@@ -1,0 +1,25 @@
+/* ============================================================
+   list.css
+   ============================================================ */
+.list {display:flex; flex-direction:column; margin:0; padding:0; list-style:none;}
+.list.-horizontal {flex-direction:row;}
+
+/* --- Sizes --- */
+.list.-md {font-size:1.6rem;}
+.list.-sm {font-size:1.4rem;}
+
+/* --- List Item --- */
+.list-item {display:flex; align-items:center; margin:0;} 
+.list-item .content {flex:1; word-break:keep-all; overflow-wrap:break-word;}
+
+/* --- Description List --- */
+.list-item.-desc .term {display:flex; flex-shrink:0; align-items:center;} 
+.list-item.-desc .icon {display:inline-flex; margin-right:0.8rem;} 
+.list-item.-desc .bullet-mark {margin-right:0.4rem;} 
+.list-item.-desc .label {font-weight:500;} 
+.list-item.-desc .content {font-weight:500;}
+
+/* --- Bullet List --- */
+.list-item.-bullet {align-items:flex-start;} 
+.list-item.-bullet .icon, .list-item.-bullet .bullet-mark {display:inline-flex; flex-shrink:0; color:currentcolor;} 
+.list-item.-bullet .content {font-weight:500;}

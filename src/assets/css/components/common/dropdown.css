@@ -1,0 +1,66 @@
+/* ============================================================
+   dropdown.css
+   ============================================================ */
+.dropdown-group {display:inline-flex; flex-direction:column; align-items:flex-start; min-width:17rem;}
+.dropdown-group.w-full {display:flex; width:100%; min-width:auto;}
+.dropdown-wrap {display:inline-flex; align-items:center; overflow:visible; position:relative; width:100%; height:var(--form-size-lg); border-radius:var(--form-border-radius-lg); background-color:var(--color-bg-form-default);}
+.dropdown-wrap::after {content:""; position:absolute; border:1px solid var(--color-border-form-default); border-radius:inherit; pointer-events:none; transition:border-color 0.2s; inset:0;}
+
+/* --- Dropdown --- */
+.dropdown-field {display:flex; flex:1 1 auto; align-items:center; overflow:hidden; width:100%; height:100%; padding:0 2.8rem 0 var(--dropdown-padding-x); border:none; outline:none; background:transparent; color:var(--color-text-form-value); font-weight:var(--form-font-weight); cursor:pointer;} 
+.dropdown-field > * {display:inline-block; overflow:hidden; width:stretch; white-space:nowrap; text-overflow:ellipsis;}
+.dropdown-field.-placeholder {color:var(--color-text-form-placeholder);}
+
+/* --- Dropdown Icon --- */
+.dropdown-icon {display:flex; justify-content:center; align-items:center; position:absolute; top:50%; right:1.0rem; pointer-events:none; transform:translateY(-50%);}
+.dropdown-wrap:not(.-open, .-disabled) .dropdown-field:not(.-placeholder) + .dropdown-icon .ico {--ic-mode-bg:none; --ic-mode-mask:var(--ic-url); --ic-mode-color:var(--color-gray-11);}
+.dropdown-wrap:not(.-open, .-disabled) .dropdown-field:not(.-placeholder):hover + .dropdown-icon .ico {--ic-mode-color:var(--color-coolgray-03);}
+.dropdown-wrap.-open .dropdown-icon {transform:translateY(-50%) rotate(180deg);} 
+
+/* --- Dropdown Menu --- */
+.dropdown-menu {overflow-y:auto; position:absolute; top:calc(100% + 4px); left:0; z-index:100; width:100%; max-height:15.3rem; margin:0; padding:1.0rem 0; border:1px solid var(--color-border-form-default); border-radius:var(--form-border-radius-lg); background-color:var(--color-bg-form-default); list-style:none;}
+.dropdown-option {padding:0 var(--dropdown-padding-x, 1.0rem); color:var(--color-text-form-value); font-size:1.3rem; line-height:2.0rem; cursor:pointer; transition:color 0.15s;}
+.dropdown-option + .dropdown-option {margin-top:0.8rem;}
+.dropdown-option:hover,
+.dropdown-option.-highlighted,
+.dropdown-option.-selected {color:var(--color-text-form-active);}
+
+/* --- Sizes --- */
+.dropdown-wrap.-lg {height:var(--form-size-lg); --dropdown-padding-x:1.0rem; font-size:var(--form-font-size-lg);}
+.dropdown-wrap.-md {height:var(--form-size-md); --dropdown-padding-x:0.8rem; font-size:var(--form-font-size-md);}
+.dropdown-wrap.-md .dropdown-icon {right:0.7rem;}
+
+/* --- Validation Message --- */
+.validation-msg {display:flex; align-items:center; gap:0.2rem; margin-top:0.4rem; font-size:1.3rem;}
+.-error + .validation-msg {color:var(--color-error);}
+
+/* --- Variants --- */
+.dropdown-group.-text {min-width:auto;}
+.dropdown-wrap.-text {height:auto; background-color:transparent;}
+.dropdown-wrap.-text::after {display:none;}
+.dropdown-wrap.-text .dropdown-field {height:auto; padding:0 2.2rem 0 0;}
+.dropdown-wrap.-text .dropdown-icon {right:0;}
+
+/* --- Layout --- */
+.dropdown-group.-horizontal {flex-direction:row; align-items:center; gap:0.4rem;}
+.dropdown-group.-horizontal .form-label {margin-bottom:0; white-space:nowrap;}
+
+/* --- States --- */
+.dropdown-wrap:focus-within::after,
+.dropdown-wrap.-open::after {border-color:var(--color-border-form-active);} 
+.dropdown-wrap.-text:focus-within::after {display:block; border:1px solid var(--color-border-form-active);}
+.dropdown-wrap:not(.-error, .-disabled):hover::after {border-color:var(--color-border-form-active);} 
+.dropdown-wrap.-error::after {border-color:var(--color-error);}
+.dropdown-wrap.-disabled {background-color:var(--color-bg-form-disabled);}
+.dropdown-wrap.-disabled .dropdown-field {color:var(--color-text-form-disabled); cursor:not-allowed;}
+.dropdown-wrap.-disabled .dropdown-icon {color:var(--color-text-form-disabled);}
+.dropdown-wrap.-disabled::after {border-color:var(--color-border-form-disabled);}
+.dropdown-wrap.-text.-disabled {background-color:transparent;} 
+.dropdown-wrap.-text.-error .dropdown-field {color:var(--color-error);}
+
+/* ============================================================
+   Media Query
+   ============================================================ */
+@media screen and (width <= 768px) {
+    .dropdown-group {min-width:auto;}
+}

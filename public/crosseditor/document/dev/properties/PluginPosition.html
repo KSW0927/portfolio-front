@@ -1,0 +1,69 @@
+<html>
+<head>
+	<title>PluginPosition</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />	
+	<meta name="author" content="JIRANSOFT Co., Ltd." />
+	<link rel="stylesheet" href="../images/linkstyle.css" />
+</head>
+<body>
+<table class="main top">
+    <tr>
+        <td class="on">
+            <p class="pme2">Param</p>
+        </td>
+        <td class="off">
+            <p class="pme">Method</p>
+        </td>
+        <td class="off">
+            <p class="pme">Event</p>
+        </td>
+        <td width="10%">
+            <p class="pme">&nbsp;</p>
+        </td>
+        <td width="50%">
+            <p class="pme">&nbsp;</p>
+        </td>
+    </tr>
+</table>
+<table class="main">
+    <tr>
+        <td>
+            <h1>PluginPosition<sub>v4.0.0.16 or higher</sub></h1>
+            <p class="dscrpt">iframe 안에 에디터 생성 시 iframe 노드를 설정하여 플러그인 창 위치를 설정합니다.</p>
+            <p class="dscrpt">&nbsp;</p>
+            
+            <h4>Parameters</h4>
+            <table class="paradsc2">
+                <tr>
+                    <td class="eee">            
+                        <p align="center">TRUE</p>
+                    </td>
+                    <td>
+                        <p>플러그인 창이 위치할 iframe 노드 설정</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="eee">            
+                        <p align="center">FALSE</p>
+                    </td>
+                    <td>
+                        <p>window.top (기본 값)</p>
+                    </td>
+                </tr>
+            </table>
+            <p class="dscrpt">&nbsp;</p>
+			
+			<h4>Sample Codes</h4>
+            <pre class="scodedsc">var CrossEditor = new NamoSE(&quot;test&quot;);
+CrossEditor.params.<strong>PluginPosition</strong> = $(window.top.document.body).find('iframe#POPPanel').get(0);
+CrossEditor.EditorStart();</pre>            
+			<p class="dscrpt">&nbsp;</p>
+			
+			<h4>See Also</h4>
+			<p class="dscrpt"><a href="./MenuInEditor.html">MenuInEditor</a>&nbsp; <a href="./PluginTopPosition.html">PluginTopPosition</a></p>
+			<p class="dscrpt">&nbsp;</p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

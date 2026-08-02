@@ -1,0 +1,106 @@
+<html>
+<head>
+	<title>MimeEncodeFilter</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />	
+	<meta name="author" content="JIRANSOFT Co., Ltd." />
+	<link rel="stylesheet" href="../images/linkstyle.css" />
+</head>
+<body>
+<table class="main top">
+    <tr>
+        <td class="on">
+            <p class="pme2">Param</p>
+        </td>
+        <td class="off">
+            <p class="pme">Method</p>
+        </td>
+        <td class="off">
+            <p class="pme">Event</p>
+        </td>
+        <td width="10%">
+            <p class="pme">&nbsp;</p>
+        </td>
+        <td width="50%">
+            <p class="pme">&nbsp;</p>
+        </td>
+    </tr>
+</table>
+<table class="main">
+    <tr>
+        <td>
+            <h1>MimeEncodeFilter<sub>v4.5.0.01 or higher</sub></h1>
+            <p class="dscrpt">MIME 형식으로 데이터를 얻을 때에 인코딩할 대상에 포함할 파일의 종류를 설정합니다.</p>
+            <p class="dscrpt">&nbsp;</p>
+			<p class="dscrpt">여러 종류를 사용할 때에는 파일을 포함하지 않는 경우('0')를 제외한 숫자 값들을 합하여 사용합니다.</p>
+			<p class="dscrpt">예를 들면, css와 object를 대상으로 한다면 '1'+'2' 한 값인 '3'을 입력합니다.</p>
+			<p class="dscrpt">&nbsp;</p>
+			
+			<h4>Parameters</h4>
+			<table class="paradsc2">
+				<tr>
+                    <td class="eee">
+						 <p align="center">설정</p>
+                    </td>
+                    <td class="eee">
+                        <p align="center">파일 종류</p>
+                    </td>
+                </tr>
+				<tr>
+                    <td>
+                        <p align="center">0</p>
+                    </td>
+                    <td>
+                        <p align="left">파일을 포함하지 않음</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p align="center">1</p>
+                    </td>
+                    <td>
+                        <p align="left">image (기본 값)</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p align="center">2</p>
+                    </td>
+                    <td>
+                        <p align="left">css</p>
+                    </td>
+                </tr>
+				<!--
+				<tr>
+                    <td>
+                        <p align="center">4</p>
+                    </td>
+                    <td>
+                        <p align="left">object</p>
+                    </td>
+                </tr>
+				<tr>
+                    <td>
+                        <p align="center">8</p>
+                    </td>
+                    <td>
+                        <p align="left">script</p>
+                    </td>
+                </tr>
+				-->
+            </table>
+            <p class="dscrpt">&nbsp;</p>
+			
+            <h4>Sample Codes</h4>
+            <pre class="scodedsc">var CrossEditor = new NamoSE(&quot;test&quot;);
+CrossEditor.params.<strong>MimeEncodeFilter</strong> = 3;    // image + css의 경우
+CrossEditor.EditorStart();</pre>
+            <p class="dscrpt">&nbsp;</p>
+			
+			<h4>See Also</h4>
+			<p class="dscrpt"><a href="../methods/GetMimeValue.html">GetMimeValue</a>&nbsp; <a href="../methods/SetMimeValue.html">SetMimeValue</a>&nbsp; <a href="./MimeEncodeRange.html">MimeEncodeRange</a>&nbsp; <a href="./MimeEncodeFileScope.html">MimeEncodeFileScope</a>&nbsp; <a href="./MimeEncodeType.html">MimeEncodeType</a></p>
+			<p class="dscrpt">&nbsp;</p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

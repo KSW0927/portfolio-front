@@ -1,0 +1,16 @@
+/* ============================================================
+   divider.css
+   ============================================================ */
+.divider {flex-shrink:0;}
+
+/* --- Direction --- */
+.divider.-horizontal {display:block; height:1px;}
+.divider.-vertical {display:inline-block; width:1px; vertical-align:middle;}
+
+/* --- Variant: Solid --- */
+.divider.-solid {background-color:var(--color-border-divider);}
+
+/* --- Variant: Dashed --- */
+.divider.-dashed {background-color:transparent;}
+.divider.-horizontal.-dashed {height:0; border-top:1px dashed var(--color-border-divider);}
+.divider.-vertical.-dashed {width:0; border-left:1px dashed var(--color-border-divider);}

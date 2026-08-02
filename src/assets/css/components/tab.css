@@ -1,0 +1,27 @@
+/* ============================================================
+   tab.css
+   ============================================================ */
+.tab-list {display:flex; align-items:center; position:relative;}
+.tab-item {display:inline-flex; justify-content:center; align-items:center; position:relative; padding:0; background:none; white-space:nowrap; transition:all 0.2s ease-in-out;}
+.tab-item:disabled {opacity:0.5; cursor:not-allowed;}
+
+/* --- Variant: Line TODO: 디자인 나오면 적용 필요 --- */
+.tab-list.-line {gap:3.2rem; border-bottom:1px solid var(--color-border-tab-default);}
+.tab-list.-line .tab-item {padding:1.4rem 0.4rem; color:var(--color-text-tab-default); font-weight:700; font-size:1.7rem;}
+.tab-list.-line .tab-item:hover:not(:disabled),
+.tab-list.-line .tab-item[aria-selected="true"] {color:var(--color-text-tab-active);}
+.tab-list.-line .tab-indicator {position:absolute; bottom:-1px; height:2px; background-color:var(--color-border-tab-active); pointer-events:none; transition:left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);}
+
+/* --- Variant: Chip --- */
+.tab-list.-chip {gap:0.8rem;}
+.tab-list.-chip .tab-item {height:4.0rem; padding:0 2.0rem; border:1px solid var(--color-border-tab-chip-default); border-radius:99.9rem; background-color:var(--color-bg-tab-chip-default); color:var(--color-text-tab-chip-default); font-weight:600;}
+.tab-list.-chip .tab-item:hover:not(:disabled),
+.tab-list.-chip .tab-item[aria-selected="true"] {border-color:var(--color-border-tab-chip-active); background-color:var(--color-bg-tab-chip-active); color:var(--color-text-tab-chip-active);}
+
+/* --- States --- */
+.tab-item:focus-visible {z-index:2; outline:2px solid var(--color-primary); outline-offset:2px;}
+.tab-list.-line .tab-item:focus-visible {border-radius:4px; outline-offset:-2px;}
+
+/* --- Tab Panel --- */
+.tab-container > .tab-panel {padding:2.0rem 0; outline:none;}
+.tab-panel:focus-visible {box-shadow:inset 0 0 0 2px var(--color-primary);}

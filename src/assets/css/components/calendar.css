@@ -1,0 +1,171 @@
+/* ============================================================
+   calendar.css
+   ============================================================ */
+.calendar-wrap {width:100%;}
+.calendar {--fc-today-bg-color:#F3F9FF; position:relative; width:100%; margin-top:2.0rem;}
+.calendar.hide-toolbar .fc-header-toolbar {display:none !important;}
+
+/* --- Layout & Border --- */
+.calendar .fc-theme-standard .fc-scrollgrid {overflow:hidden; border:1px solid var(--color-border-calendar); border-radius:2.0rem;}
+.calendar .fc-scrollgrid-section-header > th {border-top:none; border-right:none; border-left:none;}
+.calendar .fc-scrollgrid-section > * {border-right-width:0;}
+
+/* Header
+   ---------------------------------------------------------------- */
+.calendar-header {display:flex; flex-direction:column; width:100%;}
+.calendar-header .header-top {width:100%; margin-bottom:3.0rem;}
+.calendar-header .header-bottom {display:flex; justify-content:space-between; align-items:center; width:100%;}
+.calendar-header .header-left, 
+.calendar-header .header-right {display:flex; flex:1; align-items:center; gap:1.4rem;}
+.calendar-header .header-right {justify-content:flex-end; gap:0.8rem;}
+.calendar-header .header-center {display:flex; flex:1; justify-content:center; align-items:center; gap:1.0rem;}
+.calendar-header .header-center .calendar-title {font-weight:700; font-size:2.4rem;}
+.calendar-header .header-center .button-month-select {--btn-height:2.6rem;}
+
+/* --- Legend --- */
+.calendar-legend {display:flex; flex-wrap:wrap; gap:1.4rem; font-weight:600;}
+.calendar-legend .legend-item {display:flex; align-items:center; gap:0.6rem;}
+.calendar-legend .dot {width:1.4rem; height:1.4rem; border-radius:0.3rem;}
+
+/* Grid View
+   ---------------------------------------------------------------- */
+
+/* --- Header Cells --- */
+.calendar .fc-col-header-cell {padding:1.4rem 0; border-color:var(--color-border-calendar); background-color:var(--color-bg-calendar-header);}
+.calendar .fc-col-header-cell-cushion {padding:0; color:var(--color-text-calendar-header); font-weight:700; font-size:1.8rem;}
+
+/* --- Sunday --- */
+.calendar .fc-day-sun .fc-col-header-cell-cushion,
+.calendar .fc-day-sun .fc-daygrid-day-number {color:var(--color-text-calendar-sunday);}
+
+/* --- Day Cells --- */
+.calendar .fc-daygrid-day {padding:1.4rem 0; border-color:var(--color-border-calendar); background-color:var(--color-bg-calendar);}
+.calendar .fc-daygrid-day-frame {min-height:calc(18rem - 1.4rem - 1.4rem);}
+.calendar .fc-daygrid-day-top {display:flex; justify-content:center;}
+.calendar .day-cell {display:flex; flex-direction:column; align-items:center; width:100%;}
+.calendar .fc-daygrid-day-number {padding:0; font-weight:700; font-size:1.8rem;}
+
+/* --- Today --- */
+.calendar .fc-daygrid-day.fc-day-today {box-shadow:0 0 0 1px var(--color-border-calendar-today) inset;}
+
+/* --- Holiday --- */
+.calendar .is-holiday {color:var(--color-text-calendar-holiday) !important;}
+.calendar .fc-holiday-title {margin-top:1.0rem; color:var(--color-text-calendar-holiday); font-weight:500; font-size:1.4rem;}
+
+/* --- Other Day --- */
+.calendar .fc-day-other .fc-daygrid-day-top {opacity:1;}
+.calendar .fc-day-sun.fc-day-other .fc-daygrid-day-number {color:var(--color-red-03);}
+.calendar .fc-day-other .fc-daygrid-day-number {color:var(--color-text-disabled);}
+.calendar .fc-day-other .is-holiday,
+.calendar .fc-day-other .fc-holiday-title {color:var(--color-red-03) !important;}
+
+/* --- Event Dot --- */
+.calendar .fc-daygrid-dot-event {display:flex !important; align-items:center; overflow:hidden; margin-top:1.0rem; margin-inline:2.2rem !important;}
+.calendar .fc-daygrid-event-dot {flex-shrink:0; margin-right:0.4rem; border-width:0.32rem; border-radius:50%;}
+.calendar .fc-daygrid-dot-event .fc-event-time {font-weight:500; font-size:1.4rem;}
+.calendar .fc-daygrid-dot-event .fc-event-title {display:block; flex:1; overflow:hidden; font-weight:500; font-size:1.4rem; white-space:nowrap; text-overflow:ellipsis;}
+.calendar .fc-daygrid-dot-event:hover {background-color:transparent;}
+
+/* --- Event Block --- */
+.calendar .fc-daygrid-block-event {overflow:hidden; position:relative; margin:1.0rem 0 0 !important; padding:0.4rem 0.8rem; border:none; border-radius:0.2rem; font-weight:500; font-size:1.3rem;}
+.calendar .fc-daygrid-block-event::before {content:""; display:block; position:absolute; top:0; left:0; width:0.5rem; height:100%; border-radius:99.9rem; background-color:var(--event-border-color);}
+.calendar .fc-daygrid-block-event .fc-event-main {display:block; overflow:hidden; color:inherit; white-space:nowrap; text-overflow:ellipsis;}
+.calendar .fc-h-event .fc-event-title {display:block; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;}
+
+/* --- More Link --- */
+.calendar .fc-daygrid-more-link {display:block; margin-top:0.6rem; color:var(--color-text-secondary); font-weight:500; font-size:1.4rem;} 
+.calendar .fc-daygrid-more-link:hover {background:transparent; text-decoration:underline;}
+.calendar .fc-daygrid-more-link:focus {outline:2px solid var(--color-primary); outline-offset:2px;} 
+
+/* Popover */
+.calendar .fc-popover {overflow:hidden; z-index:100; border:1px solid var(--color-border-calendar); border-radius:0.8rem; box-shadow:var(--shadow-base, 0 4px 12px rgba(0, 0, 0, 0.1));}
+.calendar .fc-popover-header {padding:1.0rem 1.2rem; background-color:var(--color-bg-calendar-header); font-weight:600; font-size:1.4rem;}
+.calendar .fc-popover-body {padding:0.8rem;}
+
+/* List View
+   ---------------------------------------------------------------- */
+
+/* --- Table Reset --- */
+.calendar.-list .fc-scrollgrid {border:none !important;}
+.calendar.-list .fc-list {border:none; background:transparent;}
+.calendar.-list .fc-list-table {overflow:hidden; border:1px solid var(--color-border-calendar); border-radius:1.0rem; border-collapse:separate; border-spacing:0;}
+
+/* --- Day Header --- */
+.calendar.-list .fc-list-table tbody > tr:first-child th {border-bottom:1px dashed var(--color-border-calendar) !important;}
+.calendar.-list .fc-list-table tbody > tr th {border-top:0 !important; border-bottom:0 !important;}
+.calendar.-list .fc-list-day-cushion {align-content:center; height:6.6rem; padding:0 2.0rem; background-color:var(--color-bg-calendar-list-header);}
+.calendar.-list .fc-list-day-text {display:inline-flex; align-items:center; font-size:0 !important; text-decoration:none !important;}
+.calendar.-list .fc-list-day-text > span {font-weight:700; font-size:1.8rem;}
+
+/* --- List Item --- */
+.calendar.-list .fc-event:has(+ .fc-list-day) td,
+.calendar.-list .fc-event:last-child td {border-bottom:0 !important;}
+.calendar.-list .fc-list-event td {padding:2.1rem 2.0rem !important; border:none !important; border-bottom:1px dashed var(--color-border-calendar) !important; background-color:var(--color-bg-calendar);}
+
+/* --- Box Border --- */
+.calendar.-list .fc-list-event td:first-child {border-left:1px solid var(--color-border-calendar);}
+.calendar.-list .fc-list-event td:last-child {border-right:1px solid var(--color-border-calendar);}
+
+/* --- Today Box --- */
+.calendar.-list .fc-list-event.is-today-event {border-radius:2.0rem; box-shadow:var(--shadow-base);}
+.calendar.-list .fc-list-day.fc-day-today + .fc-list-event td {border-top:1px solid var(--color-border-calendar-today) !important;}
+.calendar.-list .fc-list-event.is-today-event td:first-child {border-left:1px solid var(--color-border-calendar-today) !important;}
+.calendar.-list .fc-list-event.is-today-event td:last-child {border-right:1px solid var(--color-border-calendar-today) !important;}
+.calendar.-list .fc-list-event.is-today-event:has(+ .fc-list-day) td,
+.calendar.-list .fc-list-event.is-today-event:last-child td {border-bottom:1px solid var(--color-border-calendar-today) !important;}
+
+/* --- Item Elements --- */
+.calendar.-list .fc-list-event .fc-list-event-graphic {padding:0 !important; vertical-align:middle;}
+.calendar.-list .fc-list-event .fc-list-event-dot {border-width:0.45rem;}
+.calendar.-list .fc-list-event .fc-list-event-time {width:18rem; font-weight:600;}
+.calendar.-list .fc-list-event .fc-list-event-title {padding-left:0.8rem !important; font-weight:500;}
+
+/* --- No Data --- */
+.calendar.-list .fc-list-empty {border:1px solid var(--color-border-calendar); border-radius:1.0rem; background-color:transparent;}
+.calendar.-list .fc-list-empty-cushion {font-weight:500;}
+
+/* ============================================================
+   Media Query
+   ============================================================ */
+@media screen and (width <= 768px) {
+    .calendar-wrap {padding:0 2.0rem;}
+    .calendar {margin-top:0.8rem;}
+    
+    /* --- Layout & Border --- */
+    .calendar .fc-theme-standard .fc-scrollgrid {border-radius:1.0rem;}
+
+    /* Header
+      ---------------------------------------------------------------- */
+    .calendar-header .header-top {margin-bottom:2.4rem;}
+    .calendar-header .header-bottom {flex-wrap:wrap; justify-content:flex-start; gap:1.4rem;}
+    .calendar-header .header-left {flex:0 0 auto;} 
+    .calendar-header .header-center {justify-content:flex-start; gap:1.4rem;}
+    .calendar-header .header-right {justify-content:flex-start;}
+
+    /* Grid View
+   ---------------------------------------------------------------- */
+   
+    /* --- Header Cells --- */
+    .calendar .fc-col-header-cell {padding:1.0rem 0; border-right-color:transparent; border-left-color:transparent;}
+    .calendar .fc-col-header-cell-cushion {font-weight:600; font-size:1.6rem;}
+   
+    /* --- Day Cells --- */
+    .calendar .fc-daygrid-day {padding:0.8rem 0; border-right-color:transparent; border-left-color:transparent;}
+    .calendar .fc-daygrid-day-frame {min-height:calc(10.4rem - 0.8rem - 0.8rem);}
+    .calendar .fc-daygrid-day-number {font-weight:600; font-size:1.4rem;}
+    
+    /* --- Holiday --- */
+    .calendar .fc-holiday-title {margin-top:0; font-size:1.2rem;}
+
+    /* Event Area */
+    .calendar .fc-daygrid-body-unbalanced .fc-daygrid-day-events {min-height:0;}
+    
+    /* --- Event Dot --- */
+    .calendar .fc-daygrid-dot-event {margin-top:0; margin-inline:0.45rem !important;}
+    .calendar .fc-daygrid-event-dot {border-width:0.25rem;}
+    .calendar .fc-daygrid-dot-event .fc-event-time {overflow:hidden; font-size:1.2rem; white-space:nowrap; text-overflow:ellipsis;}
+    .calendar .fc-daygrid-dot-event .fc-event-title {font-size:1.2rem;}
+    
+    /* --- Event Block --- */
+    .calendar .fc-daygrid-block-event {font-size:1.2rem;}
+}

@@ -1,0 +1,66 @@
+{
+  "common": {
+    "save": "Save",
+    "delete": "Delete",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "preview": "Preview",
+    "download": "Download",
+    "upload": "Upload",
+    "search": "Search"
+  },
+  "componet": {
+    "enable": "Enable",
+    "disable": "Disable",
+    "file": {
+      "no_attach_file": "No attached file.",
+      "no_attach_image_file": "No attached image file."
+    }
+  },
+  "select": {
+    "placeholder": "Select"
+  },
+  "popup": {
+    "loading": "Loading...",
+    "ok": "OK",
+    "cancel": "Cancel"
+  },
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "grid": {
+    "loading": "Loading...",
+    "no_data": "No Data"
+  },
+  "datepicker": {
+    "placeholder": "Select Date",
+    "placeholder_start": "Select Start Date",
+    "placeholder_end": "Select End Date",
+    "placeholder_range": "Select Start Date and End Date"
+  },
+  "sample": {
+    "basic": "Basic",
+    "form": "Form(Zod/Validation)",
+    "editor": "Editor",
+    "editor_isEmpty": "Editor content existence",
+    "editor_content": "Editor content",
+    "focus": "Focus",
+    "reset": "Reset",
+    "input_content_yn": "Content Exists",
+    "input_content_check": "Content Check",
+    "grid": "Grid(Toast UI)",
+    "chart": "Chart(ECharts)",
+    "popup": "Popup(SweetAlert2)",
+    "popup_alert": "Defualt Alert",
+    "popup_success": "Success Alert",
+    "popup_error": "Error Alert",
+    "popup_warning": "Warning Alert",
+    "popup_confirm": "Confirm Alert",
+    "popup_input": "Input Alert",
+    "popup_toast_default": "Default Toast",
+    "popup_loading": "Loading Popup",
+    "etc": "Etc"
+  }
+}

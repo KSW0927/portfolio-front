@@ -1,0 +1,18 @@
+/* ============================================================
+   switch.css
+   ============================================================ */
+.switch-wrapper {display:inline-flex; justify-content:flex-start; align-items:center; gap:0.8rem; position:relative; vertical-align:middle; cursor:pointer; user-select:none; -webkit-tap-highlight-color:transparent;}
+.switch-wrapper.-disabled {opacity:0.5; cursor:not-allowed;}
+.switch-input {overflow:hidden; position:absolute; top:0; left:0; width:1px; height:1px; margin:-1px; padding:0; border:0; white-space:nowrap; clip-path:inset(50%);}
+.switch-label {font-weight:500; font-size:1.4rem; user-select:none;}
+
+/* --- Track --- */
+.switch-track {display:inline-flex; flex-shrink:0; align-items:center; width:3.0rem; height:1.6rem; padding:0.1rem; border-radius:99.9rem; background-color:var(--color-bg-switch-off); transition:background-color 0.2s ease-in-out;}
+
+/* --- Thumb --- */
+.switch-thumb {display:block; width:1.4rem; height:1.4rem; border-radius:50%; background-color:var(--color-bg-switch-thumb); box-shadow:0 0 0.4rem rgba(0,0,0,0.2); transition:transform 0.2s cubic-bezier(0.12, 0.4, 0.29, 1.46);}
+
+/* --- States --- */
+.switch-input:checked ~ .switch-track {background-color:var(--color-bg-switch-on);}
+.switch-input:checked ~ .switch-track .switch-thumb {transform:translateX(1.4rem);}
+.switch-input:focus-visible ~ .switch-track {outline:2px solid var(--color-primary); outline-offset:2px;}

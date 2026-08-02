@@ -1,0 +1,23 @@
+/* ============================================================
+   textarea.css
+   ============================================================ */
+.textarea-group {display:inline-flex; flex-direction:column; align-items:flex-start; width:100%;}
+.textarea-group.w-full {display:flex;}
+.textarea-group.-horizontal {flex-direction:row; gap:0.4rem;}
+.textarea-group.-horizontal .form-label {margin-bottom:0; padding-top:1.0rem; white-space:nowrap; align-self:flex-start;}
+.textarea-wrap {display:flex; overflow:hidden; position:relative; width:100%; border:1px solid var(--color-border-form-default); border-radius:var(--form-border-radius-lg); background-color:var(--color-bg-form-default); transition:border-color 0.2s;}
+
+/* --- Textarea Field --- */
+.textarea-field {width:100%; min-height:80px; padding:0.7rem 1.0rem; border:none; outline:none; background:transparent; color:var(--color-text-form-value); font-weight:var(--form-font-weight); font-size:var(--form-font-size-lg); resize:vertical;}
+.textarea-field::placeholder {color:var(--color-text-form-placeholder);}
+.textarea-field:disabled,
+.textarea-field:disabled::placeholder {color:var(--color-text-form-disabled); cursor:not-allowed;}
+
+/* --- States --- */
+.textarea-wrap:focus-within {border-color:var(--color-border-form-active);} 
+.textarea-wrap:not(.-error, .-disabled, :focus-within):hover {border-color:var(--color-border-form-active);} 
+.textarea-wrap.-error {border-color:var(--color-error);} 
+.textarea-wrap.-disabled {border-color:var(--color-border-form-disabled); background-color:var(--color-bg-form-disabled);}
+
+/* --- Textarea in Data Grid --- */
+.custom-ag-theme .textarea-field {min-height:auto; line-height:1.5;}

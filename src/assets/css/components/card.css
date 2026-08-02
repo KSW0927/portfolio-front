@@ -1,0 +1,35 @@
+/* ============================================================
+   card.css
+   ============================================================ */
+.card {display:flex; flex-direction:column; border-radius:1.0rem; cursor:default; transition:all 0.2s ease-in-out; box-sizing:border-box;}
+.card-header {display:flex; justify-content:space-between; align-items:center;}
+.card-header-left {display:flex; align-items:center; gap:1.2rem;}
+.card-body {display:flex; flex:1; flex-direction:column;}
+.card-body.-left {text-align:left;}
+.card-body.-center {text-align:center;}
+.card-body.-right {text-align:right;}
+.card-actions {display:flex; flex-shrink:0; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:1.4rem;}
+
+/* --- Sizes --- */
+.card-sm {padding:1.6rem 2.0rem;}
+.card-md {padding:2.0rem;}
+.card-lg {padding:2.4rem;}
+.card-xl {padding:3.0rem;}
+
+/* --- Variants --- */
+.card-default {border:1px solid var(--color-border-card-default); background-color:var(--color-bg-card-default);}
+.card-light {border:1px solid var(--color-border-card-light); background-color:var(--color-bg-card-light);}
+.card-filled {border:1px solid var(--color-border-card-filled); background-color:var(--color-bg-card-filled);}
+
+/* --- Layout --- */
+.card.-horizontal {flex-direction:row; justify-content:space-between; align-items:center;}
+
+/* --- States --- */
+.card-light.clickable:hover,
+.card-light.-active {background-color:var(--color-bg-card-light-active);}
+.card-filled.-clickable:hover,
+.card-filled.-active {border:1px solid var(--color-border-card-filled-active); background-color:var(--color-bg-card-filled-active);}
+
+/* --- Clickable --- */
+.card.-clickable {cursor:pointer;}
+.card.-clickable:focus-visible {outline:2px solid var(--color-primary); outline-offset:2px;}

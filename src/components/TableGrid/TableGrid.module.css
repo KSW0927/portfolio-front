@@ -1,0 +1,84 @@
+.tableGridWrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  padding: 30px;
+  color: #333;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.96px;
+  background-color: #dfdfdf;
+  box-sizing: border-box;
+}
+
+.tableCaption {
+  display: flex;
+  align-items: center;
+}
+.tableCaption dl {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.tableCaption dl.total {
+  padding-right: 14px;
+}
+.tableCaption dl.total::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 5px);
+  right: 0;
+  border-right: 1px solid #BFBFBF;
+  width: 1px;
+  height: 10px;
+}
+.tableCaption dl.total dt {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.96px;
+}
+.tableCaption dl.total dd {
+  color: #003994;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: -0.96px;
+}
+.tableCaption dl.listNum {
+  padding-left: 14px;
+}
+.tableCaption dl.listNum::after {
+  content: '';
+  position: absolute;
+  top: calc(50% - 8px);
+  right: -20px;
+  width: 18px;
+  height: 18px;
+  background: url("/src/assets/images/ico_dropdown.svg") center center / 10px 6px no-repeat;
+  display: inline-block;
+  cursor: pointer;
+}
+.tableCaption dl.listNum dt {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.96px;
+}
+.tableCaption dl.listNum dd {
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.96px;
+}

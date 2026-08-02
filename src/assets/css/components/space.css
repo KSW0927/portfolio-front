@@ -1,0 +1,46 @@
+/* ============================================================
+   space.css
+   ============================================================ */
+.space-container {display:inline-flex;}
+.space-item {display:inline-flex; align-items:center;}
+
+/* --- Direction --- */
+.space-container.-horizontal,
+.space-item.-horizontal {flex-direction:row;} 
+.space-container.-vertical,
+.space-item.-vertical {display:flex; flex-direction:column;}
+
+/* --- Wrap --- */
+.space-container.-wrap {flex-wrap:wrap;}
+
+/* --- Alignment --- */
+.space-container.-align-start,
+.space-item.-align-start {align-items:flex-start;}
+.space-container.-align-end,
+.space-item.-align-end {align-items:flex-end;}
+.space-container.-align-center,
+.space-item.-align-center {align-items:center;}
+.space-container.-align-baseline,
+.space-item.-align-baseline {align-items:baseline;}
+
+/* --- Justify Content --- */
+.space-container.-justify-start,
+.space-item.-justify-start {justify-content:flex-start;}
+.space-container.-justify-end,
+.space-item.-justify-end {justify-content:flex-end;}
+.space-container.-justify-center,
+.space-item.-justify-center {justify-content:center;}
+.space-container.-justify-space-between,
+.space-item.-justify-space-between {justify-content:space-between;}
+.space-container.-justify-space-around,
+.space-item.-justify-space-around {justify-content:space-around;}
+.space-container.-justify-space-evenly,
+.space-item.-justify-space-evenly {justify-content:space-evenly;}
+
+/* --- Sizes --- */
+.space-container.-sm,
+.space-item.-sm {gap:0.8rem;} 
+.space-container.-md,
+.space-item.-md {gap:1.6rem;} 
+.space-container.-lg,
+.space-item.-lg {gap:2.4rem;}

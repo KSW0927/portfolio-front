@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+	<title>나모 크로스에디터 도움말</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="JIRANSOFT Co., Ltd." />
+	<link href="../common.css" rel="stylesheet" type="text/css" />
+	<base target="right">
+	<script src="../jquery.min.js"></script>
+	<script>
+	var $ = namo$;
+	function resizeH(){
+		$('#menuWrapper').css('height',$(window).height()-20+'px')}
+	$(function(){
+		resizeH();
+	})
+	$(window).resize(resizeH)
+	</script>
+	<script language="javascript" src="../popup.js"></script>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" scroll="no">
+<table style="width:100%; height:100%;">
+    <tr>
+        <td style="width:250px; height:100%" valign="top">
+            <div id="menuWrapper" style="padding:10px;height:100%;overflow:auto;">				
+                <p class="ctbic"><img src="../images/icon_list_01.png" style="vertical-align:middle" border="0"><a href="index.html">찾아보기</a></p>
+                <p class="ctmid"><a OnClick="doExpand(exp1)">가</a></p>            
+                <div id="exp1" style="display:;">
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#align_middle">가운데 정렬</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtools.html#privacy">개인정보추출정보</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="fbasic.html#insert_picture">그림넣기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#font">글꼴</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#fontsize">글꼴 크기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#dirrtl">글쓰기방향 우에서 좌로</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#dirltr">글쓰기방향 좌에서 우로</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#font_bgcolor">글자 배경색</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="fbasic.html#para_change_font">글자 속성 설정하기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#font_color">글자색</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="fbasic.html">기본적인 사용 방법</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#bullet">기호목록</a></p>
+                </div>
+	
+                <p class="ctmid"><a OnClick="doExpand(exp2)">나</a></p>            
+                <div id="exp2" style="display:;">
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="photo_intro.html">나모 포토에디터</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="photo_h5_intro.html">나모 포토에디터(HTML5)</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#datetime">날짜/시간 삽입</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#decrease_indent">내어쓰기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="fbasic.html#text_input">내용 입력</a></p>
+                </div>
+            
+                <p class="ctmid"><a OnClick="doExpand(exp3)">다</a></p>            
+                <div id="exp3" style="display:;">
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mhelp.html#help">도움말</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="medit.html#undo">돌이킴</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#video">동영상</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="medit.html#redo">되돌이킴</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#increase_indent">들여쓰기</a></p>
+                </div>
+	
+	            <p class="ctmid"><a OnClick="doExpand(exp4)">라</a></p>            
+                <div id="exp4" style="display:;">
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mfile.html#layout">레이아웃</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#layer">레이어넣기</a></p>
+                </div>
+
+				<p class="ctmid"><a OnClick="doExpand(exp5)">마</a></p>            
+                <div id="exp5" style="display:;">
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtools.html#spellchecker">맞춤법 검사</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#format_del">모든 글자 속성 지우기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="fbasic.html#editor_ptag">문단 삽입 기능</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#margin">문단여백</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#underline">밑줄</a></p>
+                </div>
+	
+                <p class="ctmid"><a OnClick="doExpand(exp5)">바</a></p>            
+                <div id="exp5" style="display:;">
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="medit.html#replace">바꾸기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="fpicture.html#insert_bg">배경 그림 넣기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mhelp.html#product">버전정보</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtools.html#translator">번역</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="medit.html#change_char">변환</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="medit.html#copy">복사하기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="medit.html#paste">붙여넣기</a></p>
+                </div>
+	
+                <p class="ctmid"><a OnClick="doExpand(exp6)">사</a></p>            
+                <div id="exp6" style="display:;">
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtools.html#dict">사전</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html">삽입</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mfile.html#file_new">새 문서</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#format">서식</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#formatcopy">서식 복사</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#formatpaste">서식 붙여넣기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtable.html#split_cell">셀 나누기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtable.html#merge_cell">셀 병합</a></p>                    
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtable.html#cell_dlg">셀 속성</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#insert_hr">수평선넣기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#number">숫자목록</a></p>
+                </div>
+	
+                <p class="ctmid"><a OnClick="doExpand(exp7)">아</a></p>            
+                <div id="exp7" style="display:;">
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#subscript">아래첨자</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#align_justify">양쪽맞춤</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtable.html#delete_column">열 삭제</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtable.html#insert_column">열 추가</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#align_right">오른쪽 정렬</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#align_left">왼쪽 정렬</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="fvalidation.html">웹 접근성 검증</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#superscript">위첨자</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#imoticon">이모티콘</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#italic">이탤릭</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mfile.html#print">인쇄하기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#blockquote">인용구문</a></p>
+                </div>
+	
+                <p class="ctmid"><a OnClick="doExpand(exp8)">자</a></p>            
+                <div id="exp8" style="display:;">
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mfile.html#file_autosave">자동 저장 불러오기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="medit.html#cut">자르기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mfile.html#file_save">저장하기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="medit.html#select_all">전체선택</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#lineheight">줄간격</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#bold">진하게</a></p>
+                </div>
+	
+                <p class="ctmid"><a OnClick="doExpand(exp9)">차</a></p>            
+                <div id="exp9" style="display:;">
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#chart">차트</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="fbasic.html#search_replace">찾기와 바꾸기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#bookmark">책갈피</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mformat.html#cancel">취소선</a></p>
+                </div>
+	
+                <p class="ctmid"><a OnClick="doExpand(exp10)">카</a></p>
+                <div id="exp10" style="display:;">
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#code">코드 삽입</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="fbasic.html#editor_quickmenu">퀵메뉴</a></p>
+				</div>
+				
+				<p class="ctmid"><a OnClick="doExpand(exp11)">타</a></p>
+				<div id="exp11" style="display:;">
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="medit.html#pastetext">텍스트로 붙여넣기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mfile.html#template">템플릿</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#insert_symbol">특수기호</a></p>
+				</div>	
+				
+				<p class="ctmid"><a OnClick="doExpand(exp12)">파</a></p>
+				<div id="exp12" style="display:;">
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mfile.html#file_open">파일 열기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#file">파일넣기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mfile.html#pagebreak">페이지분할</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="medit.html">편집</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="ifirst.html#editing">편집 환경</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="ftable.html#table_calculate">표 계산 기능 사용하기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtable.html#table_drag">표 그리기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="ftable.html#table_indent2">표 내어쓰기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="ftable.html#table_indent">표 들여쓰기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtable.html#table_new">표 만들기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="ftable.html#table_copy">표 복사 &amp; 붙여 넣기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="ftable.html#insert_table">표 삽입하기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="ftable.html#table_size1">표 크기 바꾸기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="ftable.html#table_border">표 테두리 고치기</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="ftable.html#insert_bg">표 테두리색 수정하기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtable.html#table_text">표를 텍스트로 변환</a></p>
+                </div>
+            
+                <p class="ctmid"><a OnClick="doExpand(exp13)">하</a></p>
+            
+                <div id="exp13" style="display:;">
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#hype">하이퍼링크</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="fbasic.html#insert_hyperlink">하이퍼링크 만들기</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="minsert.html#hyperlink_remove">하이퍼링크 취소</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtable.html#insert_row">행 추가</a></p>
+                    <p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtable.html#delete_row">행 삭제</a></p>
+					<p class="ctsmall"><img src="../images/icon_list_03.png" style="vertical-align:middle" border="0"><a href="mtools.html#setup">환경 설정</a></p>
+                    <p class="ctsmall">&nbsp;</p>
+                </div>
+            </div>		
+        </td>
+		<td style="width:1px;" bgcolor="#C2CDD4"></td>
+		<td valign="top" style="height:100%">
+			<iframe name="right" src="index.html" style="width:100%; height:100%;" frameborder="0" scrolling="auto"></iframe>
+		</td>
+    </tr>
+</table>
+</body>
+</html>

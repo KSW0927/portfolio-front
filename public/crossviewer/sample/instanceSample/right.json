@@ -1,0 +1,17 @@
+{
+  "lang": "enu",
+  "theme": "dark",
+  "panel": {
+    "useThumbnailPanel": false,
+    "initialThumbailPanel": false
+  },
+  "searchEnabled": false,
+  "printEnabled": false,
+  "downloadEnabled": false,
+  "scaleIncrement": 5,
+  "initialScaleValue": {
+    "pdf": "fitContent",
+    "doc": "fitContent",
+    "all": "fitContent"
+  }
+}

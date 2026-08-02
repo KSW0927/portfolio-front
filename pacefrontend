@@ -1,0 +1,89 @@
+[33m140b270[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mdevelop[m[33m)[m Merge branch 'feature/noh-common-20260724' into 'dev'
+[33m059c452[m [KSS Front][공통] - 파일 압축 다운로드 추가
+[33m1c84224[m Merge branch 'feature/noh-common-20260722' into 'dev'
+[33m47bf003[m [KSS API][공통] - 게시물 첨부파일 추가 및 삭제 관련 컴포넌트 수정 - TextEditor 위치 변경 - 파일업로드의 파일 목록 더블클릭 이벤트 추가 - 파일업로드의 기존 파일 추가, 삭제, 신규 등록 등 수정
+[33m25080a8[m Merge branch 'feature/vsl-info' into 'dev'
+[33m914ce59[m 예산 > 설계서 수정사항 일부 반영
+[33mdc12e40[m Merge branch 'feature/data-utlz' into 'dev'
+[33m9aef857[m [2026.07.22] 사업예산관리 선박별 기초예산내역, 선박별 예산상세내역 수정
+[33maeea535[m Merge branch 'feature/noh-common-20260720' into 'dev'
+[33m731f993[m [KSS Front][공통] - 파일 업로드 컴포넌트 수정(파일 제한, 확장자 필터 및 검증, 파일 업로드) - 게시판 파일 첨부 및 상세 페이지 다운로드 추가
+[33m10ed4ac[m Merge branch 'feature/noh-common-20260714' into 'dev'
+[33m787ca81[m [KSS Front][공통] - DataGrid 컴포넌트 showHeader 값에 따른 표시 수정 - FileUploader 컴포넌트 수정 중(파일선택의 필터, 파일 추가 시 허용확장자 적용 등)
+[33ma0918bd[m Merge branch 'feature/vsl-info' into 'dev'
+[33m0c26930[m 선박별 데이터 엑셀 업로드 및 검증
+[33m886bf9c[m Merge branch 'feature/noh-common-20260713' into 'dev'
+[33mbe29c9c[m [KSS Front][공통] - 파일 다운로드 컴포넌트 추가(동작 확인은 필요) - 파일 업로드 컴포넌트 관련 수정 중
+[33m798ed8c[m Merge branch 'feature/data-utlz' into 'dev'
+[33m88a5940[m [2026.07.13] 업무별 신청현황 신청하기 작업
+[33m36ea7ef[m Merge branch 'feature/plan-mng' into 'dev'
+[33m9a88d43[m (2026.07.13 전경진) 사업계획관리 개발 진행
+[33m758d8da[m Merge branch 'feature/noh-common-20260710' into 'dev'
+[33mfe04aa0[m [KSS Front][공통] - CrossUploader 관련 라이브러리 및 컴포넌트 수정 중
+[33m1d5cf29[m Merge branch 'feature/data-utlz' into 'dev'
+[33mc89a1f4[m [2026.07.10] 업무별 신청 작업
+[33ma9c1ea6[m Merge branch 'feature/noh-common-20260707' into 'dev'
+[33ma0fea6c[m [KSS Front][공통] - CrossUploader 관련 라이브러리 중 불필요 파일 삭제 및 컴포넌트 수정 중
+[33ma5d3b60[m Merge branch 'feature/data-utlz' into 'dev'
+[33m017eda8[m [2026.07.09] 화면 레이아웃 작업 업무관리 >업무일지>주기적/반복적 업무, 요청업무 관리 (팝업포함)
+[33m63410a2[m Merge branch 'dev' into feature/data-utlz
+[33ma0b7992[m Merge branch 'feature/noh-common-20260701' into 'dev'
+[33m9404399[m [KSS Front][공통] - 로그인 정보 수정 - 외부 api 정의 추가 중
+[33m1727498[m Merge branch 'dev' into feature/data-utlz
+[33m5205a39[m Merge branch 'feature/vsl-info' into 'dev'
+[33m1e80df5[m 선박별 데이터 복사 이력, 선박별 데이터 조회 로직 수정
+[33mfbf08c4[m Merge branch 'dev' into feature/data-utlz
+[33mdb6ae85[m Merge branch 'feature/data-utlz' into 'dev'
+[33m1fc7e1c[m [2026.06.25] 화면 레이아웃 및 다국어 적용 작업
+[33m28fa644[m [2026.07.03] 화면 레이아웃 및 다국어 적용 작업 업무관리 > 업무일지 > 주기적/반복적 업무 업무관리 > 업무일지 > 요청업무 관리 업무관리 > 업무일지 > 분류코드 업무관리 > 방선동승보고 업무관리 > 전산작업요청 업무관리 > 업무작업 요청
+[33m7c15775[m Merge branch 'dev' into feature/data-utlz
+[33m3ee5729[m Merge branch 'feature/noh-common-20260626-2' into 'dev'
+[33me379ed6[m [KSS Front][공통] - 메인 대시보드 수정 및 각 위젯 컴포넌트 분리 - 상단 즐겨찾기 팝업 수정 - 외부 사이트 이동 한곳에서 제공
+[33m207aa72[m Merge branch 'dev' into feature/data-utlz
+[33m979ac49[m Merge branch 'feature/vsl-info' into 'dev'
+[33mb5909cb[m 구간별 평균 환율 조회 추가, 선박별 데이터 복사 및 이력 커밋
+[33m40c3638[m Merge branch 'dev' into feature/data-utlz
+[33m123c457[m Merge branch 'feature/noh-common-20260626' into 'dev'
+[33m1b221d4[m [KSS Front][공통] - 퍼블 추가 내용 컴포넌트 쪽으로 적용(Dropdown 미적용 내용) - 메인 대시보드 및 위젯 관련 수정 중
+[33m753b4a1[m Merge branch 'feat/publishing' into 'dev'
+[33m7a66790[m fix: 넓이 입력 시 최소 넓이 자동 설정
+[33m0b5d396[m Merge branch 'dev' of http://172.16.40.4/git/kss-biz/portal-front into feat/publishing
+[33m0f3da5c[m docs: 가이드 업데이트
+[33m4fe0d50[m Merge branch 'dev' into feature/data-utlz
+[33m49a2d1a[m Merge branch 'feature/data-utlz' into 'dev'
+[33mf0ee00b[m [2026.06.25] 화면 레이아웃 작업 및 다국어 적용
+[33ma7d0e3e[m [2026.06.25] 화면 레이아웃 및 다국어 적용 작업 교육 > 업무숙련도 평가 내역, 부서별 교육(웨바나), 법정교육 마이페이지 > 나의 정보, 쪽지 및 알림, 나의 신청 내역, 나의 교육 내역, 근태/휴가현황, 전자결제 현황, 월별급여 현황
+[33m1fb62a9[m Merge branch 'feature/noh-common-20260625' into 'dev'
+[33m736a989[m [KSS Front][공통] - 퍼블 추가 내용 컴포넌트 쪽으로 적용(그리드 상단 안읽은 개수 및 Textarea Edit 추가) - 메인 대시보드 및 위젯 관련 수정 중(아직 깨어짐)
+[33m957387e[m Merge branch 'feat/publishing' into 'dev'
+[33m45c007e[m Merge branch 'dev' of http://172.16.40.4/git/kss-biz/portal-front into feat/publishing
+[33maf838ab[m feat: textarea cell editor 추가
+[33mcad0da7[m Merge branch 'feat/publishing' into 'dev'
+[33ma69f4ff[m Merge branch 'dev' of http://172.16.40.4/git/kss-biz/portal-front into feat/publishing
+[33mb4cef07[m fix: 인코딩 깨짐 수정
+[33me16677b[m feat: total extra 추가
+[33m367a530[m Merge branch 'feature/noh-common-20260616' into 'dev'
+[33m61bbc34[m [KSS Front][공통] - 메인 대시보드 및 위젯 관련 수정 중 - 그리드 헤더 ContextMenu 비활성화 적용 - 그리드 마우스 우측 ContextMenu 비활성화 적용 - 그리드 컴포넌트에 onRowClick 이벤트 추가 - 그리드 CellRenderer 의 ButtonRenderer 추가(이벤트 전이 차단)
+[33m801d712[m Merge branch 'feature/vsl-info' into 'dev'
+[33mb87b49c[m [2026.06.23]기준정보 > 선박별 항차정보 작업 커밋
+[33mcaeb05c[m Merge branch 'feature/data-utlz' into 'dev'
+[33me3483a5[m [2026.06.23] 화면 레이아웃 작업
+[33m79bb585[m Merge branch 'feature/data-utlz' into 'dev'
+[33m34e261e[m [2026.06.19] 포털 업무관리 및 커뮤니티 일부 화면 레이아웃작업
+[33me6432b3[m Merge branch 'feature/vsl-info' into 'dev'
+[33m718a308[m [2026.06.19]기준정보 > 선박정보관리 수정
+[33m9bd3afc[m Merge branch 'feature/vsl-info' into 'dev'
+[33m018c86a[m [2026.06.18]기준정보 > 선박정보관리 작업 커밋
+[33m0eabf81[m Merge branch 'feature/data-utlz' into 'dev'
+[33mb0f12a9[m [2026.06.18] 선박별 항차정보 레이아웃 및 일부 화면 수정
+[33m7bddddb[m Merge branch 'feature/noh-common-20260615' into 'dev'
+[33mc4bdab2[m [KSS Front][공통] - AG Grid 관련 Edit 기능 추가 - AG Grid 주요 Formatter 추가
+[33m9ae9591[m Merge branch 'feature/crtr-info' into 'dev'
+[33md7700da[m [2026.06.16]공통 접근 이력 커밋
+[33m7216f29[m Merge branch 'feature/data-utlz' into 'dev'
+[33m7859ab1[m [2026.06.15] 화면 레이아웃 및 다국어 적용
+[33mc9c9de5[m Merge branch 'feature/noh-common-20260612-3' into 'dev'
+[33m7979149[m [KSS Front][공통] - 퍼블 적용 내용 컴포넌트 반영 - AG Grid 관련 Edit 확인 및 수정 중
+[33mcd2c404[m Merge branch 'feature/crtr-info' into 'dev'
+[33m0cc22ad[m [2026.06.15]선박정보관리 다국어 처리 및 특정 본부의 팀 조회 셀렉트박스 추가
+[33mfcf76fb[m Merge branch 'feat/publishi

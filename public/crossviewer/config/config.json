@@ -1,0 +1,23 @@
+{
+  "theme": "dark",
+  "panel": {
+    "useThumbnailPanel": true,
+    "initialThumbailPanel": true
+  },
+  "initialScaleValue": {
+    "doc": "fitContent",
+    "ppt": "fitContent",
+    "xls": "fitContent",
+    "hwp": "fitContent",
+    "pdf": "fitContent",
+    "all": "fitContent"
+  },
+  "scaleIncrement": 10,
+  "searchEnabled": true,
+  "printEnabled": true,
+  "downloadEnabled": true,
+  "allowedFileExtensions": ["doc", "docx", "xls", "xlsx", "ppt", "pptx", "pdf", "hwp", "hwpx"],
+  "lang": "auto",
+  "allowFileUrlOpen": true,
+  "fileStreamUrl": "./sample/streamSample/FileStream.jsp"
+}

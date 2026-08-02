@@ -1,0 +1,67 @@
+/* ============================================================
+   table.css
+   ============================================================ */
+.table-container {overflow-x:auto; width:100%; -webkit-overflow-scrolling:touch;}
+
+/* --- Table Header Area --- */
+.table-header-area {display:flex; justify-content:space-between; align-items:center; padding-bottom:1.4rem;}
+.table-header-left {display:flex; align-items:center; gap:0.8rem;}
+.table-header-right {display:flex; align-items:center; gap:0.8rem; margin-left:auto;}
+
+/* --- Table --- */
+.table {--table-height:5.5rem; position:relative; width:100%; border-top:1px solid var(--color-border-strong); border-collapse:collapse;}
+.table tr {border-bottom:1px solid var(--color-border-grid);}
+.table th,
+.table .table-header {height:var(--table-height); min-height:0; padding:0.9rem 0; border:0; background-color:var(--color-bg-grid-header); font-weight:500;}
+.table th[scope="col"],
+.table .table-header[scope="col"] {padding:0 2rem;}
+.table td,
+.table .table-cell {height:var(--table-height); min-height:0; padding:0.9rem 2rem; border:0; background-color:var(--color-bg-grid-body-default); color:var(--color-text-secondary); font-weight:500;}
+.table td > * + *,
+.table .table-cell > * + * {margin-left:1.0rem;}
+
+/* --- Default --- */
+.table-container.-default .table {text-align:center;}
+
+/* --- Horizontal --- */
+.table-container.-horizontal > .table > tbody > .table-row > .table-header {width:15rem; border-right:1px solid var(--color-border-grid);}
+
+/* --- Vertical --- */
+.table-container.-vertical .table,
+.table-container.-vertical tbody,
+.table-container.-vertical .table-row,
+.table-container.-vertical .table-header,
+.table-container.-vertical .table-cell {display:block; align-content:center; width:100%; box-sizing:border-box;}
+.table-container.-vertical .table-header {border-bottom:1px solid var(--color-border-grid);}
+
+/* --- Required States --- */
+.table-header.is-required::after {content:""; display:inline-block; width:1.8rem; height:1.8rem; margin-right:-0.2rem; background-image:var(--ico-asterisk-x18);}
+
+/* --- in Modal small --- */
+.modal-sm .table-container.-horizontal > .table > tbody > .table-row > .table-header {width:16rem;}
+
+/* ============================================================
+   Media Query
+   ============================================================ */
+@media screen and (width <= 768px) {
+    .table-container {padding:0 2.0rem;}
+    .box .table-container,
+    .modal-content > .table-container,
+    .tab-panel > .table-container,
+    .table-cell > .layout-row > .table-container {padding:0;}
+    
+    /* --- Table Header Area --- */
+    .table-header-area {flex-direction:column; align-items:flex-start; gap:1.4rem; padding-bottom:0.8rem;}
+    .table-header-right {margin-left:0;}
+
+    /* --- Table --- */
+    .table th,
+    .table .table-header {font-size:1.4rem;}
+    .table td,
+    .table .table-cell {padding-inline:1.4rem;}
+    .table td > * + *,
+    .table .table-cell > * + * {margin-top:1.0rem; margin-left:0;}
+    
+    /* --- Horizontal --- */
+    .table-container.-horizontal > .table > tbody > .table-row > .table-header {width:10rem;}
+}

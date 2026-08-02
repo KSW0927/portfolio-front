@@ -1,0 +1,33 @@
+/* ============================================================
+   treeList.css
+   ============================================================ */
+.tree-wrap {width:100%; background-color:transparent;} 
+.tree-wrap .rct-tree-item-title-container {gap:0.4rem;}
+.tree-wrap .rct-tree-item-title-container[aria-level="3"]:has(.is-leaf) {margin-left:-2.2rem !important;}
+.tree-wrap .rct-tree-item-title-container[aria-level="4"]:has(.is-leaf) {margin-left:-2.2rem !important;} 
+.tree-wrap .rct-tree-items-container .rct-tree-item-children {margin-top:0.8rem;}
+.tree-wrap [role="tree"] > .rct-tree-items-container> .rct-tree-item-li + .rct-tree-item-li {margin-top:0.8rem;}
+.tree-wrap .rct-tree-item-li + .rct-tree-item-li {margin-top:0.4rem;}
+.tree-wrap [role="tree"] > .rct-tree-items-container > .rct-tree-item-li > .rct-tree-item-children > .rct-tree-items-container > .rct-tree-item-li + .rct-tree-item-li {margin-top:1.4rem;}
+.tree-wrap [role="tree"] > .rct-tree-items-container > .rct-tree-item-li > .rct-tree-item-children > .rct-tree-items-container > .rct-tree-item-li[aria-expanded="true"] + .rct-tree-item-li {margin-top:0.8rem;}
+
+/* --- Button --- */
+.tree-wrap .rct-tree-item-button {gap:0.4rem; margin:0; padding:0; border-radius:0.5rem; background:transparent; cursor:pointer; transition:background-color 0.2s ease;}
+
+/* --- Leaf --- */
+.tree-wrap .rct-tree-item-button:has(.is-leaf) {padding:0.4rem 2.0rem;} 
+.tree-wrap .rct-tree-item-button:has(.is-leaf):hover {background-color:var(--color-bg-tree-selected);}
+
+/* --- Selected --- */
+.tree-wrap .rct-tree-item-button:has(.is-leaf).-selected {background-color:var(--color-bg-tree-selected);} 
+.tree-wrap .rct-tree-item-button:has(.is-leaf).-selected .tree-title.is-leaf {color:var(--color-text-tree-selected);} 
+.tree-wrap .rct-tree-item-title-container:has(+ .rct-tree-item-children > .rct-tree-items-container > .rct-tree-item-li > .rct-tree-item-title-container.-selected) .tree-title.is-folder {color:var(--color-text-tree-selected);}
+
+/* --- Arrow --- */
+.tree-wrap .rct-tree-item-arrow {margin:0;}
+
+/* --- Typography --- */
+.tree-wrap .tree-title {font-weight:600; font-size:1.6rem;}
+.tree-wrap .rct-tree-item-button:hover .tree-title {color:var(--color-text-tree-selected);}
+.tree-wrap .tree-title.is-leaf {color:var(--color-text-tree-sub); font-weight:500; font-size:1.4rem;}
+.tree-wrap .rct-tree-item-title-container[aria-level="1"] .tree-title.is-leaf {color:var(--color-text-base); font-weight:600; font-size:1.6rem;}

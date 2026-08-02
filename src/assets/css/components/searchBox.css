@@ -1,0 +1,31 @@
+/* ============================================================
+   searchBox.css
+   ============================================================ */
+.searchbox {display:flex; align-items:center; gap:2.0rem; width:100%; padding:2.0rem; border-radius:1.0rem; background-color:var(--color-bg-search);} 
+.searchbox:has(.searchbox-row:nth-child(2)) {align-items:flex-end;}
+.searchbox-content {display:flex; flex:1; flex-direction:column; gap:1.6rem;} 
+.searchbox-row {display:flex; flex-wrap:wrap; gap:1.6rem;} 
+.searchbox-item {display:flex; align-items:flex-end; gap:0.4rem;}
+.searchbox-item.-has-label {flex-direction:column; align-items:flex-start;}
+
+/* --- Checkbox --- */
+.searchbox-item.-has-label .checkbox-wrap {flex:1; align-items:center;}
+.searchbox-item:not(.-has-label) .checkbox-wrap {margin-bottom:0.6rem;}
+
+/* --- Actions --- */
+.searchbox-actions {display:flex; flex-shrink:0; align-items:center; gap:1.4rem; padding-left:2.1rem;} 
+.button-reset {color:#0056a8 !important;} 
+.button-search {--btn-color-main:#003261 !important;}
+
+/* ============================================================
+   Media Query
+   ============================================================ */
+@media screen and (width <= 768px) {
+    .searchbox {flex-direction:column; align-items:stretch !important; gap:1.8rem; width:calc(100% - 4.0rem); margin:0 auto;}
+    .layout-row .searchbox {width:100%;}
+    .searchbox-row {gap:1.2rem;}
+    .searchbox-item {flex-direction:column;}
+    
+    /* --- Actions --- */
+    .searchbox-actions {justify-content:flex-end; width:100%; padding-left:0; border-left:0;}
+}

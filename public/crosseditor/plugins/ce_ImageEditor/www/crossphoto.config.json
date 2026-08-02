@@ -1,0 +1,7 @@
+{
+	"default-language": "kr",
+	"upload-size-limit": 20971520,
+	"web-language": "JSP",
+	"editor-local-connection" :"True",
+	"editor-auth-connection": "Namo"
+}

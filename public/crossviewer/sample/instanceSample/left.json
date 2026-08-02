@@ -1,0 +1,19 @@
+{
+  "lang": "kor",
+  "theme": "light",
+  "panel": {
+    "useThumbnailPanel": true,
+    "initialThumbailPanel": true
+  },
+  "searchEnabled": true,
+  "printEnabled": false,
+  "downloadEnabled": false,
+  "scaleIncrement": 10,
+  "initialScaleValue": {
+    "pdf": "fitWidth",
+    "doc": "fitContent",
+    "ppt": "fitContent",
+    "xls": "fitWidth",
+    "all": "fitContent"
+  }
+}

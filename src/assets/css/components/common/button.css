@@ -1,0 +1,53 @@
+/* ============================================================
+   button.css
+   ============================================================ */
+
+/* --- Base & Layout --- */
+.button {--btn-height:4.0rem; --btn-padding-x:2rem; --btn-radius:0.8rem; --btn-font-size:1.4rem; --btn-gap:0.6rem; display:inline-flex; justify-content:center; align-items:center; gap:var(--btn-gap); min-width:7.2rem; height:var(--btn-height); padding:0 var(--btn-padding-x); border-radius:var(--btn-radius); background:none; font-weight:var(--form-font-weight); font-size:var(--btn-font-size); line-height:1; text-align:center; vertical-align:middle; white-space:nowrap; cursor:pointer; transition:background-color 0.2s, border-color 0.2s, color 0.2s;}
+.button.w-full {width:100% !important;}
+.button-icon {display:inline-flex; justify-content:center; align-items:center;}
+
+/* --- Sizes --- */
+.button.-lg {--btn-height:4.8rem; --btn-padding-x:2.0rem; --btn-font-size:1.6rem; --btn-radius:0.8rem; --btn-gap:0.8rem;}
+.button.-md {--btn-height:4.0rem; --btn-padding-x:1.4rem; --btn-font-size:1.4rem; --btn-radius:0.8rem; --btn-gap:0.6rem;}
+.button.-sm {--btn-height:3.2rem; --btn-padding-x:1.2rem; --btn-font-size:1.3rem; --btn-radius:0.6rem; --btn-gap:0.4rem;}
+
+/* --- Variants & Colors --- */
+.button.-primary {--btn-color-main:var(--color-bg-button-solid-primary-default); --btn-color-hover:var(--color-bg-button-solid-primary-hover); --btn-bg-light:var(--color-bg-button-filled-primary-default); --btn-bg-light-hover:var(--color-bg-button-filled-primary-hover); --btn-text-outlined:var(--color-text-button-outlined-primary-default); --btn-border-outlined:var(--color-border-button-outlined-primary-default);} 
+.button.-green {--btn-color-main:var(--color-bg-button-solid-green-default); --btn-color-hover:var(--color-bg-button-solid-green-hover); --btn-bg-light:; --btn-bg-light-hover:; --btn-text-outlined:; --btn-border-outlined:;} 
+.button.-solid {border:1px solid var(--btn-color-main); background-color:var(--btn-color-main); color:var(--color-text-button-solid-default);} 
+.button.-solid:hover {border-color:var(--btn-color-hover); background-color:var(--btn-color-hover);} 
+.button.-filled {border:1px solid var(--btn-color-main); background-color:var(--btn-bg-light); color:var(--btn-color-main);} 
+.button.-filled:hover {background-color:var(--btn-bg-light-hover);} 
+.button.-outlined {border:1px solid var(--btn-border-outlined); background-color:var(--color-bg-button-outlined-default); color:var(--btn-text-outlined);} 
+.button.-outlined:hover {border-color:var(--btn-color-main); color:var(--btn-color-main);}
+.button.-text {gap:0.4rem; width:auto !important; min-width:auto; height:auto; padding:0; border:none; border-radius:0; background:none; color:var(--btn-color-main, var(--color-text-button-text-default));}
+.button.-text.-sm {gap:0.2rem;}
+.button.-text:hover {color:var(--btn-color-hover, var(--color-text-button-text-hover));}
+
+/* --- Special Buttons --- */
+.button.button-alarm {--btn-height:3.6rem; --btn-padding-x:1.4rem; border:1px solid var(--color-border-button-alarm-default); background-color:var(--color-bg-button-alarm-default); color:var(--color-text-button-alarm-default);}
+.button.button-alarm:hover {border:1px solid var(--color-border-button-alarm-default); background-color:var(--color-bg-button-alarm-default); color:var(--color-text-button-alarm-default);}
+.button.button-alarm.-active {border:1px solid var(--color-border-button-alarm-active); background-color:var(--color-bg-button-alarm-active); color:var(--color-text-button-alarm-active);}
+.button.button-alarm .ico {--ic-mode-bg:none; --ic-mode-mask:var(--ic-url); --ic-mode-color:var(--color-error);} 
+.button.button-alarm.-active .ico {--ic-mode-color:var(--color-base-white);}
+.button-file-wrap {display:inline-flex; align-items:center; gap:0.8rem; position:relative;}
+.file-name-text {color:var(--color-text-secondary); font-weight:500;}
+.button-fav.-active .ico {--ic-mode-bg:none; --ic-mode-mask:var(--ic-url); --ic-mode-color:#FFBE32;}
+
+/* --- Modifiers & States --- */
+.button.-rounded {border-radius:var(--btn-height);} 
+.button.-icon-only {justify-content:center; width:var(--btn-height); min-width:auto; padding:0; aspect-ratio:1/1;}
+.button:disabled,
+.button[disabled] {border-color:transparent !important; background-color:var(--color-bg-button-disabled) !important; color:var(--color-text-button-disabled) !important; cursor:not-allowed;}
+.button.-text:disabled {background:none !important;}
+.button:disabled .ico,
+.button[disabled] .ico {--ic-mode-bg:none; --ic-mode-mask:var(--ic-url); --ic-mode-color:var(--color-text-button-disabled) !important;}
+.button:focus-visible {outline:2px solid var(--color-primary); outline-offset:2px;}
+
+/* ============================================================
+   Media Query
+   ============================================================ */
+@media screen and (width <= 768px) {
+    .button {min-width:auto;}
+}

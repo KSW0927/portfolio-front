@@ -1,0 +1,99 @@
+/* ============================================================
+   datagrid.css
+   ============================================================ */
+
+/* --- Grid Container --- */
+.data-grid-wrapper {display:flex; flex-direction:column; gap:1.4rem; position:relative; width:100%;}
+
+/* --- Top Toolbar Dropdown --- */
+.data-grid-wrapper .data-grid-header .dropdown-group .form-label {color:var(--color-text-grid-total); font-weight:500; font-size:1.6rem;}
+.data-grid-wrapper .data-grid-header .dropdown-group .dropdown-field {color:var(--color-primary); font-weight:600; font-size:1.6rem;}
+
+/* --- Theme Variables --- */
+.custom-ag-theme {--ag-header-height:var(--grid-height); --ag-header-background-color:var(--color-bg-grid-header); --ag-background-color:var(--color-bg-grid-body-default); --ag-row-hover-color:var(--color-bg-grid-body-hover); --ag-header-foreground-color:#333; --ag-border-color:var(--color-border-grid); --ag-row-border-color:var(--color-border-grid); --ag-header-column-separator-display:none; border-top:2px solid var(--color-border-focus) !important;}
+.custom-ag-theme .ag-root-wrapper {border:0;}
+.custom-ag-theme .ag-selection-checkbox,
+.custom-ag-theme .ag-header-select-all {display:none !important;}
+
+/* --- Dark Mode --- */
+[data-theme="dark"] .custom-ag-theme {--ag-header-background-color:#252B3A; --ag-background-color:#182029; --ag-row-hover-color:#1E2330; --ag-odd-row-background-color:#182029; --ag-header-foreground-color:#FFF; --ag-foreground-color:#FFF; --ag-border-color:#666A75; --ag-row-border-color:#666A75;}
+
+/* --- Header --- */
+.custom-ag-theme .ag-header-cell-resize {opacity:0;}
+.custom-ag-theme .ag-header-cell-label {justify-content:center;}
+.custom-ag-theme .ag-header-group-cell-label {justify-content:center;}
+.custom-ag-theme .ag-header-row:where(:not(:first-child)) :where(.ag-header-cell:not(.ag-header-span-height.ag-header-span-total, .ag-header-parent-hidden)),
+.custom-ag-theme .ag-header-row:where(:not(:first-child)) :where(.ag-header-group-cell.ag-header-group-cell-with-group) {border-top:none !important;}
+.custom-ag-theme .ag-header-cell-text {color:var(--color-text-grid-header); font-weight:600; font-size:1.5rem;}
+.custom-ag-theme .ag-header-cell.header-span-cell {overflow:visible !important; z-index:10;}
+.custom-ag-theme .ag-header-cell-comp-wrapper {justify-content:center;}
+
+/* --- Cell --- */
+.custom-ag-theme .ag-cell {display:flex; justify-content:center; align-items:center; color:var(--color-text-grid-body); font-weight:500; font-size:1.6rem; padding-inline:2.0rem;}
+.custom-ag-theme .ag-cell.text-left {justify-content:flex-start;}
+.custom-ag-theme .ag-cell.text-right {justify-content:flex-end;}
+.custom-ag-theme .dropdown-group {min-width:auto;}
+.custom-ag-theme .datepicker-field {display:block;}
+.custom-ag-theme .ag-drag-handle {margin:0;}
+
+/* --- Footer --- */
+.ag-floating-bottom-viewport {border-top:1px solid var(--color-border-grid);}
+
+/* --- Row Span --- */
+.custom-ag-theme .ag-row:has(.cell-span) {z-index:10 !important;}
+.custom-ag-theme .ag-cell.cell-span {overflow:visible !important; z-index:10 !important; border-right:1px solid var(--color-border-grid) !important; border-bottom:1px solid var(--color-border-grid) !important; background-color:var(--color-bg-grid-body-default) !important;}
+.custom-ag-theme .ag-row-hover .ag-cell.cell-span,
+.custom-ag-theme .ag-row-focus .ag-cell.cell-span {background-color:var(--color-bg-grid-body-default) !important;}
+.custom-ag-theme .ag-cell.cell-span-covered {z-index:0 !important; border:none !important; background-color:transparent !important;}
+
+/* --- Sub Row --- */
+.custom-ag-theme .ag-row.is-sub-row {background-color:#F2F2F2;}
+.custom-ag-theme .ag-row.is-sub-row .ag-cell {background-color:transparent;}
+.custom-ag-theme .ag-row.is-sub-row.ag-row-hover .ag-cell {background-color:var(--color-bg-grid-body-hover);}
+
+/* --- Pagination --- */
+.data-grid-pagination {display:flex; justify-content:center; align-items:center; gap:0.4rem; margin-top:1.6rem;}
+.data-grid-pagination .pagination-arrow,
+.data-grid-pagination .pagination-page {display:flex; justify-content:center; align-items:center; width:3.2rem !important; height:3.2rem !important; padding:0; border:none; border-radius:0.5rem; background:none; color:var(--color-text-pagination-default); font-weight:500; font-size:1.4rem; line-height:1; cursor:pointer;}
+.data-grid-pagination .pagination-arrow:disabled {cursor:not-allowed;}
+.data-grid-pagination .pagination-page:hover:not(.active) {background-color:var(--color-bg-pagination-hover); color:var(--color-text-pagination-default);}
+.data-grid-pagination .pagination-page.active {background-color:var(--color-bg-pagination-active); color:var(--color-text-pagination-active);}
+
+/* --- Infinite Scroll with Header --- */
+.data-grid-wrapper.-has-header {padding-top:1.6rem;}
+.data-grid-wrapper.-has-header.-has-top-btns {padding-top:0.8rem;}
+
+/* --- DataGrid in Modal --- */
+.modal-container .data-grid-wrapper {gap:0.8rem;}
+.modal-container .data-grid-total span {font-size:1.3rem;}
+.modal-container .data-grid-total strong {font-size:1.3rem;}
+.modal-container .data-grid-wrapper .data-grid-header .dropdown-group .form-label {font-size:1.3rem;}
+.modal-container .data-grid-wrapper .data-grid-header .dropdown-group .dropdown-field {font-size:1.3rem;}
+
+/* --- AG Grid Pagination --- */
+.ag-paging-panel {display:none !important;}
+
+/* ============================================================
+   Media Query
+   ============================================================ */
+@media screen and (width <= 768px) {
+    .data-grid-wrapper {gap:0.8rem; padding-inline:2.0rem;}
+    .layout-row .data-grid-wrapper {padding-inline:0;}
+    
+    /* --- Top Toolbar Dropdown --- */
+    .data-grid-wrapper .data-grid-header .dropdown-wrap {width:5.0rem;}
+    .data-grid-wrapper .data-grid-header .dropdown-group .form-label {font-size:1.4rem;}
+    .data-grid-wrapper .data-grid-header .dropdown-group .dropdown-field {font-weight:500; font-size:1.4rem;}
+
+    /* --- Theme Variables --- */
+    .custom-ag-theme {--ag-header-height:4.8rem; --ag-row-height:4.8rem;}
+
+    /* --- Header --- */
+    .custom-ag-theme .ag-header-cell-text {font-weight:500; font-size:1.6rem;}
+    
+    /* --- Cell --- */
+    .custom-ag-theme .ag-cell {padding-inline:1.4rem;}
+
+    /* --- Pagination --- */
+    .data-grid-pagination {gap:0; margin-top:1.2rem;}
+}

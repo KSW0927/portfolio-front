@@ -1,0 +1,42 @@
+/* ============================================================
+   input.css
+   ============================================================ */
+.input-group {display:inline-flex; flex-direction:column; align-items:flex-start;}
+.input-group.w-full {display:flex; width:100%;}
+.input-wrap {display:inline-flex; align-items:center; gap:0.4rem; overflow:hidden; position:relative; width:100%; height:var(--form-size-lg); border:1px solid var(--color-border-form-default); border-radius:var(--form-border-radius-lg); background-color:var(--color-bg-form-default); transition:border-color 0.2s;}
+.input-wrap:has(.input-clear-btn) .input-field {padding-right:3.4rem;}
+
+/* --- Input Field --- */
+.input-field {flex:1 1 auto; width:100%; height:100%; padding:0 var(--input-padding-x); border:none; outline:none; background:transparent; color:var(--color-text-form-value); font-weight:var(--form-font-weight); font-size:var(--form-font-size-lg);}
+.input-field::placeholder {color:var(--color-text-form-placeholder);}
+.input-field:disabled,
+.input-field:disabled::placeholder {color:var(--color-text-form-disabled); cursor:not-allowed;}
+.input-icon-left {display:flex; justify-content:center; align-items:center;}
+
+/* --- Sizes --- */
+.input-wrap.-lg {height:var(--form-size-lg);}
+.input-wrap.-lg .input-field {--input-padding-x:1.0rem; font-size:var(--form-font-size-lg);}
+.input-wrap.-md {height:var(--form-size-md);}
+.input-wrap.-md .input-field {--input-padding-x:0.8rem; font-size:var(--form-font-size-md);}
+
+/* --- Layout --- */
+.input-group.-horizontal {flex-direction:row; align-items:center; gap:0.4rem;}
+.input-group.-horizontal .form-label {margin-bottom:0; white-space:nowrap;}
+.input-wrap.-lg.has-left-icon {padding-left:1.0rem;}
+.input-wrap.-md.has-left-icon {padding-left:0.8rem;}
+.input-wrap.has-left-icon .input-field {padding-left:0.4rem;}
+.input-wrap.has-left-icon:focus-within .ico {--ic-mode-bg:none; --ic-mode-mask:var(--ic-url); --ic-mode-color:currentcolor;}
+
+/* --- Clear Button --- */
+.input-clear-btn {position:absolute; right:1.0rem; background:none; cursor:pointer;}
+.input-clear-btn:focus-visible {outline:2px solid var(--color-primary); outline-offset:2px;}
+
+/* --- Validation Message --- */
+.validation-msg {display:flex; align-items:center; gap:0.2rem; margin-top:0.4rem; font-size:1.3rem;}
+.-error + .validation-msg {color:var(--color-error);}
+
+/* --- States --- */
+.input-wrap:focus-within {border-color:var(--color-border-form-active) !important;} 
+.input-wrap:not(.-error, .-disabled, :focus-within):hover {border-color:var(--color-border-form-active);} 
+.input-wrap.-error {border-color:var(--color-error);} 
+.input-wrap.-disabled {border-color:var(--color-border-form-disabled); background-color:var(--color-bg-form-disabled);}

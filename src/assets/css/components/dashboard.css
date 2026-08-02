@@ -1,0 +1,590 @@
+/* ============================================================
+   dashboard.css
+   ============================================================ */
+:root {
+    /* --- Background --- */
+    --dash-bg-page:linear-gradient(180deg, #F6F9FF 0%, #D9E7FF 100%);
+    --dash-bg-gnb:rgba(255, 255, 255, 0.4);
+    --dash-bg-surface:#FFF;
+    --dash-bg-elevated:#FFF;
+    --dash-bg-popup:#FFF;
+    --dash-bg-muted:#F5F5F5;
+    --dash-bg-subtle:#F3F9FF;
+    --dash-bg-hover:#F3F9FF;
+    --dash-bg-hover-fav:#F3F9FF;
+    --dash-bg-hover-setting:#F0F8FF;
+    --dash-bg-deep:#182029;
+
+    /* Widget Card */
+    --dash-bg-card:#FFF;
+    --dash-bg-card-profile:#0058AA;
+    --dash-bg-card-banner:transparent;
+    --dash-bg-profile-title:#0058AA;
+    --dash-bg-profile-alarm:#D5EBFF;
+    --dash-bg-profile-alarm-first:#FFF;
+
+    /* Theme Button */
+    --dash-bg-theme-btn:#f3f4f5;
+    --dash-bg-theme-btn-active:#E9F4FF;
+    --dash-bg-theme-btn-hover:#E9F4FF;
+
+    /* Info / Box */
+    --dash-bg-info-wrap:#F5F5F5;
+    --dash-bg-box:transparent;
+    --dash-bg-leave:transparent;
+    --dash-bg-approval-box:transparent;
+    --dash-bg-oil-box:transparent;
+    --dash-bg-exchange-box:transparent;
+    --dash-bg-interest-rate-box:transparent;
+
+    /* Calendar */
+    --dash-bg-cal-header:#F3F9FF;
+
+    /* --- Text --- */
+    --dash-text-primary:#000;
+    --dash-text-base:#333;
+    --dash-text-secondary:#666;
+    --dash-text-tertiary:#999;
+    --dash-text-disabled:#CCC;
+    --dash-text-muted-num:#A2A2A2;
+    --dash-text-on-dark:#FFF;
+    --dash-text-link:#005BAA;
+    --dash-text-link-hover:#005BAA;
+    --dash-text-action:#0058AA;
+    --dash-text-action-icon:#0058AA;
+    --dash-text-info-wrap:#666;
+
+    /* Widget Setting Popup */
+    --dash-text-setting-btn:inherit;
+    --dash-text-setting-btn-hover:#0058AA;
+
+    /* Theme */
+    --dash-text-theme-label:#666;
+    --dash-text-theme-btn:#666;
+    --dash-text-theme-btn-active:#005BAA;
+
+    /* Calendar */
+    --dash-text-cal-header:#333;
+    --dash-text-cal-day:inherit;
+    --dash-text-cal-other:#CCC;
+
+    /* --- Border --- */
+    --dash-border-base:#DDD;
+    --dash-border-card:#C6D9F8;
+    --dash-border-popup:#DDD;
+    --dash-border-muted:#CCC;
+    --dash-border-theme-btn:#E3E3E3;
+    --dash-border-theme-btn-active:#005BAA;
+    --dash-border-upload:#D2D2D2;
+    --dash-border-outlined-primary:#005AAA;
+    --dash-border-dragging-active:#A0BBDF;
+    --dash-border-setting-popup:#CCC;
+    --dash-border-divider:#DDD;    
+
+    /* --- Accent / Brand --- */
+    --dash-accent-primary:#0058AA;
+    --dash-accent-primary-alt:#005AAA;
+    --dash-accent-primary-blue:#005BAA;
+    --dash-accent-link-dark:#68B8FF;
+    --dash-accent-icon-light:#0058AA;
+    --dash-accent-icon-dark:#379CFE;
+
+    /* --- State --- */
+    --dash-state-dragging-border:#0058AA;
+    --dash-state-setting-hover-bg:#EEE;
+    --dash-state-setting-invert-hover-bg:rgba(0, 0, 0, 0.15);
+
+    /* --- Fixed (라이트/다크 무관하게 고정) --- */
+    --dash-fixed-white:#FFF;
+    --dash-fixed-black-overlay:rgba(0, 0, 0, 0.3);
+    --dash-fixed-shadow-card:rgba(63, 75, 93, 0.1);
+    --dash-fixed-shadow-card-hover:rgba(63, 75, 93, 0.08);
+    --dash-fixed-shadow-dark:rgba(0, 0, 0, 0.3);
+    --dash-fixed-shadow-alarm:rgba(0, 0, 0, 0.6);
+
+    /* Profile 위젯 (항상 어두운 배경 고정) */
+    --dash-profile-text:#FFF;
+    --dash-profile-sub:#CCC;
+    --dash-profile-muted:#A2A2A2;
+    --dash-profile-divider:#D7D7D7;
+    --dash-profile-badge-text:#FFBE32;
+    --dash-profile-count-accent:#FFCE0A;
+
+    /* Oil 위젯 (수치 의미 색상 고정) */
+    --dash-oil-up:#F77;
+    --dash-oil-down:#68B8FF;
+
+    /* Calendar Event Colors */
+    --dash-event-red-border:#E32020;
+    --dash-event-red-bg:rgba(253, 58, 58, 0.07);
+    --dash-event-red-text:#D31616;
+    --dash-event-red-time:#D31616;
+    --dash-event-purple-border:#773ED9;
+    --dash-event-purple-bg:rgba(86, 38, 170, 0.07);
+    --dash-event-purple-text:#5626AA;
+    --dash-event-purple-time:#5626AA;
+
+    /* Calendar Selected Date */
+    --dash-cal-selected-bg:#005BAA;
+    --dash-cal-selected-text:#FFF;
+    --dash-cal-header-bg:#F3F9FF;
+
+    /* Banner */
+    --dash-banner-pagination-dot:#FFF;
+
+    /* Scrollbar */
+    --dash-scrollbar-track:transparent;
+    --dash-scrollbar-thumb:rgba(0, 0, 0, 0.2);
+
+    /* Dropdown (orgList dark) */
+    --dash-dropdown-border:transparent;
+    --dash-dropdown-text:inherit;
+    --dash-dropdown-icon:inherit;
+    --dash-dropdown-menu-bg:#FFF;
+    --dash-dropdown-menu-border:#DDD;
+    --dash-dropdown-option:inherit;
+    --dash-dropdown-option-hover:#005BAA;
+}
+
+/* ----------------------------------------------------------------
+   Color Tokens - Dark Mode
+   ---------------------------------------------------------------- */
+[data-theme="dark"] {
+    /* --- Background --- */
+    --dash-bg-page:#182029;
+    --dash-bg-gnb:#182029;
+    --dash-bg-surface:#252B3A;
+    --dash-bg-elevated:#252B3A;
+    --dash-bg-popup:#182029;
+    --dash-bg-muted:#182029;
+    --dash-bg-subtle:#182029;
+    --dash-bg-hover:#182029;
+    --dash-bg-hover-fav:#1E2330;
+    --dash-bg-hover-setting:#252B3A;
+    --dash-bg-deep:#182029;
+
+    /* Widget Card */
+    --dash-bg-card:#252B3A;
+    --dash-bg-card-profile:#252B3A;
+    --dash-bg-profile-title:#252B3A;
+    --dash-bg-profile-alarm:#182029;
+    --dash-bg-profile-alarm-first:linear-gradient(135deg, #333B46 8.2%, #0B1620 87.09%);
+
+    /* Theme Button */
+    --dash-bg-theme-btn:#182029;
+    --dash-bg-theme-btn-active:#394352;
+    --dash-bg-theme-btn-hover:#394352;
+
+    /* Info / Box */
+    --dash-bg-info-wrap:#182029;
+    --dash-bg-leave:#182029;
+    --dash-bg-approval-box:#182029;
+    --dash-bg-oil-box:#182029;
+    --dash-bg-exchange-box:#182029;
+    --dash-bg-interest-rate-box:#182029;
+
+    /* Calendar */
+    --dash-bg-cal-header:#182029;
+
+    /* --- Text --- */
+    --dash-text-primary:#FFF;
+    --dash-text-base:#FFF;
+    --dash-text-secondary:#FFF;
+    --dash-text-tertiary:#999;
+    --dash-text-disabled:#A2A2A2;
+    --dash-text-muted-num:#A2A2A2;
+    --dash-text-link:#68B8FF;
+    --dash-text-link-hover:#68B8FF;
+    --dash-text-action:#379CFE;
+    --dash-text-action-icon:#379CFE;
+    --dash-text-info-wrap:#FFF;
+
+    /* Widget Setting Popup */
+    --dash-text-setting-btn:#FFF;
+    --dash-text-setting-btn-hover:#68B8FF;
+
+    /* Theme */
+    --dash-text-theme-label:#FFF;
+    --dash-text-theme-btn:#FFF;
+    --dash-text-theme-btn-active:#FFF;
+
+    /* Calendar */
+    --dash-text-cal-header:#FFF;
+    --dash-text-cal-other:#A2A2A2;
+
+    /* --- Border --- */
+    --dash-border-base:#666A75;
+    --dash-border-card:#666A75;
+    --dash-border-popup:#666A75;
+    --dash-border-muted:#666A75;
+    --dash-border-theme-btn:#666A75;
+    --dash-border-theme-btn-active:#666A75;
+    --dash-border-upload:#666A75;
+    --dash-border-outlined-primary:#666A75;
+    --dash-border-setting-popup:#666A75;
+    --dash-border-divider:#666A75;
+
+    /* Calendar Event Colors */
+    --dash-event-red-border:#FD3A3A;
+    --dash-event-red-bg:#3A2C34;
+    --dash-event-red-text:#F77;
+    --dash-event-red-time:#F77;
+    --dash-event-purple-bg:#3B3251;
+    --dash-event-purple-text:#D0B5FF;
+    --dash-event-purple-time:#D0B5FF;
+
+    /* Scrollbar */
+    --dash-scrollbar-track:#182029;
+    --dash-scrollbar-thumb:#666A75;
+
+    /* Dropdown (orgList dark) */
+    --dash-dropdown-border:#CCC;
+    --dash-dropdown-text:#FFF;
+    --dash-dropdown-icon:#BBB;
+    --dash-dropdown-menu-bg:#182029;
+    --dash-dropdown-menu-border:#666A75;
+    --dash-dropdown-option:#FFF;
+    --dash-dropdown-option-hover:#68B8FF;
+}
+
+/* Dashboard
+   ---------------------------------------------------------------- */
+.wrap.dashboard {background:var(--dash-bg-page); background-repeat:no-repeat; background-position:center top; background-size:cover;}
+.wrap.dashboard .gnb-top {background:var(--dash-bg-gnb);}
+.dashboard-header {position:relative;}
+.dashboard-content {width:133.0rem; margin:0 auto;}
+.dashboard-title {color:var(--dash-text-primary); font-weight:700; font-size:2.4rem;}
+.dashboard-title::before {content:""; display:inline-block; width:2.9rem; height:2.9rem; margin-right:0.8rem; background-image:url("/src/assets/img/general/ico-MA-001-1.svg"); background-repeat:no-repeat; background-position:center; background-size:contain; vertical-align:middle;}
+
+/* --- Utils --- */
+.dashboard-header .header-right .button.-outlined {border-color:var(--dash-border-outlined-primary);}
+.dashboard-header .header-right .theme-dot {width:0.9rem; height:0.9rem; border-radius:50%;}
+.ico-change-theme {--ic-url:url("/src/assets/img/general/ico-MA-001-2.svg");}
+
+/* Popup
+   ---------------------------------------------------------------- */
+.popup-dropdown {overflow:hidden; position:absolute; top:calc(100% + 0.8rem); z-index:100; border:1px solid var(--dash-border-popup); border-radius:1.0rem; background-color:var(--dash-bg-popup);}
+
+/* --- 위젯 편집 팝업 --- */
+.widget-edit-popup {display:flex; flex-direction:column; left:0; width:24.6rem;}
+.widget-edit-popup ul {flex:1; padding:1.0rem 0;}
+.widget-edit-popup ul li {display:flex; justify-content:space-between; height:3.2rem; padding:0 1.4rem;}
+.widget-edit-popup .info-wrap {display:flex; align-items:center; gap:0.8rem; padding:0.8rem 1.4rem; background-color:var(--dash-bg-info-wrap); color:var(--dash-text-info-wrap); font-weight:500; font-size:1.3rem;}
+
+/* --- 스킨 변경 팝업 --- */
+.theme-change-popup {right:0; width:26.9rem; padding:2.0rem;}
+.theme-change-popup .theme-section {display:flex; flex-direction:column; gap:1.2rem; margin-top:0.4rem;}
+.theme-change-popup .theme-section > label {color:var(--dash-text-theme-label); font-weight:500; font-size:1.2rem;}
+.theme-change-popup .button-theme-mode {--btn-height:3.3rem; --btn-padding-x:1.0rem; --btn-font-size:1.3rem; flex:1; justify-content:flex-start; border:1px solid var(--dash-border-theme-btn); border-radius:0.5rem; background-color:var(--dash-bg-theme-btn); color:var(--dash-text-theme-btn);}
+.theme-change-popup .button-theme-mode:hover,
+.theme-change-popup .button-theme-mode.-active {border-color:var(--dash-border-theme-btn-active); background-color:var(--dash-bg-theme-btn-active); color:var(--dash-text-theme-btn-active);}
+.theme-change-popup .button-theme-mode:hover .ico,
+.theme-change-popup .button-theme-mode.-active .ico {--ic-mode-color:var(--dash-text-theme-btn-active);}
+.ico-light-mode {--ic-url:url("/src/assets/img/general/ico-MA-001-3.svg");}
+.ico-dark-mode {--ic-url:url("/src/assets/img/general/ico-MA-001-4.svg");}
+.theme-change-popup .color-chip-grid {display:grid; gap:1.2rem; grid-template-columns:repeat(5, 1fr);}
+.theme-change-popup .button-color-chip {width:3.4rem; height:3.4rem; border-radius:50%; cursor:pointer;}
+.theme-change-popup .upload-area {align-content:center; height:11.0rem; border:1px dashed var(--dash-border-upload); border-radius:1.0rem; text-align:center; cursor:pointer;}
+.theme-change-popup .upload-area p {color:var(--dash-text-base); font-weight:500; font-size:1.1rem; line-height:1;}
+.theme-change-popup .upload-area .subtxt {color:var(--dash-text-tertiary);}
+.ico-upload-img {--ic-url:url("/src/assets/img/general/ico-MA-001-5.svg");}
+
+/* 사용자 지정 테마 팝업 */
+.saved-themes-popup {left:0; width:16.5rem;}
+.saved-themes-popup ul li {display:flex; justify-content:space-between; padding:1.0rem; color:var(--dash-text-secondary); cursor:pointer;}
+
+/* 위젯 설정 팝업 */
+.button-widget-settings {padding:0.7rem !important;}
+.button-widget-settings.-invert .ico {--ic-mode-bg:none; --ic-mode-mask:var(--ic-url); --ic-mode-color:var(--dash-fixed-white);}
+.button-widget-settings:hover {background-color:var(--dash-state-setting-hover-bg);}
+.button-widget-settings.-invert:hover {background-color:var(--dash-state-setting-invert-hover-bg);}
+.widget-setting-popup {display:flex; flex-direction:column; overflow:hidden; position:absolute; top:0; right:100%; z-index:10; width:8.0rem; border:1px solid var(--dash-border-setting-popup); border-radius:1.0rem; background:var(--dash-bg-popup);}
+.widget-setting-popup button {width:100%; height:3.0rem; background:none; color:var(--dash-text-setting-btn); font-weight:500; font-size:1.4rem; text-align:center; cursor:pointer; transition:background-color 0.2s;}
+.widget-setting-popup button:hover {background-color:var(--dash-bg-hover-setting); color:var(--dash-text-setting-btn-hover);}
+
+/* Widgets
+   ---------------------------------------------------------------- */
+.widget-grid {display:grid; gap:2.0rem; grid-template-columns:repeat(3, 1fr); grid-auto-rows:28.4rem; grid-auto-flow:dense;}
+
+/* --- Widget Card --- */
+.widget-card {display:flex; flex-direction:column; overflow:hidden; padding:0; border:1px solid var(--dash-border-card); border-radius:2.0rem; background-color:var(--dash-bg-card); box-shadow:0 0.6rem 2.0rem 0 var(--dash-fixed-shadow-card); transition:box-shadow 0.2s ease, border-color 0.2s ease; will-change:transform;}
+.widget-card .card-header {padding:2.4rem 2.0rem;}
+.widget-card .card-body {overflow-y:auto; margin-bottom:2.0rem; padding:0 2.0rem;}
+.widget-card .card-actions {padding:0 2.0rem 2.0rem;}
+
+/* --- Sizes --- */
+.widget-card.-size-sm {grid-row:span 1;}
+.widget-card.-size-md {grid-row:span 2;}
+.widget-card.-size-lg {grid-row:span 3;}
+
+/* --- Widget - Profile --- */
+.widget-card.profile {display:flex; flex-direction:column; height:100%; border:none; border-radius:2.0rem; background-color:var(--dash-bg-card-profile);}
+.widget-card.profile .card-header {align-items:flex-start; padding-bottom:1.0rem;}
+.widget-card.profile .card-header-wrap {background-repeat:no-repeat; background-position:center top; background-size:cover;}
+.widget-card.profile .card-header-wrap .avatar {overflow:hidden; width:9.2rem; height:9.2rem; border-radius:50%;}
+.widget-card.profile .card-header-wrap .avatar img {width:100%; height:100%; object-fit:cover;}
+.widget-card.profile .summary-wrap {margin-top:3.2rem; padding:2.2rem 0; background-color:var(--dash-fixed-black-overlay);}
+.widget-card.profile .card-body .title-wrap {position:sticky; top:0; left:0; padding-top:0.8rem; background-color:var(--dash-bg-profile-title);}
+.widget-card.profile .card-body .alarm-wrap .box {background-color:var(--dash-bg-profile-alarm);}
+.widget-card.profile .card-body .alarm-wrap .box:first-child {background-color:var(--dash-bg-profile-alarm-first);}
+.widget-card.profile .card-body .alarm-wrap .box .text-ellipsis {flex:1;}
+
+/* --- Widget - 나의 연차 --- */
+.widget-leave-content {display:flex; flex-direction:row; align-items:center; margin-top:auto;}
+
+/* --- Widget - 전자결재 --- */
+.widget-approval-content {display:grid; gap:1.2rem; grid-template-columns:repeat(2, 1fr); margin-top:auto;}
+
+/* --- Widget - 배너--- */
+.widget-card.banner {border:none;}
+.widget-banner-content {overflow:hidden; width:100%; height:100%; border-radius:2.0rem;}
+.banner-swiper {width:100%; height:100%;}
+.banner-img-wrap {width:100%; height:100%;}
+.banner-img-wrap img {width:100%; height:100%; object-fit:cover;}
+
+/* Swiper Pagination */
+.banner-swiper .swiper-pagination {bottom:4.0rem !important; left:2.4rem !important; width:auto; text-align:left;}
+.banner-swiper .swiper-pagination-bullet {opacity:0.4; width:auto; height:fit-content; margin:0 0.2rem !important; padding:0.2rem; background:none; text-align:center;}
+.banner-swiper .swiper-pagination-bullet-active {opacity:1;}
+.banner-swiper .swiper-pagination-bullet::before {content:""; display:block; width:0.6rem; height:0.6rem; border-radius:50%; background:var(--dash-banner-pagination-dot);}
+
+/* --- Widget - 유가 --- */
+
+/* --- Widget - 나의 일정 --- */
+.widget-calendar-content {display:flex; flex-direction:column; height:100%;}
+
+/* Calendar */
+.dashboard-mini-calendar .header-top {display:none;}
+.dashboard-mini-calendar .header-bottom {display:flex; justify-content:flex-start; align-items:center; position:relative; height:3.2rem; padding-left:0.4rem;}
+.dashboard-mini-calendar .header-left {flex:none; gap:0;}
+.dashboard-mini-calendar .header-left > button {display:none;} 
+.dashboard-mini-calendar .header-left .space-container {gap:8.6rem !important;}
+.dashboard-mini-calendar .header-left .button {--btn-height:1.8rem; border:none;}
+.dashboard-mini-calendar .header-left .button:hover {background:transparent !important;}
+.dashboard-mini-calendar .header-center {flex:none; position:absolute; left:2.8rem; pointer-events:none;}
+.dashboard-mini-calendar .calendar-title {color:var(--dash-text-primary); font-weight:600 !important; font-size:1.6rem !important;}
+.dashboard-mini-calendar .header-right {display:none !important;}
+.dashboard-mini-calendar .calendar {margin-top:1.2rem;}
+.dashboard-mini-calendar .calendar .fc-theme-standard .fc-scrollgrid,
+.dashboard-mini-calendar .calendar .fc-theme-standard td,
+.dashboard-mini-calendar .calendar .fc-theme-standard th {border:none !important; border-radius:0;}
+
+/* Calendar - Header */
+.dashboard-mini-calendar thead .fc-scroller-harness {padding-bottom:1.2rem;}
+.dashboard-mini-calendar .calendar .fc-col-header-cell {padding:0.45rem 0; background-color:var(--dash-bg-cal-header);}
+.dashboard-mini-calendar .calendar .fc-col-header-cell:first-child {border-top-left-radius:0.4rem; border-bottom-left-radius:0.4rem;}
+.dashboard-mini-calendar .calendar .fc-col-header-cell:last-child {border-top-right-radius:0.4rem; border-bottom-right-radius:0.4rem;}
+.dashboard-mini-calendar .calendar .fc-col-header-cell-cushion {color:var(--dash-text-cal-header); font-weight:500;}
+
+/* Calendar - Days */
+.dashboard-mini-calendar .calendar .fc-daygrid-day-frame {height:4.7rem; min-height:auto;}
+.dashboard-mini-calendar .calendar .fc-daygrid-day-number {color:var(--dash-text-primary); font-weight:600; font-size:1.6rem;}
+.dashboard-mini-calendar .calendar .fc-day-other .fc-daygrid-day-number {color:var(--dash-text-disabled);}
+.dashboard-mini-calendar .calendar .fc-daygrid-day {padding:0; cursor:pointer;}
+.dashboard-mini-calendar .calendar .day-cell {justify-content:center; width:2.8rem; height:2.8rem; border-radius:1.0rem;}
+.dashboard-mini-calendar .calendar .fc-daygrid-day-bottom {display:none;}
+
+/* Calendar - Today */
+.dashboard-mini-calendar .calendar .fc-day-today {box-shadow:none !important;}
+
+/* Calendar - Selected */
+.dashboard-mini-calendar .calendar .is-selected-date .day-cell {background-color:var(--dash-cal-selected-bg);}
+.dashboard-mini-calendar .calendar .is-selected-date .fc-daygrid-day-number {color:var(--dash-cal-selected-text) !important;}
+
+/* Calendar - Event */
+.dashboard-mini-calendar .calendar .fc-daygrid-day-events {display:flex; justify-content:center; align-items:center; gap:0.2rem; min-height:0 !important; margin-top:0.45rem;}
+.dashboard-mini-calendar .calendar .fc-daygrid-event-harness {display:inline-block !important;} 
+.dashboard-mini-calendar .calendar .fc-daygrid-event,
+.dashboard-mini-calendar .calendar .fc-daygrid-block-event {margin:0 !important; padding:0 !important; border:none !important; background:transparent !important;}
+
+/* Calendar - Holiday */
+.dashboard-mini-calendar .calendar .fc-holiday-title {display:none;}
+
+/* Events List */
+.calendar-event-list {display:flex; flex:1; flex-direction:column; gap:0.8rem; overflow-y:auto; min-height:0; padding-right:0.4rem;}
+.calendar-event-list .event-item {display:flex; align-items:center; gap:1.0rem; overflow:hidden; position:relative; height:4.6rem; min-height:4.6rem; padding:0 1.4rem; border-left-width:0.4rem; border-left-style:solid;}
+.calendar-event-list .event-item:not(.-task) {padding-right:4.0rem;}
+.calendar-event-list .event-item::before {content:""; position:absolute; top:0; bottom:0; left:0; width:0.4rem;}
+.calendar-event-list .event-item .event-category {min-width:6.5rem; max-width:6.5rem;}
+.calendar-event-list .event-title {flex:1;}
+
+/* Events List - Colors & States */
+.calendar-event-list .event-item.color-red {border-left-color:var(--dash-event-red-border); background-color:var(--dash-event-red-bg);}
+.calendar-event-list .event-item.color-red .event-category {color:var(--dash-event-red-text);}
+.calendar-event-list .event-item.color-purple {border-left-color:var(--dash-event-purple-border); background-color:var(--dash-event-purple-bg);}
+.calendar-event-list .event-item.color-purple .event-category {color:var(--dash-event-purple-text);}
+.calendar-event-list .event-item.-completed .event-title,
+.calendar-event-list .event-item.-completed .event-time {text-decoration:line-through;}
+
+/* --- Widget - 공지사항 --- */
+.widget-notice-content {margin-inline:-2.0rem;}
+.widget-notice-content .button {justify-content:flex-start; width:100% !important; height:5.6rem; padding:0 2.0rem; border-bottom:1px dashed var(--dash-border-divider); border-radius:0; background:transparent;}
+.widget-notice-content .button .button-text ,
+.widget-notice-content .button .space-container {width:100%;}
+.widget-notice-content .button:hover {background-color:var(--dash-bg-hover);}
+.widget-notice-content .button:hover .button-text p {color:var(--dash-text-link-hover) !important;}
+.widget-notice-content .button .text-ellipsis {max-width:30rem;}
+
+/* --- Widget - 즐겨찾는 메뉴 --- */
+.widget-favorite-content {display:grid; gap:1.0rem; grid-template-columns:repeat(3, 1fr);}
+.widget-favorite-content .button-fav-menu {--btn-height:5.4rem; --btn-font-size:1.6rem;}
+.widget-favorite-content .button-fav-menu:hover {background-color:var(--dash-bg-hover);}
+
+/* --- Widget - 투표 --- */
+.widget-vote-content {margin-inline:-2.0rem;}
+.widget-vote-content li {align-content:center; height:7.4rem; padding:0 2.0rem; border-bottom:1px dashed var(--dash-border-divider);}
+.widget-vote-content li .text-ellipsis {max-width:25rem;}
+
+/* --- Widget - 교육 신청내역 /현황 --- */
+.widget-education-content {margin-inline:-2.0rem;}
+.widget-education-content li {align-content:center; height:7.4rem; padding:0 2.0rem; border-bottom:1px dashed var(--dash-border-divider);}
+.widget-education-content li .text-ellipsis {max-width:30rem;}
+
+/* --- Widget - 회의실 --- */
+.widget-meeting-content {margin-inline:-2.0rem;}
+.widget-meeting-content li {align-content:center; height:7.4rem; padding:0 2.0rem; border-bottom:1px dashed var(--dash-border-divider); cursor:pointer;}
+.widget-meeting-content li .text-ellipsis {max-width:20rem;}
+
+/* --- Widget - 쪽지 --- */
+.widget-message-content {margin-inline:-2.0rem;}
+.widget-message-content li {align-content:center; height:7.4rem; padding:0 2.0rem; border-bottom:1px dashed var(--dash-border-divider); cursor:pointer;}
+.widget-message-content li .text-ellipsis {max-width:24rem;}
+.widget-message-content li .avatar {overflow:hidden; width:4.3rem; height:4.3rem; border-radius:50%;}
+.widget-message-content li .avatar img {width:100%; height:100%; object-fit:cover;}
+
+/* --- Widget - 최신 게시글 --- */
+.widget-latest-post-content {margin-inline:-2.0rem;}
+.widget-latest-post-content .button {justify-content:flex-start; width:100% !important; height:5.6rem; padding:0 2.0rem; border-bottom:1px dashed var(--dash-border-divider); border-radius:0; background:transparent;}
+.widget-latest-post-content .button .button-text ,
+.widget-latest-post-content .button .space-container {width:100%;}
+.widget-latest-post-content .button .badge {display:inline-block; align-content:center; overflow:hidden; width:stretch; max-width:7.8rem; white-space:nowrap; text-overflow:ellipsis;}
+.widget-latest-post-content .button .text-ellipsis {max-width:20rem;}
+.widget-latest-post-content .button:hover {background-color:var(--dash-bg-hover);}
+.widget-latest-post-content .button:hover .button-text p {color:var(--dash-text-link-hover) !important;}
+
+/* --- Widget - 조직도 --- */
+.widget-org-list-content {margin-inline:-2.0rem;}.widget-org-list-content li {align-content:center; height:7.4rem; padding:0 2.0rem; border-bottom:1px dashed var(--dash-border-divider); cursor:pointer;}
+.widget-org-list-content li .avatar {overflow:hidden; width:4.3rem; height:4.3rem; border-radius:50%;}
+.widget-org-list-content li .avatar img {width:100%; height:100%; object-fit:cover;}
+
+/* --- Widget - 설문 --- */
+.widget-survey-content {margin-inline:-2.0rem;}
+.widget-survey-content li {align-content:center; height:7.4rem; padding:0 2.0rem; border-bottom:1px dashed var(--dash-border-divider);}
+.widget-survey-content li .text-ellipsis {max-width:24rem;}
+
+/* --- Widget - 비정형 데이터 검색 --- */
+.widget-data-search-content {margin-inline:-2.0rem;}
+.widget-data-search-content li {align-content:center; height:7.4rem; padding:0 2.0rem; border-bottom:1px dashed var(--dash-border-divider);}
+.widget-data-search-content li .text-ellipsis {max-width:30rem;}
+
+/* --- Widget - 환율 --- */
+.widget-exchange-content {margin-top:auto;}
+
+/* --- Widget - 금리 --- */
+.widget-interest-rate-content {margin-top:auto;}
+
+
+/* ============================================================
+   Dark Theme Styles
+   ============================================================ */
+
+/* GNB
+   ---------------------------------------------------------------- */
+
+/* --- Utils --- */
+[data-theme="dark"] .gnb-utils .gnb-util-wrap > .button .ico {--ic-mode-color:var(--dash-fixed-white);}
+[data-theme="dark"] .gnb-utils .gnb-util-wrap > .button:hover .ico {--ic-mode-color:var(--dash-text-setting-btn-hover);}
+[data-theme="dark"] .gnb-dropdown {border-color:var(--dash-border-popup); background-color:var(--dash-bg-popup);}
+[data-theme="dark"] .gnb-dropdown-item:hover {background-color:var(--dash-bg-hover-setting);}
+[data-theme="dark"] .gnb-dropdown-item:hover .button-title {color:var(--dash-text-setting-btn-hover);}
+[data-theme="dark"] .gnb-dropdown-item .button-del:hover .ico {--ic-mode-color:var(--dash-dropdown-icon);}
+[data-theme="dark"] .gnb-dropdown-item .button-title {color:var(--dash-text-primary);}
+
+/* --- User --- */
+[data-theme="dark"] .user-profile {
+    --ico-user-profile:url("/src/assets/img/general/common/dark/ico-user-profile.svg");
+
+    color:var(--dash-text-primary);
+}
+[data-theme="dark"] .session-timer .time {color:var(--dash-text-link);}
+
+/* --- Search Panel --- */
+[data-theme="dark"] .gnb-search-panel {background-color:var(--dash-bg-popup);}
+[data-theme="dark"] .gnb-search-panel .search-input-wrap .input-wrap {border-color:var(--dash-border-muted); background:transparent;}
+[data-theme="dark"] .gnb-search-panel .search-input-wrap .input-field::placeholder {color:var(--dash-text-primary);}
+
+/* Dashboard
+   ---------------------------------------------------------------- */
+[data-theme="dark"] .wrap.dashboard {background:var(--dash-bg-page);}
+
+/* Dashboard - Popup
+   ---------------------------------------------------------------- */
+
+/* --- 위젯 편집 팝업 --- */
+[data-theme="dark"] .widget-edit-popup .switch-input:not(:checked) + .switch-track {background-color:var(--dash-fixed-white);}
+[data-theme="dark"] .widget-edit-popup .switch-input:not(:checked) + .switch-track .switch-thumb {background-color:var(--dash-bg-deep);}
+
+/* --- 스킨 변경 팝업 --- */
+[data-theme="dark"] .theme-change-popup .upload-area .subtxt {color:#DDD;}
+[data-theme="dark"] .ico-upload-img {--ic-url:url("/src/assets/img/general/ico-MA-001-6.svg");}
+
+/* Widgets
+   ---------------------------------------------------------------- */
+
+/* --- Widget Card --- */
+[data-theme="dark"] .widget-card {box-shadow:0 0.6rem 2.0rem 0 var(--dash-fixed-shadow-dark);}
+
+/* --- Widget - Profile --- */
+[data-theme="dark"] .widget-card.profile .card-body .alarm-wrap .box {background-color:var(--dash-bg-profile-alarm);}
+[data-theme="dark"] .widget-card.profile .card-body .alarm-wrap .box:first-child {border:1px solid #3690E6; background:var(--dash-bg-profile-alarm-first); box-shadow:0 1.0rem 2.0rem 0 var(--dash-fixed-shadow-alarm);}
+[data-theme="dark"] .widget-card.profile .card-body .alarm-wrap .box:first-child .text-ellipsis {color:var(--dash-text-setting-btn-hover) !important;}
+
+/* --- Widget - 나의 연차 --- */
+[data-theme="dark"] .widget-leave-content {background-color:var(--dash-bg-leave);}
+
+/* --- Widget - 전자결재 --- */
+[data-theme="dark"] .widget-approval-content .box {background-color:var(--dash-bg-approval-box);}
+
+/* --- Widget - 유가 --- */
+[data-theme="dark"] .widget-oil-content .box {background-color:var(--dash-bg-oil-box);}
+
+/* --- Widget - 나의 일정 --- */
+
+/* Calendar */
+[data-theme="dark"] .dashboard-mini-calendar .header-left .button {background:none;}
+
+/* Calendar - Header */
+[data-theme="dark"] .fc .fc-scrollgrid-section-sticky > * {background:transparent;}
+
+/* Calendar - Days */
+[data-theme="dark"] .dashboard-mini-calendar .calendar .fc-daygrid-day {background:transparent;}
+
+/* Events List */
+[data-theme="dark"] .calendar-event-list .checkbox-box {background:transparent;}
+[data-theme="dark"] .calendar-event-list .checkbox-input:checked + .checkbox-box {background-color:var(--dash-cal-selected-bg);}
+
+/* Events List - Colors & States */
+[data-theme="dark"] .calendar-event-list .event-item.color-red .event-time {color:var(--dash-event-red-time);}
+[data-theme="dark"] .calendar-event-list .event-item.color-purple .event-time {color:var(--dash-event-purple-time);}
+
+/* --- Widget - 즐겨찾는 메뉴 --- */
+[data-theme="dark"] .widget-favorite-content .button-fav-menu {border-color:var(--dash-border-base); background:transparent; color:var(--dash-text-primary);}
+[data-theme="dark"] .widget-favorite-content .button-fav-menu:hover {border-color:#3690E6; background-color:var(--dash-bg-hover-fav);}
+
+/* --- Widget - 조직도 --- */
+[data-theme="dark"] .widget-card.orgList .card-header .dropdown-wrap {border-color:var(--dash-dropdown-border); background:transparent;}
+[data-theme="dark"] .widget-card.orgList .card-header .dropdown-field {color:var(--dash-dropdown-text);}
+[data-theme="dark"] .widget-card.orgList .card-header .dropdown-icon .ico {--ic-mode-bg:none; --ic-mode-mask:var(--ic-url); --ic-mode-color:var(--dash-dropdown-icon);}
+[data-theme="dark"] .widget-card.orgList .card-header .dropdown-menu {border-color:var(--dash-dropdown-menu-border); background-color:var(--dash-dropdown-menu-bg);}
+[data-theme="dark"] .widget-card.orgList .card-header .dropdown-option {color:var(--dash-dropdown-option);}
+[data-theme="dark"] .widget-card.orgList .card-header .dropdown-option:hover {color:var(--dash-dropdown-option-hover);}
+
+/* --- Widget - 환율 --- */
+[data-theme="dark"] .widget-exchange-content {background-color:var(--dash-bg-exchange-box);}
+
+/* --- Widget - 금리 --- */
+[data-theme="dark"] .widget-interest-rate-content {background-color:var(--dash-bg-interest-rate-box);}
+
+/* --- Scrollbar --- */
+[data-theme="dark"] *::-webkit-scrollbar-track {background-color:var(--dash-scrollbar-track) !important;} 
+[data-theme="dark"] *::-webkit-scrollbar-thumb {background-color:var(--dash-scrollbar-thumb) !important;}
