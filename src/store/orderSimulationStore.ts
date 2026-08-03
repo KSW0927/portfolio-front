@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { fetchProducts, placeOrder, resetStock, reportBatchResult, randomBuyerUserNo, type ProductItem, type LockStrategy } from '@/api/order';
 import { AlertService } from '@/utils/AlertService';
-import { useNotificationStore } from '@/store/notificationStore';
+import { useNotifyStore } from '@/store/notifyStore';
 
 /**
  * 주문 시뮬레이션 공용 상태
@@ -88,9 +88,9 @@ interface OrderSimulationState {
     setLockStrategy: (strategy: LockStrategy) => void;
     runSimulation: (count: number) => Promise<void>;
     handleReset: () => Promise<void>;
-    /** notificationStore가 "결제" 카테고리 WebSocket 알림을 받았을 때 orderId로 매칭해서 호출 */
+    /** notifyStore가 "결제" 카테고리 WebSocket 알림을 받았을 때 orderId로 매칭해서 호출 */
     markPaymentCompleted: (orderId: number) => void;
-    /** notificationStore가 "결제취소" 카테고리 WebSocket 알림을 받았을 때 orderId로 매칭해서 호출 */
+    /** notifyStore가 "결제취소" 카테고리 WebSocket 알림을 받았을 때 orderId로 매칭해서 호출 */
     markOrderCancelled: (orderId: number) => void;
 }
 
@@ -347,7 +347,7 @@ export const useOrderSimulationStore = create<OrderSimulationState>((set, get) =
 
                 set({ orderRows: [], orderStats: EMPTY_STATS, statusFilter: '전체', stockIntegrity: null });
                 // 재고가 초기화되면 이전 주문에 대한 알림은 더 이상 의미가 없으므로 알림 위젯도 같이 비움
-                useNotificationStore.getState().clear();
+                useNotifyStore.getState().clear();
             } catch (err) {
                 console.error('재고 초기화 실패:', err);
                 alert('재고 초기화에 실패했습니다. order-service가 떠있는지 확인해주세요.');

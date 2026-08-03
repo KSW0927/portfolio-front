@@ -2,14 +2,14 @@ import { useEffect, useState} from "react";
 import { useIsDark } from "@/hooks/useIsDark";
 import { Box, Button, Card, Icon, Layout, Space, Typography } from "@/components";
 import type { WidgetCardProps } from "@/types/types";
-import { useNotificationStore, type NotificationItem } from "@/store/notificationStore";
+import { useNotifyStore, type NotifyItem } from "@/store/notifyStore";
 import { AlertService } from "@/utils/AlertService";
 
-const FALLBACK_ALARM_LIST: NotificationItem[] = [
+const FALLBACK_ALARM_LIST: NotifyItem[] = [
     { id: -1, category: "안내", title: "주문을 실행하면 실시간 알림이 여기에 표시됩니다.", buyerUserNo: 0, createdAt: "", pinned: false },
 ];
 
-const showNotificationDetail = (item: NotificationItem) => {
+const showNotifyDetail = (item: NotifyItem) => {
     if (item.id < 0) return; // 안내용 더미 항목은 클릭 무시
 
     const time = item.createdAt
@@ -30,18 +30,17 @@ const showNotificationDetail = (item: NotificationItem) => {
 };
 
 /**
- * 프로파일 위젯 컴포넌트
+ * 실시간 알림 위젯 컴포넌트
  * @description
  */
 export const NotifyWidget = (props: WidgetCardProps) => {
-    const { activeKebabId, widget, changeActiveKebab } = props;
+    const { activeKebabId, widget, changeActiveKebab, changeHide, changeExpand } = props;
     const isDark = useIsDark();
     const isKebabOpen = activeKebabId === widget.id;
 
-    const notifications = useNotificationStore((state) => state.notifications);
-    const connect = useNotificationStore((state) => state.connect);
+    const notifications = useNotifyStore((state) => state.notifications);
+    const connect = useNotifyStore((state) => state.connect);
     const alarmList = notifications.length > 0 ? notifications : FALLBACK_ALARM_LIST;
-    // 클릭해서 상세를 확인한 알림 - 이 항목에만 강조 효과를 준다(기존엔 최상단 고정이었음)
     const [activeAlarmId, setActiveAlarmId] = useState<number | null>(null);
 
     useEffect(() => {
@@ -53,49 +52,42 @@ export const NotifyWidget = (props: WidgetCardProps) => {
             <Card.Header
                 leftIcon={widget.icon && <Icon name={widget.icon} size={20} />}
                 extra={
-                    widget.expandable && (
-                        <div style={{ position: "relative" }}>
-                            <Button
-                                variant="text" leftIcon={<Icon name="kebab" size={20} />}
-                                className={`button-widget-settings ${isDark && "-invert"}`} rounded
-                                aria-label="위젯 설정"
-                                aria-haspopup="true"
-                                aria-expanded={isKebabOpen}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    changeActiveKebab(isKebabOpen ? null : widget.id);
-                                }}
-                            />
-                            {isKebabOpen && (
-                                <div className="widget-setting-popup">
-                                    <button onClick={(e) => { e.stopPropagation(); changeHide(widget.id); }}>
-                                        위젯 삭제
-                                    </button>
-                                    <button onClick={(e) => { e.stopPropagation(); changeExpand(widget.id); }}>
-                                        {widget.size === "sm" ? "위젯 확대" : "위젯 축소"}
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-                    )
+                    <Space size={12} align="center">
+                        <Typography variant="body-lg" weight="semibold" color={isDark ? "var(--dash-text-disabled)" : ""}>
+                            {`총 ${alarmList.length}건`}
+                        </Typography>
+                        {widget.expandable && (
+                            <div style={{ position: "relative" }}>
+                                <Button
+                                    variant="text" leftIcon={<Icon name="kebab" size={20} />}
+                                    className={`button-widget-settings ${isDark && "-invert"}`} rounded
+                                    aria-label="위젯 설정"
+                                    aria-haspopup="true"
+                                    aria-expanded={isKebabOpen}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        changeActiveKebab(isKebabOpen ? null : widget.id);
+                                    }}
+                                />
+                                {isKebabOpen && (
+                                    <div className="widget-setting-popup">
+                                        <button onClick={(e) => { e.stopPropagation(); changeHide(widget.id); }}>
+                                            위젯 삭제
+                                        </button>
+                                        <button onClick={(e) => { e.stopPropagation(); changeExpand(widget.id); }}>
+                                            {widget.size === "sm" ? "위젯 확대" : "위젯 축소"}
+                                        </button>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </Space>
                 }
             >
-                <Typography variant="heading-sm" color={isDark ? "var(--dash-text-primary)" : "var(--dash-text-primary)"}>{widget.title}</Typography>
+                <Typography variant="heading-sm" color="var(--dash-text-primary)">{widget.title}</Typography>
             </Card.Header>
 
             <Card.Body gap={10}>
-                <Layout.Row justify="space-between" className="title-wrap">
-                    <Layout.Col layout="horizontal" align="center" gap={4}>
-                        <Icon name="bell" size={18} color="var(--dash-profile-text)" />
-                        <Typography variant="body-lg" weight="semibold" color="var(--dash-profile-text)">최근 알림</Typography>
-                    </Layout.Col>
-
-                    <Layout.Col layout="horizontal" align="baseline" justify="end" gap={3}>
-                        <Typography variant="heading-lg" as="strong" color="var(--dash-profile-count-accent)" style={{ fontSize: "3.8rem", lineHeight: 1 }}>{alarmList.length}</Typography>
-                        <Typography variant="body-lg" as="span" color="var(--dash-profile-text)">건</Typography>
-                    </Layout.Col>
-                </Layout.Row>
-
                 <Layout.Row layout="vertical" gap={16} className="alarm-wrap">
                     {alarmList.map((item) => (
                         <Box
@@ -109,7 +101,7 @@ export const NotifyWidget = (props: WidgetCardProps) => {
                             onClick={() => {
                                 if (item.id < 0) return;
                                 setActiveAlarmId(item.id);
-                                showNotificationDetail(item);
+                                showNotifyDetail(item);
                             }}
                             style={{ cursor: item.id >= 0 ? "pointer" : "default" }}
                         >

@@ -7,10 +7,10 @@ import type { WidgetSize, WidgetData } from "@/types/types";
  * 제공 위젯 목록
  */
 export const INITIAL_WIDGETS: Record<string, WidgetData> = {
-    option:     { component: W.OptionWidget,     id: "w1",  type: "option",     size: "sm", title: "옵션 설정",        iconEdit: "bank" },
-    status:        { component: W.StatusWidget,        id: "w2",  type: "status",        size: "md", title: "처리 현황",        iconEdit: "leave-line" },
-    notify:      { component: W.NotifyWidget,      id: "w3",  type: "notify",      size: "md", title: "알림",            iconEdit: "user" },
-    latency:          { component: W.LatencyWidget,          id: "w5",  type: "latency",          size: "sm", title: "응답시간",         iconEdit: "oil-prices", icon: "oil" },
+    option:     { component: W.OptionWidget,  id: "w1", type: "option",  size: "sm", title: "옵션 설정" },
+    status:     { component: W.StatusWidget,  id: "w2", type: "status",  size: "md", title: "처리 현황" },
+    notify:     { component: W.NotifyWidget,  id: "w3", type: "notify",  size: "md", title: "실시간 알림" },
+    latency:    { component: W.LatencyWidget, id: "w5", type: "latency", size: "sm", title: "응답시간" },
 }
 
 /**

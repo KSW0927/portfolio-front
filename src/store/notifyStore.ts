@@ -1,0 +1,122 @@
+import { create } from 'zustand';
+import { Client, type IMessage } from '@stomp/stompjs';
+import SockJS from 'sockjs-client';
+import { useOrderSimulationStore } from '@/store/orderSimulationStore';
+
+/**
+ * 실시간 알림 스토어
+ * @description realtime-gateway-service(WebSocket/STOMP)에 접속해서 "/topic/notifications"를
+ * 구독하고, 들어오는 메시지를 화면(NotifyWidget)에서 바로 쓸 수 있는 형태로 보관한다.
+ * 연결은 앱 세션 동안 한 번만 맺고 재사용 - 위젯이 숨겨졌다 다시 보여도 재연결하지 않도록
+ * 스토어 레벨에서 client를 싱글턴으로 들고 있음.
+ */
+
+const GATEWAY_WS_URL = import.meta.env.VITE_GATEWAY_WS_URL || 'http://localhost:8084/ws';
+const NOTIFY_TOPIC = '/topic/notifications';
+const MAX_NOTIFICATIONS = 20;
+
+export interface NotifyItem {
+    id: number;
+    category: string;
+    title: string;
+    buyerUserNo: number;
+    createdAt: string;
+    /** 품절/결제취소 등 우선적으로 확인해야 하는 알림 - 목록 상단에 고정 정렬됨(단, 오버셀이 항상 그보다도 위) */
+    pinned: boolean;
+}
+
+// 서버(realtime-gateway-service)가 보내는 원본 페이로드
+interface NotifyPublishedPayload {
+    notifyId: number;
+    orderId: number;
+    buyerUserNo: number;
+    priority: boolean;
+    category: string;
+    message: string;
+    createdAt: string;
+}
+
+interface NotifyState {
+    notifications: NotifyItem[];
+    connected: boolean;
+    connect: () => void;
+    disconnect: () => void;
+    /** 재고 초기화 등으로 이전 알림이 더 이상 의미 없어질 때 목록만 비움(WebSocket 연결은 유지) */
+    clear: () => void;
+}
+
+let client: Client | null = null;
+
+/**
+ * 정렬 우선순위: 오버셀(재고) 알림 > 그 외 pinned(품절/결제취소) 알림 > 일반 알림
+ * @description 오버셀은 재고 정합성이 깨졌다는 가장 중요한 신호라 다른 pinned 알림보다도
+ * 항상 최상단에 오도록 별도 등급을 둠. 같은 등급 안에서는 최신순(=배열 앞쪽)을 유지.
+ */
+function rank(item: NotifyItem): number {
+    if (item.category === '재고') return 2;
+    if (item.pinned) return 1;
+    return 0;
+}
+
+function insertSorted(list: NotifyItem[], item: NotifyItem): NotifyItem[] {
+    return [item, ...list]
+        .sort((a, b) => rank(b) - rank(a))
+        .slice(0, MAX_NOTIFICATIONS);
+}
+
+export const useNotifyStore = create<NotifyState>((set) => ({
+    notifications: [],
+    connected: false,
+
+    connect: () => {
+        if (client) return; // 이미 연결(시도) 중이면 중복 생성하지 않음
+
+        client = new Client({
+            webSocketFactory: () => new SockJS(GATEWAY_WS_URL) as unknown as WebSocket,
+            reconnectDelay: 5000,
+            onConnect: () => {
+                set({ connected: true });
+                client?.subscribe(NOTIFY_TOPIC, (message: IMessage) => {
+                    try {
+                        const payload: NotifyPublishedPayload = JSON.parse(message.body);
+                        const item: NotifyItem = {
+                            id: payload.notifyId,
+                            category: payload.category,
+                            title: payload.message,
+                            buyerUserNo: payload.buyerUserNo,
+                            createdAt: payload.createdAt,
+                            pinned: payload.priority,
+                        };
+                        set((state) => ({ notifications: insertSorted(state.notifications, item) }));
+
+                        // 결제 확정 알림은 목록에 쌓는 것과 별개로, 그리드의 해당 주문 행을
+                        // '결제완료'로 실시간 갱신하고 카운터를 올리기 위해 orderId로 매칭해준다.
+                        if (payload.category === '결제' && payload.orderId) {
+                            useOrderSimulationStore.getState().markPaymentCompleted(payload.orderId);
+                        }
+                        // 오버셀 사후 취소 알림도 마찬가지로 orderId로 매칭해서 그리드 행을 '결제취소'로 갱신.
+                        if (payload.category === '결제취소' && payload.orderId) {
+                            useOrderSimulationStore.getState().markOrderCancelled(payload.orderId);
+                        }
+                    } catch (e) {
+                        console.error('알림 메시지 파싱 실패', e);
+                    }
+                });
+            },
+            onDisconnect: () => set({ connected: false }),
+            onStompError: (frame) => {
+                console.error('STOMP 오류', frame.headers['message'], frame.body);
+            },
+        });
+
+        client.activate();
+    },
+
+    disconnect: () => {
+        client?.deactivate();
+        client = null;
+        set({ connected: false });
+    },
+
+    clear: () => set({ notifications: [] }),
+}));

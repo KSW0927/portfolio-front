@@ -10,54 +10,39 @@ import { useOrderSimulationStore, type StatusFilter } from "@/store/orderSimulat
  * 오버셀은 배치 단위 집계값이라 개별 주문 행 상태가 아니므로 필터 대상에서 제외.
  */
 export const StatusWidget = (props: WidgetCardProps) => {
-    const { activeKebabId, widget, changeActiveKebab, changeHide, changeExpand } = props;
+    const {widget} = props;
     const isDark = useIsDark();
-    const isKebabOpen = activeKebabId === widget.id;
 
     const { orderStats, statusFilter, setStatusFilter, stockIntegrity } = useOrderSimulationStore();
 
     const toggleFilter = (target: Exclude<StatusFilter, '전체'>) => {
         setStatusFilter(statusFilter === target ? '전체' : target);
     };
-    // 다른 필터가 활성화돼 있을 때 나머지 항목들을 흐리게 표시(활성 필터만 선명하게)
     const isDimmed = (target: StatusFilter) => statusFilter !== '전체' && statusFilter !== target;
 
     return (
         <>
-            <Card.Header
-                leftIcon={widget.icon && <Icon name={widget.icon} size={20} />}
-                extra={
-                    widget.expandable && (
-                        <div style={{ position: "relative" }}>
-                            <Button
-                                variant="text" leftIcon={<Icon name="kebab" size={20} />}
-                                className={`button-widget-settings ${isDark && "-invert"}`} rounded
-                                aria-label="위젯 설정"
-                                aria-haspopup="true"
-                                aria-expanded={isKebabOpen}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    changeActiveKebab(isKebabOpen ? null : widget.id);
-                                }}
-                            />
-                            {isKebabOpen && (
-                                <div className="widget-setting-popup">
-                                    <button onClick={(e) => { e.stopPropagation(); changeHide(widget.id); }}>
-                                        위젯 삭제
-                                    </button>
-                                    <button onClick={(e) => { e.stopPropagation(); changeExpand(widget.id); }}>
-                                        {widget.size === "sm" ? "위젯 확대" : "위젯 축소"}
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-                    )
-                }
-            >
+            <Card.Header>
                 <Typography variant="heading-sm" color={isDark ? "var(--dash-text-primary)" : "var(--dash-text-primary)"}>{widget.title}</Typography>
             </Card.Header>
 
             <Card.Body>
+                <span
+                    style={{
+                        display: 'inline-block',
+                        marginBottom: 10,
+                        padding: '4px 10px',
+                        borderRadius: 6,
+                        fontSize: 12,
+                        fontWeight: 600,
+                        lineHeight: 1.6,
+                        border: '1px solid #5AA9E6',
+                        color: '#5AA9E6',
+                    }}
+                >
+                    상태값을 클릭하면 아래 그리드가 필터링됩니다.
+                </span>
+
                 <Box variant="info" className="-blue widget-leave-content">
                     <Layout.Col
                         layout="vertical" gap={49}

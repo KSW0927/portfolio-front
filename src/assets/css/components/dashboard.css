@@ -327,7 +327,7 @@
 .widget-card.-size-lg {grid-row:span 3;}
 
 /* --- Widget - Profile --- */
-.widget-card.notify {display:flex; flex-direction:column; height:100%; border:none; border-radius:2.0rem; background-color:var(--dash-bg-card-profile);}
+.widget-card.notify {display:flex; flex-direction:column; height:100%; border-radius:2.0rem; background-color:var(--dash-bg-card-profile);}
 .widget-card.notify .card-header {align-items:flex-start; padding-bottom:1.0rem;}
 .widget-card.notify .card-header-wrap {background-repeat:no-repeat; background-position:center top; background-size:cover;}
 .widget-card.notify .card-header-wrap .avatar {overflow:hidden; width:9.2rem; height:9.2rem; border-radius:50%;}

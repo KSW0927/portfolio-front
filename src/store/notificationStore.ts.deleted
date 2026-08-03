@@ -27,7 +27,7 @@ export interface NotificationItem {
 
 // 서버(realtime-gateway-service)가 보내는 원본 페이로드
 interface NotificationPublishedPayload {
-    notificationId: number;
+    notifyId: number;
     orderId: number;
     buyerUserNo: number;
     priority: boolean;
@@ -80,7 +80,7 @@ export const useNotificationStore = create<NotificationState>((set) => ({
                     try {
                         const payload: NotificationPublishedPayload = JSON.parse(message.body);
                         const item: NotificationItem = {
-                            id: payload.notificationId,
+                            id: payload.notifyId,
                             category: payload.category,
                             title: payload.message,
                             buyerUserNo: payload.buyerUserNo,

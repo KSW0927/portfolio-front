@@ -1,5 +1,5 @@
 import { useIsDark } from "@/hooks/useIsDark";
-import { Box, Button, Card, Icon, Layout, Space, Typography } from "@/components";
+import { Box, Button, Card, Layout, Space, Typography } from "@/components";
 import type { WidgetCardProps } from "@/types/types";
 import { useOrderSimulationStore } from "@/store/orderSimulationStore";
 import type { LockStrategy } from "@/api/order";
@@ -22,9 +22,8 @@ const LOCK_STRATEGIES: { value: LockStrategy; label: string; color: string }[] =
  * 실제 동작은 orderSimulationStore(zustand)에 있고, 이 위젯은 그 액션을 호출만 함.
  */
 export const OptionWidget = (props: WidgetCardProps) => {
-    const { activeKebabId, widget, changeActiveKebab, changeHide, changeExpand } = props;
+    const {widget} = props;
     const isDark = useIsDark();
-    const isKebabOpen = activeKebabId === widget.id;
 
     const { isRunning, isResetting, lockStrategy, setLockStrategy, runSimulation, handleReset } = useOrderSimulationStore();
     const disabled = isRunning || isResetting;
@@ -40,36 +39,7 @@ export const OptionWidget = (props: WidgetCardProps) => {
 
     return (
         <div className="widget-option-content">
-            <Card.Header
-                leftIcon={widget.icon && <Icon name={widget.icon} size={20} />}
-                extra={
-                    widget.expandable && (
-                        <div style={{ position: "relative" }}>
-                            <Button
-                                variant="text" leftIcon={<Icon name="kebab" size={20} />}
-                                className={`button-widget-settings ${isDark && "-invert"}`} rounded
-                                aria-label="위젯 설정"
-                                aria-haspopup="true"
-                                aria-expanded={isKebabOpen}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    changeActiveKebab(isKebabOpen ? null : widget.id);
-                                }}
-                            />
-                            {isKebabOpen && (
-                                <div className="widget-setting-popup">
-                                    <button onClick={(e) => { e.stopPropagation(); changeHide(widget.id); }}>
-                                        위젯 삭제
-                                    </button>
-                                    <button onClick={(e) => { e.stopPropagation(); changeExpand(widget.id); }}>
-                                        {widget.size === "sm" ? "위젯 확대" : "위젯 축소"}
-                                    </button>
-                                </div>
-                            )}
-                        </div>
-                    )
-                }
-            >
+            <Card.Header>
                 <Space size={8} align="center">
                     <Typography variant="heading-sm" color={isDark ? "var(--dash-text-primary)" : "var(--dash-text-primary)"}>{widget.title}</Typography>
                     {disabled && (

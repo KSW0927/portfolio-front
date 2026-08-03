@@ -2,10 +2,9 @@ import axios from 'axios';
 
 /**
  * 주문 API 클라이언트
- * @description order-service는 아직 게이트웨이/프록시 대상이 아니라
+ * @description
+ * order-service는 아직 게이트웨이/프록시 대상이 아니라
  * 다른 서비스와 별도로 직접 baseURL을 지정해서 호출합니다.
- * order-service는 JWT로 "요청이 인증된 세션에서 왔는지"를 검증하므로
- * user-auth-service 로그인 때 발급받은 accessToken을 그대로 실어 보냅니다.
  */
 const ORDER_API_BASE = import.meta.env.VITE_ORDER_API_URL || 'http://localhost:8082';
 const ACCESS_TOKEN_KEY = 'access_token';
@@ -46,7 +45,7 @@ export interface ProductItem {
 }
 
 export async function fetchProducts(): Promise<ProductItem[]> {
-  const { data } = await orderApiClient.get<ApiResponse<ProductItem[]>>('/api/orders/products');
+  const { data } = await orderApiClient.get<ApiResponse<ProductItem[]>>('/api/products');
   return data.data;
 }
 
@@ -62,10 +61,11 @@ export interface OrderResult {
 }
 
 /**
- * 동시성 제어 전략
- * @description NONE(락 없음) - 동시 요청 시 lost-update(오버셀) 재현용 비교군.
- * PESSIMISTIC(DB 락) - SELECT ... FOR UPDATE로 같은 SKU 요청을 순차화.
- * DISTRIBUTED(분산락) - Redisson으로 애플리케이션 레이어에서 순차화(DB 락 없이 동일 효과).
+ * 동시성 제어
+ * @description
+ * NONE(락 없음)
+ * PESSIMISTIC(DB 락)
+ * DISTRIBUTED(분산락)
  */
 export type LockStrategy = 'NONE' | 'PESSIMISTIC' | 'DISTRIBUTED';
 
@@ -97,10 +97,10 @@ export interface StockIntegrityReport {
 }
 
 /**
- * 배치(시뮬레이션 1회 실행) 종료 후 재고 정합성 결과를 서버로 보고
- * @description 서버는 이 값을 믿고 Kafka(stock-integrity-events)로 알림을 발행하는 것과 별개로,
- * oversoldProducts에 담긴 상품별 오버셀 수량만큼 최근 성공 주문을 직접 찾아 사후 취소(재고 복구 +
- * 결제 취소 알림)까지 처리한다.
+ * 배치(시뮬레이션 1회 실행) 종료 후 재고 정합성 결과를 서버로 전송
+ * @description
+ * 서버는 이 값을 믿고 Kafka(stock-integrity-events)로 알림을 발행하는 것과 별개로
+ * oversoldProducts에 담긴 상품별 오버셀 수량만큼 최근 성공 주문을 직접 찾아 사후 취소(재고 복구 + 결제 취소 알림)까지 처리.
  */
 export async function reportBatchResult(payload: StockIntegrityReport): Promise<void> {
   await orderApiClient.post<ApiResponse<null>>('/api/orders/batch-result', payload);

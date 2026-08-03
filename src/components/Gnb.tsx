@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useMenuStore } from "@/store/menuStore";
@@ -7,10 +7,7 @@ import { useMenuStore } from "@/store/menuStore";
 import { logout as logoutApi } from "@/api";
 
 // 컴포넌트
-import { Button, Icon } from "@/components";
-
-// 이미지
-import LogoMob from "@/assets/img/general/common/logo-mob.png";
+import { Button } from "@/components";
 
 // 상수 정의
 const DEFAULT_AUTO_LOGOUT_SECONDS = 10 * 60;
@@ -179,25 +176,6 @@ export const GNB = ({ onMobileMenuOpen }: GbnProps) => {
         if (!window.confirm("로그아웃 하시겠습니까?")) return;
         await performLogout();
     };
-
-    if (isMobile) {
-        // MOB GNB
-        return (
-            <header className="gnb-mobile">
-                <div className="gnb-left">
-                    <h1 className="logo" onClick={handleLogoClick}>
-                        <Link to="/">
-                            <img src={LogoMob} alt="(주) KSS 해운" />
-                        </Link>
-                    </h1>
-                </div>
-                <div className="gnb-right">
-                    <Button variant="text" leftIcon={<Icon name="mobile-search" size={26} />} aria-label="검색" />
-                    <Button variant="text" leftIcon={<Icon name="mobile-menu" size={26} />} onClick={onMobileMenuOpen} aria-label="메뉴 열기" />
-                </div>
-            </header>
-        )
-    }
 
     return (
         <header className="gnb" onKeyDown={handleKeyDown} ref={gnbRef}>

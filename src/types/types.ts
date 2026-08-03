@@ -17,40 +17,12 @@ export interface AuthUser {
 }
 
 /**
- * 테마 종류 정의
- */
-export const THEME = {
-    LIGHT: "light",
-    DARK: "dark",
-} as const;
-export type ThemeType = (typeof THEME)[keyof typeof THEME];
-
-/**
- * 사용자가 커스텀하여 저장한 테마 인터페이스
- */
-export interface SavedTheme {
-    id: string;
-    name: string;
-    themeMode: ThemeType;
-    skinColor: string;
-    bgImage: string | null;
-    //widgetsOrder: WidgetData[];
-    activeWidgets: string[];
-}
-
-/**
  * 공통 응답 구조 정의
  */
 export type BaseApiResponse<T> = {
     resultCode: string;
     resultMessage?: string;
     result?: T;
-}
-export interface ResultList<T> {
-    list: T[];
-}
-export interface ResultData<T> {
-    data: T;
 }
 
 /**
@@ -73,23 +45,6 @@ export interface MenuItem {
     lnbN2ExpsrYn: string | null;
     smapExpsrYn: string | null;
     submenus: MenuItem[] | null;
-}
-
-/**
- * 메뉴 목록 정의
- */
-export interface MenuData {
-    data: MenuItem[]
-}
-
-/**
- * 즐겨찾기 정보 정의
- */
-export interface FavoriteItem {
-    serviceId: number;
-    favoriteNo: number;
-    title: string;
-    urlAddr: string;
 }
 
 /**
@@ -171,18 +126,6 @@ export interface WidgetCardProps {
     changeActiveKebab: (id: string | null) => void;
     changeHide: (id: string) => void;
     changeExpand: (id: string) => void;
-}
-
-/**
- * 파일 정보 정의
- */
-export interface FileInfo {
-    id: string | number; // 파일 고유 ID
-    name: string; // 파일 이름
-    type: string; // MIME 타입 (예: "image/png", "application/pdf")
-    size?: number; // 파일 크기 (바이트 단위)(옵션)
-    url?: string; // 파일 접근 URL (옵션)
-    downloadCount?: number; // 다운로드 횟수 (옵션)
 }
 
 /**
