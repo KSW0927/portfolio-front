@@ -52,9 +52,14 @@ export async function fetchSession(): Promise<AuthResponse> {
  * @description user-auth-service: POST /api/users/logout/{userNo}
  */
 export async function logout(userNo: string | number): Promise<void> {
-  sessionStorage.removeItem('access_token');
-  sessionStorage.removeItem('auth-store');
-  await apiClient.post(`/api/users/logout/${userNo}`);
+  // 토큰이 있어야 로그아웃 API가 인증을 통과하므로, API 호출을 먼저 하고 토큰은 그 다음에 지운다.
+  // API가 실패해도(서버 오류 등) 로컬 세션은 정리되도록 finally에서 처리.
+  try {
+    await apiClient.post(`/api/users/logout/${userNo}`);
+  } finally {
+    sessionStorage.removeItem('access_token');
+    sessionStorage.removeItem('auth-store');
+  }
 }
 
 /**
