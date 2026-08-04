@@ -252,7 +252,7 @@
 .wrap.dashboard {background:var(--dash-bg-page); background-repeat:no-repeat; background-position:center top; background-size:cover;}
 .wrap.dashboard .gnb-top {background:var(--dash-bg-gnb);}
 .dashboard-header {position:relative;}
-.dashboard-content {width:133.0rem; margin:0 auto;}
+.dashboard-content {width:133.0rem; max-width:100%; margin:0 auto;}
 .dashboard-title {color:var(--dash-text-primary); font-weight:700; font-size:2.4rem;}
 .dashboard-title::before {content:""; display:inline-block; width:2.9rem; height:2.9rem; margin-right:0.8rem; background-image:url("/src/assets/img/general/ico-MA-001-1.svg"); background-repeat:no-repeat; background-position:center; background-size:contain; vertical-align:middle;}
 
@@ -310,9 +310,31 @@
     .widget-grid {grid-template-columns:repeat(2, 1fr);}
 }
 
+/* 모바일(바형폰/폴드7·플립7 커버 화면 등) - grid 대신 세로 flex + scroll-snap으로 전환.
+   위젯 높이를 뷰포트 높이 기준으로 잡아서 기기 화면비와 무관하게 항상 "화면 하나 = 위젯 하나"가 되게 함. */
 @media screen and (width <= 768px) {
-    .widget-grid {grid-template-columns:1fr; grid-auto-rows:auto; gap:1.4rem;}
-    .widget-card.-size-md, .widget-card.-size-lg {grid-row:auto;}
+    .widget-grid {
+        display:flex;
+        flex-direction:column;
+        gap:0;
+        overflow-y:auto;
+        overscroll-behavior-y:contain;
+        scroll-snap-type:y mandatory;
+        height:calc(100vh - var(--gnb-height));
+        height:calc(100dvh - var(--gnb-height));
+    }
+    .widget-card,
+    .widget-card.-size-sm,
+    .widget-card.-size-md,
+    .widget-card.-size-lg {
+        flex:0 0 auto;
+        width:100%;
+        height:calc(100vh - var(--gnb-height));
+        height:calc(100dvh - var(--gnb-height));
+        border-radius:0;
+        scroll-snap-align:start;
+        scroll-snap-stop:always;
+    }
 }
 
 /* --- Widget Card --- */
