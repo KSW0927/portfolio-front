@@ -96,9 +96,7 @@ export type WidgetSize = "sm" | "md" | "lg";
 /**
  * 대시보드에서 지원하는 위젯의 종류
  */
-export type WidgetType = "profile" | "leave" | "approval" | "banner" | "oil" | "calendar" | "vote" | "favorite" | "notice"
-    | "education" | "meeting" | "message" | "latestPost" | "orgList" | "survey" | "dataSearch" | "exchange" | "interestRate"
-    | "none";
+export type WidgetType = "option" | "status" | "notify" | "latency";
 
 /**
  * 위젯의 메타데이터 인터페이스
