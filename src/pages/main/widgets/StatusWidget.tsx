@@ -23,26 +23,13 @@ export const StatusWidget = (props: WidgetCardProps) => {
     return (
         <>
             <Card.Header>
-                <Typography variant="heading-sm" color={isDark ? "var(--dash-text-primary)" : "var(--dash-text-primary)"}>{widget.title}</Typography>
+                <Space size={4}>
+                    <Typography variant="heading-sm" color={isDark ? "var(--dash-text-primary)" : "var(--dash-text-primary)"}>{widget.title}</Typography>
+                    <Typography variant="body-md" as="span" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""}>(STATUS)</Typography>
+                </Space>
             </Card.Header>
 
             <Card.Body>
-                <span
-                    style={{
-                        display: 'inline-block',
-                        marginBottom: 10,
-                        padding: '4px 10px',
-                        borderRadius: 6,
-                        fontSize: 12,
-                        fontWeight: 600,
-                        lineHeight: 1.6,
-                        border: '1px solid #5AA9E6',
-                        color: '#5AA9E6',
-                    }}
-                >
-                    상태값을 클릭하면 아래 그리드가 필터링됩니다.
-                </span>
-
                 <Box variant="info" className="-blue widget-leave-content">
                     <Layout.Col
                         layout="vertical" gap={49}
@@ -146,6 +133,22 @@ export const StatusWidget = (props: WidgetCardProps) => {
                         </Space>
                     </Layout.Col>
                 </Box>
+
+                <span
+                    style={{
+                        display: 'inline-block',
+                        marginTop: 12,
+                        padding: '4px 10px',
+                        borderRadius: 6,
+                        fontSize: 12,
+                        fontWeight: 600,
+                        lineHeight: 1.6,
+                        border: '1px solid #5AA9E6',
+                        color: '#5AA9E6',
+                    }}
+                >
+                    상태값을 클릭하면 아래 그리드가 필터링됩니다.
+                </span>
             </Card.Body>
 
             {widget.hasAction && (

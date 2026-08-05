@@ -1,9 +1,0 @@
-{
-  "searchEnabled": true,
-  "downloadEnabled": true,
-  "allowedFileExtensions": ["doc", "docx", "xls", "xlsx", "ppt", "pptx", "pdf", "hwp", "hwpx"],
-  "lang": "auto",
-  "pageTransitionDirection": "vertical",
-  "allowFileUrlOpen": true,
-  "fileStreamUrl": "./sample/streamSample/FileStream.jsp"
-}

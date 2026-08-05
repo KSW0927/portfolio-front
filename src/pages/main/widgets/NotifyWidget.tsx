@@ -54,7 +54,7 @@ export const NotifyWidget = (props: WidgetCardProps) => {
                 extra={
                     <Space size={12} align="center">
                         <Typography variant="body-lg" weight="semibold" color={isDark ? "var(--dash-text-disabled)" : ""}>
-                            {`총 ${alarmList.length}건`}
+                            {`최근 ${alarmList.length}건`}
                         </Typography>
                         {widget.expandable && (
                             <div style={{ position: "relative" }}>
@@ -84,7 +84,10 @@ export const NotifyWidget = (props: WidgetCardProps) => {
                     </Space>
                 }
             >
-                <Typography variant="heading-sm" color="var(--dash-text-primary)">{widget.title}</Typography>
+                <Space size={4}>
+                    <Typography variant="heading-sm" color="var(--dash-text-primary)">{widget.title}</Typography>
+                    <Typography variant="body-md" as="span" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""}>(NOTIFY)</Typography>
+                </Space>
             </Card.Header>
 
             <Card.Body gap={10}>

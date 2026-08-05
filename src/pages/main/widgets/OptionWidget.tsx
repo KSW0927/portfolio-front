@@ -42,6 +42,7 @@ export const OptionWidget = (props: WidgetCardProps) => {
             <Card.Header>
                 <Space size={8} align="center">
                     <Typography variant="heading-sm" color={isDark ? "var(--dash-text-primary)" : "var(--dash-text-primary)"}>{widget.title}</Typography>
+                    <Typography variant="body-md" as="span" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""}>(OPTION)</Typography>
                     {disabled && (
                         <Typography variant="body-sm" as="span" color="var(--dash-text-secondary)">
                             {isRunning ? '처리중...' : '초기화중...'}

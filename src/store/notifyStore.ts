@@ -5,7 +5,7 @@ import { useOrderSimulationStore } from '@/store/orderSimulationStore';
 
 /**
  * 실시간 알림 스토어
- * @description realtime-gateway-service(WebSocket/STOMP)에 접속해서 "/topic/notifications"를
+ * realtime-gateway-service(WebSocket/STOMP)에 접속해서 "/topic/notifications"를
  * 구독하고, 들어오는 메시지를 화면(NotifyWidget)에서 바로 쓸 수 있는 형태로 보관한다.
  * 연결은 앱 세션 동안 한 번만 맺고 재사용 - 위젯이 숨겨졌다 다시 보여도 재연결하지 않도록
  * 스토어 레벨에서 client를 싱글턴으로 들고 있음.
@@ -49,7 +49,7 @@ let client: Client | null = null;
 
 /**
  * 정렬 우선순위: 오버셀(재고) 알림 > 그 외 pinned(품절/결제취소) 알림 > 일반 알림
- * @description 오버셀은 재고 정합성이 깨졌다는 가장 중요한 신호라 다른 pinned 알림보다도
+ * 오버셀은 재고 정합성이 깨졌다는 가장 중요한 신호라 다른 pinned 알림보다도
  * 항상 최상단에 오도록 별도 등급을 둠. 같은 등급 안에서는 최신순(=배열 앞쪽)을 유지.
  */
 function rank(item: NotifyItem): number {

@@ -48,29 +48,6 @@ export interface MenuItem {
 }
 
 /**
- * 알림 정보 정의
- */
-export interface NotificationItem {
-    ntchNo: number;
-    ntcnSeCd: string;
-    ntcnCn: string;
-    regDt: string;
-}
-
-/**
- * 쪽지 정보 정의
- */
-export interface NoteItem {
-    noteRcptnNo: number;
-    noteDsptchNo: number;
-    noteRcvrId: string;
-    noteIdntyYn?: string;
-    noteRcptnDt: string;
-    noteDsptchCn: string;
-    noteDsptchNm: string;
-}
-
-/**
  * 회사 소속(본부, 부서) 정의
  */
 export interface CompGroupItem {
@@ -78,14 +55,6 @@ export interface CompGroupItem {
     text: string;
     parentValue?: string;
     deptLevel?: number;
-}
-
-/**
- * 선택박스 옵션 정의
- */
-export interface OptionItem {
-    label: string;
-    value: string;
 }
 
 /**
@@ -124,20 +93,4 @@ export interface WidgetCardProps {
     changeActiveKebab: (id: string | null) => void;
     changeHide: (id: string) => void;
     changeExpand: (id: string) => void;
-}
-
-/**
- * 첨부파일 정보 정의
- */
-export interface AttachFileInfo {
-    atchFileNo?: string; // 첨부파일번호
-    atchFileSeq?: number; // 첨부파일순서
-    atchFileActlNm?: string; // 첨부파일실제명
-    atchFileSz?: number; // 파일 크기 (바이트 단위)
-    dwnldMtryYmd?: string; // 다운로드만기일자
-    dwnldLmtCnt?: number; // 다운로드제한수
-    dwnldCnt?: number; // 다운로드수'
-    atchFilePath?: string; // 첨부파일경로
-    atchFileExtnCd?: string; // 첨부파일확장자코드
-    thmbVrNm?: string; // 썸네일가상명(옵션)
 }

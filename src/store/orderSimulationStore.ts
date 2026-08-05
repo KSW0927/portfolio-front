@@ -5,14 +5,14 @@ import { useNotifyStore } from '@/store/notifyStore';
 
 /**
  * 주문 시뮬레이션 공용 상태
- * @description Main.tsx의 그리드와 위젯(처리 현황/주문 테스트/응답시간/처리량 등)이
+ * Main.tsx의 그리드와 위젯(처리 현황/응답시간 등)이
  * 동일한 시뮬레이션 데이터를 공유해서 보여줘야 하므로 zustand 스토어로 끌어올림.
  * 위젯 컴포넌트는 WidgetRenderer가 넘겨주는 고정된 props만 받기 때문에
  * Main.tsx의 로컬 state를 그대로 넘길 방법이 없어서, 대신 이 스토어를 각자 구독함.
  */
 
-// 재고 차감(성공/품절)은 주문 시점에 즉시 확정되고, 그 뒤에 결제 확정(비동기, 구매자별 랜덤 지연)이
-// 따라붙는다. 그래서 성공 건은 '결제대기'로 시작해서 서버가 나중에 WebSocket으로 알려주면 '결제완료'로 바뀜.
+// 재고 차감(주문/품절)은 주문 시점에 즉시 확정되고, 그 뒤에 결제 확정(비동기, 구매자별 랜덤 지연) 처리
+// 주문 건은 '결제대기'로 시작해서 서버가 나중에 WebSocket으로 알려주면 '결제완료'로 바뀜.
 // '결제취소'는 오버셀 사후 취소 대상으로 뽑힌 건 - 결제대기/결제완료 어느 상태에 있었든 상관없이 덮어써서 전환됨.
 export type OrderStatus = '대기' | '처리중' | '결제대기' | '결제완료' | '품절' | '결제취소';
 
@@ -46,7 +46,7 @@ export type StatusFilter = '전체' | '주문' | '품절' | '결제대기' | '�
 
 /**
  * 재고 정합성 체크 결과
- * @description "화면 재고 = DB 재고"는 배치 종료 후 화면이 DB를 다시 읽어오는 순간 항상 참이 되는
+ * "화면 재고 = DB 재고"는 배치 종료 후 화면이 DB를 다시 읽어오는 순간 항상 참이 되는
  * 동어반복이라 경합 여부를 증명하지 못한다. 진짜 확인해야 할 건 "성공 건수만큼 실제로 줄었는가":
  * expectedTotal(배치 시작 시점 재고 총합 - 성공 건수) 과 actualTotal(배치 종료 후 DB에서 다시 읽은 재고 총합)을
  * 비교한다. lostUnits(=actualTotal - expectedTotal)가 0보다 크면, 그만큼의 감소분이 유실된 것 - 락 없이 동시
@@ -65,7 +65,7 @@ const EMPTY_STATS: OrderStats = {
     avgLatency: 0, p50Latency: 0, p95Latency: 0, p99Latency: 0, tps: 0,
 };
 const PUBLISH_INTERVAL_MS = 120;
-const CONCURRENCY = 20; // 동시에 진행할 요청 수(워커풀 크기)
+const CONCURRENCY = 20;
 
 function calcPercentile(sortedLatencies: number[], percentile: number): number {
     if (sortedLatencies.length === 0) return 0;
@@ -95,8 +95,6 @@ interface OrderSimulationState {
 }
 
 export const useOrderSimulationStore = create<OrderSimulationState>((set, get) => {
-    // 매 요청마다 리렌더링을 유발하지 않도록, 진행 중 누적 데이터는 스토어 밖 변수(ref 역할)에 모아뒀다가
-    // 일정 주기(PUBLISH_INTERVAL_MS)로만 set()해서 화면에 반영함.
     let ordersRef: OrderRow[] = [];
     let totalRef = 0;
     let processedRef = 0;
@@ -274,10 +272,6 @@ export const useOrderSimulationStore = create<OrderSimulationState>((set, get) =
                 failRef > 0 ? 'warning' : 'success',
             );
 
-            // 배치가 끝나면 그동안 프론트에서 낙관적으로(-1씩) 셌던 재고 대신,
-            // DB에 실제로 반영된 재고를 다시 조회해서 보여준다.
-            // 주의: 화면 재고가 이제 DB를 그대로 반영하므로 "화면=DB"는 항상 참(동어반복)이라 정합성 증거가 되지 않는다.
-            // 진짜 확인할 값은 stockIntegrity(예상 재고 vs 실제 재고)임.
             try {
                 const freshProducts = await fetchProducts();
                 productsRef = freshProducts;

@@ -1,9 +1,9 @@
 import type { ReactElement } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { Main, Login, NotFound } from "@/pages";
-import { DocViewerPopup } from "@/components/popup/DocViewerPopup";
 import { pagesRoutes, publishingGuideRoutes } from "./pagesRoutes";
 
+// eslint-disable-next-line react-refresh/only-export-components
 function RequireAuth({ children }: { children: ReactElement }) {
   const accessToken = sessionStorage.getItem("access_token");
   if (!accessToken) {
@@ -31,10 +31,6 @@ export const router = createBrowserRouter(
         ...pagesRoutes,
         { path: "*", element: <NotFound /> },
       ],
-    },
-    {
-      path: "/doc/viewer/:lang/:fileId",
-      element: <DocViewerPopup />,
     },
     ...publishingGuideRoutes,
     {

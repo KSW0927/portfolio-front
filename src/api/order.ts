@@ -62,7 +62,6 @@ export interface OrderResult {
 
 /**
  * 동시성 제어
- * @description
  * NONE(락 없음)
  * PESSIMISTIC(DB 락)
  * DISTRIBUTED(분산락)
@@ -98,7 +97,6 @@ export interface StockIntegrityReport {
 
 /**
  * 배치(시뮬레이션 1회 실행) 종료 후 재고 정합성 결과를 서버로 전송
- * @description
  * 서버는 이 값을 믿고 Kafka(stock-integrity-events)로 알림을 발행하는 것과 별개로
  * oversoldProducts에 담긴 상품별 오버셀 수량만큼 최근 성공 주문을 직접 찾아 사후 취소(재고 복구 + 결제 취소 알림)까지 처리.
  */

@@ -15,7 +15,7 @@ interface WidgetRendererProps {
 
 export const WidgetRenderer: React.FC<WidgetRendererProps> = (props: WidgetRendererProps) => {
     const { onChange } = props;
-    const { widgets, toggleVisibility, getWidgetDetailById } = useWidgetStore();
+    const { widgets, getWidgetDetailById } = useWidgetStore();
     const gridRef = useRef<HTMLDivElement>(null);
     const rectsRef = useRef<Map<string, DOMRect>>(new Map());
     const visibleWidgets = widgets.filter(w => w.visible);
@@ -68,33 +68,6 @@ export const WidgetRenderer: React.FC<WidgetRendererProps> = (props: WidgetRende
 
 
     /* 이벤트 정의 */
-    // 위젯 크기 재설정
-    const captureRects = useCallback(() => {
-        if (!gridRef.current) return;
-        (Array.from(gridRef.current.children) as HTMLElement[]).forEach((child) => {
-            const id = child.dataset.id;
-            if (id) rectsRef.current.set(id, child.getBoundingClientRect());
-        });
-    }, []);
-
-    // 위젯 리사이징
-    const handleResize = useCallback((index: number) => {
-        captureRects();
-        onChange?.();
-    }, [captureRects]);
-
-    // 위젯 화면상에서 제외
-    const handleChangeHideWidget = useCallback((id: string) => {
-        toggleVisibility(id);
-        setActiveKebabId(null);
-    }, []);
-
-    const handleExpandWidget = useCallback((id: string) => {
-        const index = widgets.findIndex(w => w.id === id);
-        if (index !== -1) handleResize(index);
-        //setActiveKebabId(null);
-    }, [widgets, handleResize]);
-
     // 위젯 설정팝업 활성화ID 초기화
     const handleResetActiveKabab = useCallback((id: string | null) => {
         setActiveKebabId(id);
@@ -126,8 +99,6 @@ export const WidgetRenderer: React.FC<WidgetRendererProps> = (props: WidgetRende
                                 activeKebabId={activeKebabId}
                                 widget={widgetDetail}
                                 changeActiveKebab={handleResetActiveKabab}
-                                changeHide={handleChangeHideWidget}
-                                changeExpand={handleExpandWidget}
                             />
                         )}
                     </Card>

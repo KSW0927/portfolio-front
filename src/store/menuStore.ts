@@ -1,57 +1,30 @@
 import { create } from 'zustand';
 import { persist, createJSONStorage } from "zustand/middleware";
-import { type MenuItem } from '@/types/types';
 
 /**
  * 메뉴 상태 관리
  */
-// 메뉴 내부에 재귀 탐색 함수 정의
-const findMenuRecursive = (menus: MenuItem[], targetId: string): MenuItem | undefined => {
-    for(const menu of menus) {
-        // 현재 노드가 일치하는지 확인
-        if(menu.menuNo === targetId) {
-            return menu;
-        }
-
-        // 자식 노드가 존재하면 깊이 탐색(DFS) 시작
-        if(menu.submenus && menu.submenus.length > 0) {
-            const foundInSub = findMenuRecursive(menu.submenus, targetId);
-            if(foundInSub) return foundInSub;
-        }
-    }
-    // 찾지 못한 경우 undefined 반환
-    return undefined;
-};
 
 interface MenuState {
-    requestKey: string; // 메뉴 요청 키
     currentServiceId: string; // 선택된 서비스ID
     nowMenuId: string; // 선택된 메뉴ID
     nowMenuTitle: string; // 선택된 메뉴 제목
     expandedGroups: string[]; // 펼쳐진 그룹ID 배열(그룹ID를 계층으로 표현, ID lv1/ID lv2/Id lv3)
-    menus: MenuItem[]; // 메뉴 목록
-    getMenuById: (id: string) => MenuItem | undefined;
-    setRequestKey: (key: string) => void;
     setCurrentServiceId: (id: string) => void;
     setNowMenuId: (id: string) => void;
     setNowMenuTitle: (title: string) => void;
     toggleGroups: (groupId: string, level: number) => void;
-    setMenus: (menus: MenuItem[]) => void;
     reset: () => void;
     resetNowMenu: () => void;
 }
 
 export const useMenuStore = create<MenuState>() (
     persist (
-        (set, get) => ({
-            requestKey: '',
+        (set) => ({
             currentServiceId: "1",
             nowMenuId: '',
             nowMenuTitle: '',
             expandedGroups: [],
-            menus: [],
-            getMenuById: (id: string) => findMenuRecursive(get().menus, id),
-            setRequestKey: (key: string) => set({ requestKey: key }),
             setCurrentServiceId: (id: string) => set({ currentServiceId: id }),
             setNowMenuId: (id: string) => set({ nowMenuId: id }),
             setNowMenuTitle: (title: string) => set({ nowMenuTitle: title }),
@@ -71,8 +44,7 @@ export const useMenuStore = create<MenuState>() (
                     return { expandedGroups: filtered };
                 }
             }),
-            setMenus: (menus: MenuItem[]) => set({ menus }),
-            reset: () => set({ currentServiceId: "1", nowMenuId: '', nowMenuTitle: '', expandedGroups: [], menus: [] }),
+            reset: () => set({ currentServiceId: "1", nowMenuId: '', nowMenuTitle: '', expandedGroups: [] }),
             resetNowMenu: () => set({ nowMenuId: '', nowMenuTitle: '', expandedGroups: [] })
         }),
         {

@@ -1,7 +1,6 @@
 import { type ReactElement } from 'react';
 import Swal, { type SweetAlertIcon, type SweetAlertOptions, type SweetAlertResult } from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import i18n from 'i18next';
 
 const SonSwal = withReactContent(Swal);
 
@@ -78,8 +77,8 @@ export const AlertService = {
             title,
             html: text,
             icon,
-            confirmButtonText: i18n.t('ok'),
-            cancelButtonText: i18n.t('cancel'),
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
             customClass: SWAL_CUSTOM_CLASS,
         });
     },
@@ -114,8 +113,8 @@ export const AlertService = {
             html: text,
             icon: 'question',
             showCancelButton: true,
-            confirmButtonText: i18n.t('ok'),
-            cancelButtonText: i18n.t('cancel'),
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
             customClass: SWAL_CUSTOM_CLASS,
         });
         return result.isConfirmed;
@@ -143,14 +142,14 @@ export const AlertService = {
             input: 'text',
             inputPlaceholder: placeholder,
             showCancelButton: true,
-            confirmButtonText: i18n.t('ok'),
-            cancelButtonText: i18n.t('cancel'),
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
             customClass: SWAL_CUSTOM_CLASS,
         });
         return value || null;
     },
     // 로딩 팝업
-    loading: (title: string = i18n.t('loading')) => {
+    loading: (title: string = '처리 중입니다...') => {
         SonSwal.fire({
             title,
             allowOutsideClick: false,
@@ -166,8 +165,8 @@ export const AlertService = {
             title,
             html: content,
             showCancelButton: true,
-            confirmButtonText: i18n.t('ok'),
-            cancelButtonText: i18n.t('cancel'),
+            confirmButtonText: '확인',
+            cancelButtonText: '취소',
             customClass: SWAL_CUSTOM_CLASS,
             ...options,
         });

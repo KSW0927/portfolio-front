@@ -9,6 +9,5 @@ export * from "./Modal";
 export * from "./Input";
 export * from "./RadioButton";
 export * from "./Textarea";
-export * from "./TextEditor";
 
 export * from "./LoadingSpinner";

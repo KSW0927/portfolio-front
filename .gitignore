@@ -12,10 +12,14 @@ dist
 dist-ssr
 *.local
 
+# Vite/Vitest가 config 로드할 때마다 만드는 임시 파일
+*.timestamp-*.mjs
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
+*.iml
 .DS_Store
 *.suo
 *.ntvs*

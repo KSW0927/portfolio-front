@@ -1,7 +1,6 @@
-import { type ReactNode, useEffect } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { type ReactNode, useState } from 'react';
+import { Outlet } from 'react-router-dom';
 import cn from 'classnames';
-import { useAuth } from '@/hooks/useAuth';
 import { useMenuStore } from "@/store/menuStore";
 
 import { GNB, Typography, Icon, Button } from '@/components';
@@ -88,30 +87,15 @@ const Col = ({ layout = "vertical", width, className = "", gap, style, children,
 };
 
 const Main = () => {
-  const location = useLocation(); // 현재 URL 정보
-  const { user } = useAuth();
-  const { requestKey, currentServiceId, nowMenuId, nowMenuTitle, menus, getMenuById, setRequestKey, setNowMenuTitle, setMenus } = useMenuStore();
+  const { nowMenuTitle } = useMenuStore();
 
-  const siteNo = '1';
-  const language = 'ko';
   const extra = false;
 
   /* 상태 정의 */
   const isMobile = useIsMobile();
-
-  //const isIssuePage = location.pathname.toLowerCase().startsWith('/issue');
-
-  useEffect(() => {
-    let mounted = true
-
-    // 메뉴 목록 캐시 확인 및 서비스 또는 언어 변경 확인 후 메뉴 목록 요청
-    const tmpKey = `${siteNo}:${currentServiceId}:${language}`;
-    if (menus && menus.length > 0 && requestKey == tmpKey) return;
-
-    return () => {
-      mounted = false
-    }
-  }, [currentServiceId, language, location.key])
+  // 즐겨찾기 - 현재는 페이지별 저장 없이 헤더 버튼 토글 상태만 유지
+  const [isFavorite, setIsFavorite] = useState(false);
+  const handleToggleFavorite = () => setIsFavorite(!isFavorite);
 
   return (
       <div className="wrap dashboard">
@@ -124,15 +108,13 @@ const Main = () => {
                 <div className="content-header">
                   <div className='title-wrapper'>
                     <Typography variant={isMobile ? "heading-md" : "heading-xl"} as="h2">{nowMenuTitle}</Typography>
-                    {showFavorite && (
-                      <Button
-                          variant="text"
-                          leftIcon={<Icon name="star-filled" size={isMobile ? 25 : 32} />}
-                          className={cn("button-fav", { "-active": nowFavorite })}
-                          aria-label='즐겨찾기'
-                          onClick={handleToggleFavorite}
-                      />
-                    )}
+                    <Button
+                        variant="text"
+                        leftIcon={<Icon name="star-filled" size={isMobile ? 25 : 32} />}
+                        className={cn("button-fav", { "-active": isFavorite })}
+                        aria-label='즐겨찾기'
+                        onClick={handleToggleFavorite}
+                    />
                   </div>
                   {extra && (
                       <div className="extra-wrapper">

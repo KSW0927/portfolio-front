@@ -169,7 +169,6 @@ export const LNB = (props: LNBProps) => {
     if(menu.submenus?.length === 0) {
       setNowMenuId(menu.menuNo); // 선택된 메뉴 저장소 저장
       setNowMenuTitle(menu.menuNm); // 선택된 메뉴 제목 저장소 저장
-      changeFavorite(Number(menu.menuNo)); // 해당 메뉴에 대한 즐겨찾기 상태로 업데이트
       navigate(menu.menuUrlAddr);
     } else {
       toggleGroups("ID" + menu.menuNo, menu.menuLevel); // 펼쳐진 메뉴 상태 저장소 저장
@@ -185,7 +184,6 @@ export const LNB = (props: LNBProps) => {
     if(menu.submenus?.length === 0) {
       setNowMenuId(menu.menuNo); // 선택된 메뉴 저장소 저장
       setNowMenuTitle(menu.menuNm); // 선택된 메뉴 제목 저장소 저장
-      changeFavorite(Number(menu.menuNo)); // 해당 메뉴에 대한 즐겨찾기 상태로 업데이트
       onClickMenu?.(menu);
       navigate(menu.menuUrlAddr);
     } else {
@@ -201,7 +199,6 @@ export const LNB = (props: LNBProps) => {
 
     setNowMenuId(menu.menuNo); // 선택된 메뉴 저장소 저장
     setNowMenuTitle(menu.menuNm); // 선택된 메뉴 제목 저장소 저장
-    changeFavorite(Number(menu.menuNo)); // 해당 메뉴에 대한 즐겨찾기 상태로 업데이트
     onClickMenu?.(menu);
     navigate(menu.menuUrlAddr);
   };

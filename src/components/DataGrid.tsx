@@ -1,5 +1,4 @@
 import React, { useMemo, useRef, useImperativeHandle, useState, useCallback, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { AgGridProvider, AgGridReact } from "ag-grid-react";
 import { AllCommunityModule } from "ag-grid-community";
 import type {
@@ -118,7 +117,6 @@ export const DataGrid = (props: DataGridProps) => {
     } = props;
 
     const isMobile = useIsMobile();
-    const { t } = useTranslation();
     const gridRef = useRef<AgGridReact>(null);
     //const isPaging = (type === "serverSide");
     const isInfiniteScroll = (modelType === "infinite");
@@ -178,7 +176,7 @@ export const DataGrid = (props: DataGridProps) => {
                     changeRows
                 )
                 if(response) {
-                    AlertService.success("정보가 변경되었습니다.", "정보 수정");
+                    await AlertService.success("정보가 변경되었습니다.", "정보 수정");
 
                     // 임시 변경 저장소 초기화
                     setChangeRows({ created: [], updated: [], deleted: [] });
@@ -246,7 +244,7 @@ export const DataGrid = (props: DataGridProps) => {
     if(isRowNumber) {
         tmpColumns = [
             {
-                headerName: t('no'), width: 100, minWidth: 100, flex: 0, sortable: false, filter: false,
+                headerName: '번호', width: 100, minWidth: 100, flex: 0, sortable: false, filter: false,
                 cellRenderer: (params: ICellRendererParams) => {
                     // params.node가 없거나 인덱스가 없는 예외 상황 방어코드
                     if (!params.node || params.node.rowIndex === null) return '';
