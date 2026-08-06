@@ -104,7 +104,7 @@ export default function Main() {
 
                 <WidgetRenderer />
 
-                {!isMobile && <ProductStockPanel products={productStocks} />}
+                <ProductStockPanel products={productStocks} />
 
                 {!isMobile && (
                     <DataGrid

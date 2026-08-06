@@ -3,11 +3,10 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { Button, Card, Box, Divider, Icon, Layout, Space, Typography } from "@/components";
 import type { WidgetCardProps } from "@/types/types.ts";
 import { useOrderSimulationStore, type StatusFilter } from "@/store/orderSimulationStore";
-import { ProductStockList } from "../components/ProductStockPanel";
 
 /**
  * 처리 현황 위젯 컴포넌트
- * @description 주문 시뮬레이션 상태별 건수를 실시간으로 표시.
+ * 주문 시뮬레이션 상태별 건수를 실시간으로 표시.
  * 주문/품절/결제대기/결제완료/결제취소 클릭 시 그리드의 상태 필터를 토글해서 연동됨.
  * 오버셀은 배치 단위 집계값이라 개별 주문 행 상태가 아니므로 필터 대상에서 제외.
  */
@@ -15,10 +14,9 @@ export const StatusWidget = (props: WidgetCardProps) => {
     const {widget} = props;
     const isDark = useIsDark();
     const isMobile = useIsMobile();
-    // 모바일에서는 응답시간 위젯의 P50~P99 숫자 크기(heading-sm)에 맞춤 (기본은 display-lg)
     const numberVariant = isMobile ? "heading-sm" : "display-lg";
 
-    const { orderStats, statusFilter, setStatusFilter, stockIntegrity, productStocks } = useOrderSimulationStore();
+    const { orderStats, statusFilter, setStatusFilter, stockIntegrity } = useOrderSimulationStore();
 
     const toggleFilter = (target: Exclude<StatusFilter, '전체'>) => {
         setStatusFilter(statusFilter === target ? '전체' : target);
@@ -155,15 +153,6 @@ export const StatusWidget = (props: WidgetCardProps) => {
                 >
                     상태값을 클릭하면 아래 그리드가 필터링됩니다.
                 </span>
-
-                {isMobile && productStocks.length > 0 && (
-                    <Box variant="info" className="-blue widget-leave-content" style={{ marginTop: 12, flexDirection: 'column', alignItems: 'stretch' }}>
-                        <Typography variant="body-sm" weight="semibold" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""} style={{ marginBottom: 8 }}>
-                            모델별 재고
-                        </Typography>
-                        <ProductStockList products={productStocks} maxHeight="none" />
-                    </Box>
-                )}
             </Card.Body>
 
             {widget.hasAction && (

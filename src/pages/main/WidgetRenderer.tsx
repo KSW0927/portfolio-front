@@ -6,15 +6,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import cn from "classnames";
 
-/**
- * 위젯 렌더러 컴포넌트 Props
- */
-interface WidgetRendererProps {
-    onChange?: () => void;
-}
-
-export const WidgetRenderer: React.FC<WidgetRendererProps> = (props: WidgetRendererProps) => {
-    const { onChange } = props;
+export const WidgetRenderer: React.FC = () => {
     const { widgets, getWidgetDetailById } = useWidgetStore();
     const gridRef = useRef<HTMLDivElement>(null);
     const rectsRef = useRef<Map<string, DOMRect>>(new Map());
@@ -69,7 +61,7 @@ export const WidgetRenderer: React.FC<WidgetRendererProps> = (props: WidgetRende
 
     /* 이벤트 정의 */
     // 위젯 설정팝업 활성화ID 초기화
-    const handleResetActiveKabab = useCallback((id: string | null) => {
+    const handleResetActiveKebab = useCallback((id: string | null) => {
         setActiveKebabId(id);
     }, []);
 
@@ -81,13 +73,13 @@ export const WidgetRenderer: React.FC<WidgetRendererProps> = (props: WidgetRende
             {visibleWidgets.map((widget) => {
                 const widgetDetail = getWidgetDetailById(widget.id);
                 const WidgetContent = widgetDetail?.component;
-                const addstrWidgetType = widgetDetail?.type ?? "";
+                const addStrWidgetType = widgetDetail?.type ?? "";
 
                 return (
                     <Card
                         key={widget.id}
                         data-id={widget.id}
-                        className={cn(`widget-card -size-${widget.size}`, addstrWidgetType)}
+                        className={cn(`widget-card -size-${widget.size}`, addStrWidgetType)}
                     >
                         { !widgetDetail && (
                             <div style={{ padding: 24, textAlign: "center", color: "var(--dash-text-secondary)" }}>
@@ -98,7 +90,7 @@ export const WidgetRenderer: React.FC<WidgetRendererProps> = (props: WidgetRende
                             <WidgetContent
                                 activeKebabId={activeKebabId}
                                 widget={widgetDetail}
-                                changeActiveKebab={handleResetActiveKabab}
+                                changeActiveKebab={handleResetActiveKebab}
                             />
                         )}
                     </Card>

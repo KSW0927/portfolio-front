@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
-import { useIsMobile } from "@/hooks/useIsMobile";
 import { useMenuStore } from "@/store/menuStore";
 
 import { logout as logoutApi } from "@/api";
@@ -20,29 +19,19 @@ const ACTIVITY_EVENTS: Array<keyof WindowEventMap> = ['mousedown', 'keydown', 's
 
 
 /**
- * GNB 컴포넌트 속성 (Props)
- */
-interface GbnProps {
-    onMobileMenuOpen?: () => void;
-}
-/**
  * @description 시스템 최상단 헤더(Global Navigation Bar) 영역을 담당하는 컴포넌트입니다.
  */
-export const GNB = ({ onMobileMenuOpen }: GbnProps) => {
+export const GNB = () => {
     const navigate = useNavigate();
     const { user, logout: clearAuth } = useAuth();
     const { reset } = useMenuStore();
     const userNm = user?.name || user?.id || "User";
     const userRole = user?.userSe || "User";
     const hasAutoLoggedOutRef = useRef(false);
-    const searchInputRef = useRef<HTMLInputElement>(null);
-    const lastFocusedElementRef = useRef<HTMLElement | null>(null);
     const gnbRef = useRef<HTMLElement>(null);
 
     /* 상태 정의 */
-    const isMobile = useIsMobile();
-    const [isSearchOpen, setIsSearchOpen] = useState(false);
-    const [activePopup, setActivePopup] = useState<"favorite" | "message" | "notification" | "profile" | null>(null);
+    const [activePopup, setActivePopup] = useState<"profile" | null>(null);
     const [remainingSeconds, setRemainingSeconds] = useState(AUTO_LOGOUT_SECONDS); // 섹션 남은 시간
 
     const minutes = String(Math.floor(remainingSeconds / 60)).padStart(2, '0');
@@ -114,33 +103,15 @@ export const GNB = ({ onMobileMenuOpen }: GbnProps) => {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    // 검색창이 열릴 때 포커스를 제어합니다.
-    useEffect(() => {
-        if (isSearchOpen) {
-            lastFocusedElementRef.current = document.activeElement as HTMLElement;
-            const timer = setTimeout(() => {
-                searchInputRef.current?.focus();
-            }, 0);
-            return () => clearTimeout(timer);
-        } else {
-            if (lastFocusedElementRef.current) {
-                lastFocusedElementRef.current.focus();
-            }
-        }
-    }, [isSearchOpen]);
-
-
     /* 이벤트 정의 */
     // 팝업 오픈 토클 이벤트
-    const togglePopup = (popupName: "favorite" | "message" | "notification" | "profile") => {
+    const togglePopup = (popupName: "profile") => {
         setActivePopup((prev) => (prev === popupName ? null : popupName));
-        setIsSearchOpen(false);
     };
 
     // 키 다운 이벤트
     const handleKeyDown = (e: React.KeyboardEvent) => {
         if (e.key === "Escape") {
-            setIsSearchOpen(false);
             setActivePopup(null);
         }
     };
@@ -185,27 +156,24 @@ export const GNB = ({ onMobileMenuOpen }: GbnProps) => {
                 </div>
 
                 <div className="gnb-right">
-                    <div className="gnb-right">
-
-                        <div className="gnb-user-info">
-                            <div className="user-profile-wrap">
-                                <button type="button" className="user-profile" aria-expanded={activePopup === "profile"} onClick={() => togglePopup("profile")}>
-                                    <span className="user-name">{userNm}({userRole})</span>
-                                </button>
-                                {activePopup === "profile" && (
-                                    <div className="gnb-dropdown">
-                                        <ul className="gnb-dropdown-list">
-                                            <li key="1" className="gnb-dropdown-item">
-                                                <Button variant="text" className="button-title" onClick={handleLogout}>로그아웃</Button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                )}
-                            </div>
-                            <div className="session-timer">
-                                <span className="time">{minutes}:{seconds}</span>
-                                <Button rounded className="button-extend" onClick={handleExtendSession}>연장</Button>
-                            </div>
+                    <div className="gnb-user-info">
+                        <div className="user-profile-wrap">
+                            <button type="button" className="user-profile" aria-expanded={activePopup === "profile"} onClick={() => togglePopup("profile")}>
+                                <span className="user-name">{userNm}({userRole})</span>
+                            </button>
+                            {activePopup === "profile" && (
+                                <div className="gnb-dropdown">
+                                    <ul className="gnb-dropdown-list">
+                                        <li key="1" className="gnb-dropdown-item">
+                                            <Button variant="text" className="button-title" onClick={handleLogout}>로그아웃</Button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+                        <div className="session-timer">
+                            <span className="time">{minutes}:{seconds}</span>
+                            <Button rounded className="button-extend" onClick={handleExtendSession}>연장</Button>
                         </div>
                     </div>
                 </div>
