@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useMemo } from 'react';
-import { DataGrid } from '@/components';
+import { DataGrid, type DataGridHandle } from '@/components';
 
 import { Layout } from "@/components";
 import { WidgetRenderer } from "./WidgetRenderer";
@@ -26,7 +26,7 @@ export default function Main() {
     const headerRef = useRef<HTMLDivElement>(null);
     const isMobile = useIsMobile();
 
-    const gridRef = useRef<any>(null);
+    const gridRef = useRef<DataGridHandle>(null);
 
     /* 상태 정의 */
     // 활성화된 팝업 종류
@@ -104,7 +104,7 @@ export default function Main() {
 
                 <WidgetRenderer />
 
-                <ProductStockPanel products={productStocks} />
+                {!isMobile && <ProductStockPanel products={productStocks} />}
 
                 {!isMobile && (
                     <DataGrid
