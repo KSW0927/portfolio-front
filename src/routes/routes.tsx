@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import { Main, Login, NotFound } from "@/pages";
-import { pagesRoutes, publishingGuideRoutes } from "./pagesRoutes";
+import { pagesRoutes } from "./pagesRoutes";
 
 // eslint-disable-next-line react-refresh/only-export-components
 function RequireAuth({ children }: { children: ReactElement }) {
@@ -32,7 +32,6 @@ export const router = createBrowserRouter(
         { path: "*", element: <NotFound /> },
       ],
     },
-    ...publishingGuideRoutes,
     {
       path: "*",
       element: <Navigate to="/login" replace />,

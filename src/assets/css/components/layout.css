@@ -8,7 +8,7 @@
 /* GNB
    ---------------------------------------------------------------- */
 .gnb {display:flex; flex-direction:column; position:relative; width:100%;}
-.gnb-top {display:flex; flex:0 0 var(--gnb-height); justify-content:space-between; align-items:center; z-index:50; padding:0 3.0rem; background-color:var(--color-bg-gnb);}
+.gnb-top {display:flex; flex:0 0 auto; min-height:var(--gnb-height); flex-wrap:wrap; row-gap:0.4rem; justify-content:space-between; align-items:center; z-index:50; padding:0.8rem 3.0rem; background-color:var(--color-bg-gnb);}
 .gnb-left,
 .gnb-right {display:flex; align-items:center; gap:2.4rem;}
 .gnb .logo {width:17.9rem;}
@@ -52,13 +52,13 @@
     --ico-user-profile:url("/src/assets/img/general/common/ico-user-profile.svg");
     --ico-user-profile-arrow:url("/src/assets/img/general/common/ico-user-profile-arrow.svg");
 }
-.gnb-user-info {display:flex; align-items:center; gap:0.7rem;}
+.gnb-user-info {display:flex; flex-wrap:wrap; row-gap:0.4rem; align-items:center; gap:0.7rem;}
 .user-profile-wrap {position:relative;}
-.user-profile {display:flex; align-items:center; gap:0.6rem; border:none; background:none; font-weight:500; font-size:1.4rem; cursor:pointer;}
+.user-profile {display:flex; align-items:center; gap:0.6rem; border:none; background:none; font-weight:500; font-size:1.4rem; cursor:pointer; white-space:nowrap;}
 .user-profile::before {content:""; display:inline-block; width:2.4rem; height:2.4rem; background-image:var(--ico-user-profile); background-repeat:no-repeat; background-position:center; background-size:contain;}
 .user-profile::after {content:""; display:inline-block; width:1.0rem; height:0.6rem; background-image:var(--ico-user-profile-arrow); background-repeat:no-repeat; background-position:center; background-size:contain;}
 .user-profile:focus-visible {border-radius:0.4rem; outline:2px solid var(--color-primary); outline-offset:2px;}
-.session-timer {display:flex; align-items:center; gap:0.7rem; font-variant-numeric:tabular-nums;}
+.session-timer {display:flex; align-items:center; gap:0.7rem; font-variant-numeric:tabular-nums; white-space:nowrap;}
 .session-timer .time {color:var(--color-primary); font-weight:500; font-size:1.4rem;}
 .button-extend {--btn-height:2.4rem !important; --btn-padding-x:0.7rem !important; --btn-font-size:1.2rem !important; min-width:auto;}
 

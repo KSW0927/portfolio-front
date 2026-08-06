@@ -3,7 +3,6 @@ export * from "./Typo";
 export * from "./Icon";
 export * from "./Layout";
 export * from "./Gnb";
-export * from "./Lnb";
 export * from "./Collapse";
 export * from "./DataGrid";
 export * from "./Divider";

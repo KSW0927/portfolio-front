@@ -331,9 +331,46 @@
         width:100%;
         height:calc(100vh - var(--gnb-height));
         height:calc(100dvh - var(--gnb-height));
-        border-radius:0;
+        border-radius:2.0rem;
         scroll-snap-align:start;
         scroll-snap-stop:always;
+    }
+
+    /* 모바일 순서: 옵션설정(1) → 응답시간(2) → 처리현황(3) → 알림(4).
+       옵션설정/응답시간/처리현황은 뷰포트 기준 강제 높이 대신 내용만큼만 차지하게(auto) 두고
+       셋을 하나의 스와이프 페이지로 묶는다 (실측해보니 내용이 절반도 안 채워서 빈 여백이 컸음).
+       스냅 정지점은 옵션설정에만 두고, 응답시간/처리현황은 그 페이지에 이어 붙게 함.
+       알림 위젯만 기존처럼 화면 전체 높이를 씀. */
+    .widget-card.option,
+    .widget-card.latency,
+    .widget-card.status {
+        height:auto;
+        flex:0 0 auto;
+    }
+    .widget-card.option {
+        order:1;
+        margin-bottom:1.2rem;
+    }
+    .widget-card.latency {
+        order:2;
+        margin-bottom:1.2rem;
+        scroll-snap-align:none;
+        scroll-snap-stop:normal;
+    }
+    .widget-card.status {
+        order:3;
+        margin-bottom:1.6rem;
+        scroll-snap-align:none;
+        scroll-snap-stop:normal;
+    }
+    .widget-card.notify {
+        order:4;
+    }
+
+    /* 모바일에선 그리드가 화면 밖(스크롤 아래)에 있어서 "클릭하면 필터링됩니다" 안내가 의미 없음.
+       인라인 style={display:'inline-block'}보다 이겨야 해서 !important 필요. */
+    .status-filter-hint {
+        display:none !important;
     }
 }
 

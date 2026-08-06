@@ -1,1 +1,0 @@
-export * from "./UI_BPS_1330_L";

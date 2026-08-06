@@ -1,6 +1,5 @@
 import type { ComponentType, ReactElement } from 'react'
 import type { RouteObject } from 'react-router-dom'
-import PublishingRouter from '@/publishing/PublishingRouter'
 
 type PageModule = {
     default: ComponentType
@@ -39,7 +38,7 @@ function createAutoRoutes(config: AutoRouteConfig): RouteObject[] {
         // default export가 없는 모듈(위젯, 하위 컴포넌트 등 페이지가 아닌 파일)은 라우트 대상에서 제외
         .filter(([, module]) => !!module.default)
         .map(([filePath, module]) => {
-            const path = (config.defaultPath != 'publishing-guide/*' && config.defaultPath != 'main') ? config.defaultPath + '/' + transformPath(filePath) : transformPath(filePath)
+            const path = config.defaultPath != 'main' ? config.defaultPath + '/' + transformPath(filePath) : transformPath(filePath)
             const Component = module.default
 
             return {
@@ -76,10 +75,6 @@ const mainRoutes = createAutoRoutes({
         'notice',
     ],
 })
-
-export const publishingGuideRoutes: RouteObject[] = [
-    { path: 'publishing-guide/*', element: <PublishingRouter /> },
-]
 
 export const pagesRoutes: RouteObject[] = [
     ...mainRoutes,

@@ -1,1 +1,0 @@
-export * from "./UI_SPS_2010_L";

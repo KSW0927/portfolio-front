@@ -1,8 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { type ReactNode, useState } from "react";
-import cn from "classnames";
-import { useIsMobile } from "@/hooks/useIsMobile";
-import { Button, GNB, Icon, LNB, Typography } from "@/components";
+import { type ReactNode } from "react";
 
 /**
  * Layout.Row 컴포넌트 속성 (Props)
@@ -84,92 +81,10 @@ const Col = ({ layout = "vertical", width, className = "", gap, justify, align, 
 };
 
 /**
- * Layout 컴포넌트 속성 (Props)
+ * @description GNB/LNB를 포함한 전체 페이지 골격(LayoutWrapper)은 라이브 렌더 트리 어디서도
+ * 쓰이지 않아 제거함. Layout.Row/Layout.Col만 위젯들에서 실제로 사용 중이라 유지.
  */
-export interface LayoutProps {
-    /** 메인 콘텐츠 헤더에 표기될 페이지 타이틀 */
-    title?: string;
-    /** 메인 콘텐츠 헤더 우측에 추가로 표시될 요소 (ex. 신청기간 등) */
-    extra?: ReactNode;
-    /** 활성화된 좌측 메뉴의 ID */
-    activeMenuId?: string;
-    /** 메인 영역에 렌더링 될 자식 요소 */
-    children: ReactNode;
-    /** 즐겨찾기 활성화 여부 (기본값: false) */
-    favorite?: boolean;
-    /** 레이아웃 최상위 컨테이너에 적용할 추가 클래스명 */
-    className?: string;
-    style?: React.CSSProperties;
-}
-
-/**
- * @description 시스템의 기본 골격이 되는 GNB, LNB, Main Content 구조를 형성하는 레이아웃 컴포넌트입니다.
- */
-const LayoutWrapper = ({title, extra, children, favorite = true, className = "", style }: LayoutProps) => {
-    const isMobile = useIsMobile();
-    const [isCollapsed, setIsCollapsed] = useState(false);
-    const [isFavorite, setIsFavorite] = useState(false);
-    const [lnbTheme, setLnbTheme] = useState<string>("");
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    const handleToggleLnb = () => setIsCollapsed(!isCollapsed);
-    const handleToggleFavorite = () => setIsFavorite(!isFavorite);
-
-    const favButtonClasses = [
-        "button-fav",
-        isFavorite ? "-active" : ""
-    ].filter(Boolean).join(" ");
-
-    return (
-        <div className={cn("wrap", className )} style={style}>
-            <GNB
-                onMobileMenuOpen={() => setIsMobileMenuOpen(true)}
-            />
-
-            <div className="container">
-                <LNB
-                    isCollapsed={isCollapsed}
-                    onToggle={handleToggleLnb}
-                    themeClass={lnbTheme}
-                    isMobileMenuOpen={isMobileMenuOpen}
-                    onMobileMenuClose={() => setIsMobileMenuOpen(false)}
-                    onThemeChange={(theme) => setLnbTheme(theme)}
-                />
-
-                <main className="content">
-                    <div className="content-inner">
-                        {title && (
-                            <div className="content-header">
-                                <div className="title-wrapper">
-                                    <Typography variant={isMobile ? "heading-md" : "heading-xl"} as="h2">{title}</Typography>
-                                    {favorite && (
-                                        <Button
-                                            variant="text"
-                                            leftIcon={<Icon name="star-filled" size={isMobile ? 25 : 32} />}
-                                            className={favButtonClasses}
-                                            aria-label="즐겨찾기"
-                                            onClick={handleToggleFavorite}
-                                        />
-                                    )}
-                                </div>
-                                {extra && (
-                                    <div className="extra-wrapper">
-                                        {extra}
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                        <div className="content-body">
-                            {children}
-                        </div>
-                    </div>
-                </main>
-            </div>
-        </div>
-    );
-};
-
-export const Layout = Object.assign(LayoutWrapper, {
+export const Layout = {
     Row,
     Col,
-});
+};

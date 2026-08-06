@@ -1,4 +1,5 @@
 import { useIsDark } from "@/hooks/useIsDark";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import { Button, Card, Box, Divider, Icon, Layout, Space, Typography } from "@/components";
 import type { WidgetCardProps } from "@/types/types.ts";
 import { useOrderSimulationStore, type StatusFilter } from "@/store/orderSimulationStore";
@@ -12,6 +13,9 @@ import { useOrderSimulationStore, type StatusFilter } from "@/store/orderSimulat
 export const StatusWidget = (props: WidgetCardProps) => {
     const {widget} = props;
     const isDark = useIsDark();
+    const isMobile = useIsMobile();
+    // 모바일에서는 응답시간 위젯의 P50~P99 숫자 크기(heading-sm)에 맞춤 (기본은 display-lg)
+    const numberVariant = isMobile ? "heading-sm" : "display-lg";
 
     const { orderStats, statusFilter, setStatusFilter, stockIntegrity } = useOrderSimulationStore();
 
@@ -40,8 +44,8 @@ export const StatusWidget = (props: WidgetCardProps) => {
                             <Typography variant="body-lg" color={isDark ? "var(--dash-text-primary)" : ""}>주문</Typography>
                             <Icon name="completed" size={20} color="#4C6FFF" />
                         </Space>
-                        <Space size={4} align="baseline" justify="end">
-                            <Typography variant="display-lg" as="strong" style={{ lineHeight: 1 }} color="#4C6FFF">{orderStats.success}</Typography>
+                        <Space size={4} align="baseline" justify="end" wrap>
+                            <Typography variant={numberVariant} as="strong" style={{ lineHeight: 1, whiteSpace: 'nowrap' }} color="#4C6FFF">{orderStats.success}</Typography>
                             <Typography variant="body-lg" as="span" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""}>건</Typography>
                         </Space>
                     </Layout.Col>
@@ -57,8 +61,8 @@ export const StatusWidget = (props: WidgetCardProps) => {
                             <Typography variant="body-lg" color={isDark ? "var(--dash-text-primary)" : ""}>품절</Typography>
                             <Icon name="rejected" size={20} color="#FFB020" />
                         </Space>
-                        <Space size={4} align="baseline" justify="end">
-                            <Typography variant="display-lg" as="strong" style={{ lineHeight: 1 }} color="#FFB020">{orderStats.fail}</Typography>
+                        <Space size={4} align="baseline" justify="end" wrap>
+                            <Typography variant={numberVariant} as="strong" style={{ lineHeight: 1, whiteSpace: 'nowrap' }} color="#FFB020">{orderStats.fail}</Typography>
                             <Typography variant="body-lg" as="span" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""}>건</Typography>
                         </Space>
                     </Layout.Col>
@@ -78,8 +82,8 @@ export const StatusWidget = (props: WidgetCardProps) => {
                                     <Typography variant="body-lg" color={isDark ? "var(--dash-text-primary)" : ""}>결제대기</Typography>
                                     <Icon name="pending" size={20} color="#5AA9E6" />
                                 </Space>
-                                <Space size={4} align="baseline" justify="end">
-                                    <Typography variant="display-lg" as="strong" style={{ lineHeight: 1 }} color="#5AA9E6">{paymentPending}</Typography>
+                                <Space size={4} align="baseline" justify="end" wrap>
+                                    <Typography variant={numberVariant} as="strong" style={{ lineHeight: 1, whiteSpace: 'nowrap' }} color="#5AA9E6">{paymentPending}</Typography>
                                     <Typography variant="body-lg" as="span" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""}>건</Typography>
                                 </Space>
                             </Layout.Col>
@@ -95,8 +99,8 @@ export const StatusWidget = (props: WidgetCardProps) => {
                                     <Typography variant="body-lg" color={isDark ? "var(--dash-text-primary)" : ""}>결제완료</Typography>
                                     <Icon name="completed" size={20} color="#4ADE80" />
                                 </Space>
-                                <Space size={4} align="baseline" justify="end">
-                                    <Typography variant="display-lg" as="strong" style={{ lineHeight: 1 }} color="#4ADE80">{orderStats.paymentCompleted}</Typography>
+                                <Space size={4} align="baseline" justify="end" wrap>
+                                    <Typography variant={numberVariant} as="strong" style={{ lineHeight: 1, whiteSpace: 'nowrap' }} color="#4ADE80">{orderStats.paymentCompleted}</Typography>
                                     <Typography variant="body-lg" as="span" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""}>건</Typography>
                                 </Space>
                             </Layout.Col>
@@ -110,8 +114,8 @@ export const StatusWidget = (props: WidgetCardProps) => {
                             <Typography variant="body-lg" color={isDark ? "var(--dash-text-primary)" : ""}>오버셀</Typography>
                             <Icon name="warning" size={20} color="#FF6B6B" />
                         </Space>
-                        <Space size={4} align="baseline" justify="end">
-                            <Typography variant="display-lg" as="strong" style={{ lineHeight: 1 }} color="#FF6B6B">{stockIntegrity?.lostUnits ?? 0}</Typography>
+                        <Space size={4} align="baseline" justify="end" wrap>
+                            <Typography variant={numberVariant} as="strong" style={{ lineHeight: 1, whiteSpace: 'nowrap' }} color="#FF6B6B">{stockIntegrity?.lostUnits ?? 0}</Typography>
                             <Typography variant="body-lg" as="span" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""}>건</Typography>
                         </Space>
                     </Layout.Col>
@@ -127,14 +131,15 @@ export const StatusWidget = (props: WidgetCardProps) => {
                             <Typography variant="body-lg" color={isDark ? "var(--dash-text-primary)" : ""}>결제취소</Typography>
                             <Icon name="rejected" size={20} color="#C77DFF" />
                         </Space>
-                        <Space size={4} align="baseline" justify="end">
-                            <Typography variant="display-lg" as="strong" style={{ lineHeight: 1 }} color="#C77DFF">{orderStats.cancelled}</Typography>
+                        <Space size={4} align="baseline" justify="end" wrap>
+                            <Typography variant={numberVariant} as="strong" style={{ lineHeight: 1, whiteSpace: 'nowrap' }} color="#C77DFF">{orderStats.cancelled}</Typography>
                             <Typography variant="body-lg" as="span" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""}>건</Typography>
                         </Space>
                     </Layout.Col>
                 </Box>
 
                 <span
+                    className="status-filter-hint"
                     style={{
                         display: 'inline-block',
                         marginTop: 12,

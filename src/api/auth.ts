@@ -1,3 +1,4 @@
+import type { AxiosRequestConfig } from 'axios';
 import { apiClient } from './client';
 
 /**
@@ -27,11 +28,11 @@ export interface AuthResponse {
   data: LoginResultData;
 }
 
-export async function login({ id, password }: LoginParams): Promise<AuthResponse> {
+export async function login({ id, password }: LoginParams, config?: AxiosRequestConfig): Promise<AuthResponse> {
   const { data } = await apiClient.post<AuthResponse>(`/api/users/login`, {
     userId: id,
     password,
-  });
+  }, config);
 
   return data;
 }

@@ -113,8 +113,8 @@ export const OptionWidget = (props: WidgetCardProps) => {
                                 style={{ cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.5 : 1 }}
                             >
                                 <Layout.Col layout="vertical" gap={5} align="center">
-                                    <Space size={4} align="baseline" justify="end">
-                                        <Typography variant="heading-lg" as="strong" style={{ lineHeight: 1 }} color={isDark ? "var(--dash-text-primary)" : ""}>{item.label}</Typography>
+                                    <Space size={4} align="baseline" justify="end" wrap>
+                                        <Typography variant="heading-lg" as="strong" style={{ lineHeight: 1, whiteSpace: 'nowrap' }} color={isDark ? "var(--dash-text-primary)" : ""}>{item.label}</Typography>
                                         <Typography variant="body-lg" as="span" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""}>{item.sub}</Typography>
                                     </Space>
                                 </Layout.Col>
