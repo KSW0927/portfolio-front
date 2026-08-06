@@ -33,11 +33,11 @@ React + Vite + TypeScript로 구현든, [notiflow](https://github.com/KSW0927/po
 
 ## 백엔드 연동 구조
 
-이 프론트는 [notiflow](https://github.com/KSW0927/portfolio-api) MSA 백엔드와 붙어서 동작하는 대시보드입니다. 회원가입/로그인과 주문 처리는 REST로, 처리 결과 알림은 WebSocket(STOMP)으로 실시간 수신합니다.
+이 프론트는 [notiflow](https://github.com/KSW0927/portfolio-api) MSA 백엔드와 붙어서 동작하는 대시보드입니다. 로그인과 주문 처리는 REST로, 처리 결과 알림은 WebSocket(STOMP)으로 실시간 수신합니다.
 
 | 연동 대상 | 방식 | 관련 파일 |
 |---|---|---|
-| user-auth-service (:8081) | REST (로그인/회원가입/로그아웃) | `src/api/auth.ts`, `src/store/authStore.ts` |
+| user-auth-service (:8081) | REST (로그인/로그아웃) | `src/api/auth.ts`, `src/store/authStore.ts` |
 | order-service (:8082) | REST (상품조회/주문/재고초기화, 락 전략 NONE/PESSIMISTIC/DISTRIBUTED 선택 포함) | `src/api/order.ts`, `src/store/orderSimulationStore.ts` |
 | realtime-gateway-service (:8084) | WebSocket(STOMP, `/ws` → `/topic/notifications` 구독) | `src/store/notifyStore.ts` |
 
@@ -71,8 +71,3 @@ npm run test     # vitest
 ## 배포
 
 Vercel (`develop` 브랜치 기준 자동 배포) — [https://portfolio-front-roan-one.vercel.app](https://portfolio-front-roan-one.vercel.app)
-
-## 알려진 정리 대상
-
-- `src/publishing`(기존 템플릿 스타일가이드, 166개 파일)과 `README_PUB.md`는 이 프로젝트와 무관한 잔재입니다. 타입체크(`tsc -b`)가 여기서 나는 에러 때문에 build 스크립트에서 빠져 있는 상태이며, 라우트(`/publishing-guide`)에도 아직 연결되어 있습니다. 삭제 후 `tsc -b`를 build 스크립트에 복원할 예정입니다.
-- `VITE_ADMIN_SITE_URL`, `VITE_ERP_SITE_URL` 등 기존 템플릿에서 넘어온 미사용 환경변수 정리 예정
