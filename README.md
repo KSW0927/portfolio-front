@@ -14,8 +14,8 @@ React + Vite + TypeScript로 구현한 [NOTI-FLOW](https://github.com/KSW0927/po
 
 | 화면 | 경로 | 설명 |
 |---|---|---|
-| 로그인 | `/login` | user-auth-service 연동 로그인 |
-| 메인 대시보드 | `/main` | 주문 시뮬레이션 + 위젯 5종 |
+| 로그인 | `/login` | 게스트 체험 버튼 클릭 시 시딩된 데모 계정으로 user-auth-service 로그인 API(`/api/users/login`)를 실제 호출하는 자동 로그인 |
+| 메인 대시보드 | `/main` | 주문 시뮬레이션 + 위젯 4종 + 재고 패널 |
 
 ## 참고 화면 및 위젯 설명
 
@@ -27,7 +27,8 @@ React + Vite + TypeScript로 구현한 [NOTI-FLOW](https://github.com/KSW0927/po
 | 처리 현황 | `widgets/StatusWidget.tsx` | 주문/품절/결제대기/결제완료/오버셀/결제취소 집계 |
 | 응답시간 | `widgets/LatencyWidget.tsx` | 평균/P50/P95/P99 |
 | 알림 | `widgets/NotifyWidget.tsx` | WebSocket으로 수신한 실시간 알림 목록 (오버셀 > 품절·취소 > 일반 순으로 정렬) |
-| 재고 현황 | `components/ProductStockPanel.tsx` | 상품×옵션 조합별 재고 표시 |
+
+위 4종은 `widgetStore`에 등록되어 드래그·순서변경·표시토글이 가능한 위젯입니다. 이와 별도로 `components/ProductStockPanel.tsx`(재고 패널)가 상품×옵션 조합별 남은 재고를 보여주는데, 위젯 스토어에 속하지 않는 고정 영역입니다.
 
 ## 백엔드 연동 구조
 
@@ -104,8 +105,3 @@ npm run test     # vitest
 ## 배포
 
 Vercel (`develop` 브랜치 기준 자동 배포) — [https://portfolio-front-roan-one.vercel.app](https://portfolio-front-roan-one.vercel.app)
-
-## 알려진 정리 대상
-
-- `src/publishing`(기존 템플릿 스타일가이드, 166개 파일)과 `README_PUB.md`는 이 프로젝트와 무관한 잔재입니다. 타입체크(`tsc -b`)가 여기서 나는 에러 때문에 build 스크립트에서 빠져 있는 상태이며, 라우트(`/publishing-guide`)에도 아직 연결되어 있습니다. 삭제 후 `tsc -b`를 build 스크립트에 복원할 예정입니다.
-- `VITE_ADMIN_SITE_URL`, `VITE_ERP_SITE_URL` 등 기존 템플릿에서 넘어온 미사용 환경변수 정리 예정
