@@ -27,6 +27,52 @@ function groupByModel(products: ProductItem[]): ProductGroup[] {
     return groups;
 }
 
+interface ProductStockListProps {
+    products: ProductItem[];
+    maxHeight?: number | string;
+}
+
+/**
+ * 모델별 재고 목록 (Card 래퍼 없이 내용만)
+ * @description ProductStockPanel(데스크톱 단독 카드)과 StatusWidget(모바일, 처리현황 위젯 내부 여백)에서
+ * 같은 목록 렌더링 로직을 공유하기 위해 분리.
+ */
+export function ProductStockList({ products, maxHeight = 250 }: ProductStockListProps) {
+    const isDark = useIsDark();
+    if (products.length === 0) return null;
+
+    const groups = groupByModel(products);
+
+    return (
+        <Layout.Row layout="vertical" gap={10} style={{ maxHeight, overflowY: "auto" }}>
+            {groups.map((group) => (
+                <Layout.Row key={group.model} gap={6} style={{ flexWrap: "wrap", alignItems: "center" }}>
+                    <Typography variant="body-sm" weight="semibold" style={{ minWidth: 150 }} color={isDark ? "var(--dash-text-primary)" : "var(--dash-text-primary)"}>
+                        {group.model}
+                    </Typography>
+                    <Space size={6} style={{ flexWrap: "wrap" }}>
+                        {group.items.map((p) => (
+                            <span
+                                key={p.detailId}
+                                style={{
+                                    padding: "4px 10px",
+                                    borderRadius: 999,
+                                    fontSize: "1.2rem",
+                                    fontWeight: 600,
+                                    backgroundColor: p.stock === 0 ? "#3A2C34" : "var(--dash-bg-info-wrap)",
+                                    color: p.stock === 0 ? "#FF6B6B" : "var(--dash-text-secondary)",
+                                }}
+                            >
+                                {p.storage} {p.color}: {p.stock}
+                            </span>
+                        ))}
+                    </Space>
+                </Layout.Row>
+            ))}
+        </Layout.Row>
+    );
+}
+
 /**
  * 제품별 남은 재고 패널
  * @description 주문 시뮬레이션 진행 중 실시간으로 갱신되는 제품별 재고 현황.
@@ -37,7 +83,6 @@ export function ProductStockPanel({ products }: ProductStockPanelProps) {
     const isDark = useIsDark();
     if (products.length === 0) return null;
 
-    const groups = groupByModel(products);
     const totalStock = products.reduce((sum, p) => sum + p.stock, 0);
 
     return (
@@ -47,32 +92,7 @@ export function ProductStockPanel({ products }: ProductStockPanelProps) {
             </Card.Header>
 
             <Card.Body>
-                <Layout.Row layout="vertical" gap={10} style={{ maxHeight: 250, overflowY: "auto" }}>
-                    {groups.map((group) => (
-                        <Layout.Row key={group.model} gap={6} style={{ flexWrap: "wrap", alignItems: "center" }}>
-                            <Typography variant="body-sm" weight="semibold" style={{ minWidth: 150 }} color={isDark ? "var(--dash-text-primary)" : "var(--dash-text-primary)"}>
-                                {group.model}
-                            </Typography>
-                            <Space size={6} style={{ flexWrap: "wrap" }}>
-                                {group.items.map((p) => (
-                                    <span
-                                        key={p.detailId}
-                                        style={{
-                                            padding: "4px 10px",
-                                            borderRadius: 999,
-                                            fontSize: "1.2rem",
-                                            fontWeight: 600,
-                                            backgroundColor: p.stock === 0 ? "#3A2C34" : "var(--dash-bg-info-wrap)",
-                                            color: p.stock === 0 ? "#FF6B6B" : "var(--dash-text-secondary)",
-                                        }}
-                                    >
-                                        {p.storage} {p.color}: {p.stock}
-                                    </span>
-                                ))}
-                            </Space>
-                        </Layout.Row>
-                    ))}
-                </Layout.Row>
+                <ProductStockList products={products} />
             </Card.Body>
         </Card>
     );

@@ -3,6 +3,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 import { Button, Card, Box, Divider, Icon, Layout, Space, Typography } from "@/components";
 import type { WidgetCardProps } from "@/types/types.ts";
 import { useOrderSimulationStore, type StatusFilter } from "@/store/orderSimulationStore";
+import { ProductStockList } from "../components/ProductStockPanel";
 
 /**
  * 처리 현황 위젯 컴포넌트
@@ -17,7 +18,7 @@ export const StatusWidget = (props: WidgetCardProps) => {
     // 모바일에서는 응답시간 위젯의 P50~P99 숫자 크기(heading-sm)에 맞춤 (기본은 display-lg)
     const numberVariant = isMobile ? "heading-sm" : "display-lg";
 
-    const { orderStats, statusFilter, setStatusFilter, stockIntegrity } = useOrderSimulationStore();
+    const { orderStats, statusFilter, setStatusFilter, stockIntegrity, productStocks } = useOrderSimulationStore();
 
     const toggleFilter = (target: Exclude<StatusFilter, '전체'>) => {
         setStatusFilter(statusFilter === target ? '전체' : target);
@@ -154,6 +155,15 @@ export const StatusWidget = (props: WidgetCardProps) => {
                 >
                     상태값을 클릭하면 아래 그리드가 필터링됩니다.
                 </span>
+
+                {isMobile && productStocks.length > 0 && (
+                    <Box variant="info" className="-blue widget-leave-content" style={{ marginTop: 12, flexDirection: 'column', alignItems: 'stretch' }}>
+                        <Typography variant="body-sm" weight="semibold" secondary={!isDark} color={isDark ? "var(--dash-text-muted-num)" : ""} style={{ marginBottom: 8 }}>
+                            모델별 재고
+                        </Typography>
+                        <ProductStockList products={productStocks} maxHeight="none" />
+                    </Box>
+                )}
             </Card.Body>
 
             {widget.hasAction && (

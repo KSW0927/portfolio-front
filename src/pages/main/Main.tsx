@@ -6,6 +6,7 @@ import { WidgetRenderer } from "./WidgetRenderer";
 import type { ColDef, CellClassParams } from "ag-grid-community";
 import { ProductStockPanel } from "./components/ProductStockPanel";
 import { useOrderSimulationStore, type OrderRow, type OrderStatus } from "@/store/orderSimulationStore";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 /* 주문 시뮬레이션
  * @description order-service의 실제 주문 API(Pessimistic Lock 기반 재고 차감)를 호출해서
@@ -23,6 +24,7 @@ import { useOrderSimulationStore, type OrderRow, type OrderStatus } from "@/stor
  */
 export default function Main() {
     const headerRef = useRef<HTMLDivElement>(null);
+    const isMobile = useIsMobile();
 
     const gridRef = useRef<any>(null);
 
@@ -102,14 +104,16 @@ export default function Main() {
 
                 <WidgetRenderer />
 
-                <ProductStockPanel products={productStocks} />
+                {!isMobile && <ProductStockPanel products={productStocks} />}
 
-                <DataGrid
-                    tref={gridRef}
-                    columns={orderColumns}
-                    rowData={filteredRows}
-                    isPaging={true}
-                />
+                {!isMobile && (
+                    <DataGrid
+                        tref={gridRef}
+                        columns={orderColumns}
+                        rowData={filteredRows}
+                        isPaging={true}
+                    />
+                )}
             </Layout.Row>
         </>
     );

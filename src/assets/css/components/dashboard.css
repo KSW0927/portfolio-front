@@ -337,31 +337,27 @@
     }
 
     /* 모바일 순서: 옵션설정(1) → 응답시간(2) → 처리현황(3) → 알림(4).
-       옵션설정/응답시간/처리현황은 뷰포트 기준 강제 높이 대신 내용만큼만 차지하게(auto) 두고
-       셋을 하나의 스와이프 페이지로 묶는다 (실측해보니 내용이 절반도 안 채워서 빈 여백이 컸음).
-       스냅 정지점은 옵션설정에만 두고, 응답시간/처리현황은 그 페이지에 이어 붙게 함.
-       알림 위젯만 기존처럼 화면 전체 높이를 씀. */
-    .widget-card.option,
-    .widget-card.latency,
-    .widget-card.status {
-        height:auto;
-        flex:0 0 auto;
-    }
+       옵션설정+응답시간의 합이 처리현황/알림과 같은 한 화면 높이가 되도록 절반씩 나눔.
+       처리현황은 알림과 동일하게 화면 전체 높이를 쓰는 독립 페이지로 되돌림. */
     .widget-card.option {
         order:1;
+        height:calc((100vh - var(--gnb-height)) / 2 - 0.6rem);
+        height:calc((100dvh - var(--gnb-height)) / 2 - 0.6rem);
         margin-bottom:1.2rem;
     }
     .widget-card.latency {
         order:2;
-        margin-bottom:1.2rem;
+        height:calc((100vh - var(--gnb-height)) / 2 - 0.6rem - 1.6rem);
+        height:calc((100dvh - var(--gnb-height)) / 2 - 0.6rem - 1.6rem);
+        margin-bottom:1.6rem;
         scroll-snap-align:none;
         scroll-snap-stop:normal;
     }
     .widget-card.status {
         order:3;
+        height:calc(100vh - var(--gnb-height) - 1.6rem);
+        height:calc(100dvh - var(--gnb-height) - 1.6rem);
         margin-bottom:1.6rem;
-        scroll-snap-align:none;
-        scroll-snap-stop:normal;
     }
     .widget-card.notify {
         order:4;
