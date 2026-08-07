@@ -83,6 +83,20 @@ markPaymentCompleted: (orderId) => {
 
 React 18, TypeScript, Vite, Zustand, TanStack Query, Axios, @stomp/stompjs + SockJS, ag-grid-community, Tailwind CSS
 
+## 테스트
+
+핵심 계산 로직(`orderSimulationStore.ts`)을 Vitest로 단위 테스트했습니다. API 호출이나 스토어 상태와 무관한 순수 함수만 추출해서, mock 없이 바로 검증합니다.
+
+| 대상 함수 | 검증 내용 | 개수 |
+|---|---|---|
+| `calcPercentile` | 응답시간 위젯(P50/P95/P99)이 쓰는 백분위수 계산 (nearest-rank) | 4 |
+| `calcStockIntegrity` | 배치 종료 후 재고 정합성(오버셀 발생 여부) 계산 | 3 |
+| `calcOversoldProducts` | 상품별 오버셀 수량 계산 | 3 |
+
+```bash
+npm run test -- orderSimulationStore
+```
+
 ## 환경 설정
 
 | 프로그램 | 버전 |
