@@ -11,7 +11,7 @@ export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>,
 }
 
 /**
- * @description 사용자에게 즉각적인 On/Off 상태 전환을 제공하는 토글 컴포넌트입니다.
+ * 사용자에게 즉각적인 On/Off 상태 전환을 제공하는 토글 컴포넌트입니다.
  * 웹 접근성(A11y)을 준수하기 위해 실제로는 숨겨진 checkbox input을 기반으로 동작합니다.
  */
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(

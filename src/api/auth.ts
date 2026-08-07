@@ -3,7 +3,7 @@ import { apiClient } from './client';
 
 /**
  * 로그인 API
- * @description user-auth-service: POST /api/users/login (LoginRequestDTO: userId, password)
+ * user-auth-service: POST /api/users/login (LoginRequestDTO: userId, password)
  */
 export interface LoginParams {
   id: string;
@@ -39,7 +39,7 @@ export async function login({ id, password }: LoginParams, config?: AxiosRequest
 
 /**
  * 로그아웃 API
- * @description user-auth-service: POST /api/users/logout/{userNo}
+ * user-auth-service: POST /api/users/logout/{userNo}
  */
 export async function logout(userNo: string | number): Promise<void> {
   try {

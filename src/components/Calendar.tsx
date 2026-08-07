@@ -54,7 +54,7 @@ interface FCFormatterArg {
 }
 
 /**
- * @description FullCalendar 라이브러리를 기반으로 한 커스텀 캘린더 컴포넌트입니다.
+ * FullCalendar 라이브러리를 기반으로 한 커스텀 캘린더 컴포넌트입니다.
  */
 export const Calendar = forwardRef<CalendarRef, CalendarProps>((props, ref) => {
     const {

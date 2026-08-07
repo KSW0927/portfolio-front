@@ -27,7 +27,6 @@ const text = {
 
 /**
  * 로그인 페이지
- * @description
  */
 export default function Login() {
   const navigate = useNavigate();

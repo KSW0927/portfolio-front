@@ -15,7 +15,7 @@ export interface RadioButtonProps extends React.InputHTMLAttributes<HTMLInputEle
 }
 
 /**
- * @description 단일 선택을 위한 라디오 버튼 컴포넌트입니다.
+ * 단일 선택을 위한 라디오 버튼 컴포넌트입니다.
  */
 export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
     ({ label, description, layout = "vertical", className = "", wrapperClassName = "", disabled, id, onChange, ...props }, ref) => {

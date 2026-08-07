@@ -28,7 +28,7 @@ export interface TabProviderProps {
 }
 
 /**
- * @description Tab.Panel을 Tab 컴포넌트 외부에서 사용할 때 context를 공유하기 위한 Provider입니다.
+ * Tab.Panel을 Tab 컴포넌트 외부에서 사용할 때 context를 공유하기 위한 Provider입니다.
  */
 const TabProvider = ({ value, onChange, variant = "line", children }: TabProviderProps) => {
     const tabIdPrefix = useId();
@@ -57,7 +57,7 @@ export interface TabProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange
 }
 
 /**
- * @description 탭의 상태를 관리하고 하위 컴포넌트(Tab.Item, Tab.Panel)에 컨텍스트를 제공합니다.
+ * 탭의 상태를 관리하고 하위 컴포넌트(Tab.Item, Tab.Panel)에 컨텍스트를 제공합니다.
  * WAI-ARIA 접근성 표준 및 키보드 내비게이션을 지원합니다.
  */
 const TabRoot = forwardRef<HTMLDivElement, TabProps>(

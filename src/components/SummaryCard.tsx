@@ -18,7 +18,7 @@ export interface SummaryCardProps {
 }
 
 /**
- * @description 과제 현황이나 통계 데이터를 요약해서 보여주는 카드형 컴포넌트입니다.
+ * 과제 현황이나 통계 데이터를 요약해서 보여주는 카드형 컴포넌트입니다.
  */
 const SummaryCardMain = ({
     title,

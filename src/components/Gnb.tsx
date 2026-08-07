@@ -19,7 +19,7 @@ const ACTIVITY_EVENTS: Array<keyof WindowEventMap> = ['mousedown', 'keydown', 's
 
 
 /**
- * @description 시스템 최상단 헤더(Global Navigation Bar) 영역을 담당하는 컴포넌트입니다.
+ * 시스템 최상단 헤더(Global Navigation Bar) 영역을 담당하는 컴포넌트입니다.
  */
 export const GNB = () => {
     const navigate = useNavigate();

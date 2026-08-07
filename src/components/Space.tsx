@@ -25,7 +25,7 @@ export interface SpaceProps {
 }
 
 /**
- * @description 컴포넌트들 사이에 일정한 간격을 자동으로 부여해주는 레이아웃 컴포넌트입니다.
+ * 컴포넌트들 사이에 일정한 간격을 자동으로 부여해주는 레이아웃 컴포넌트입니다.
  */
 export const Space = forwardRef<HTMLDivElement, SpaceProps>(
     (
@@ -112,7 +112,7 @@ export interface SpaceItemProps {
 }
 
 /**
- * @description Space 내부의 개별 아이템을 감싸는 래퍼 컴포넌트입니다.
+ * Space 내부의 개별 아이템을 감싸는 래퍼 컴포넌트입니다.
  */
 const SpaceItem = ({ children, className = "", style, layout = "horizontal", size, align, justify }: SpaceItemProps) => {
     const gapValue = typeof size === "number" ? `${size}px` : undefined;

@@ -25,7 +25,7 @@ export interface DividerProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * @description 콘텐츠 사이를 시각적으로 분리해주는 구분선 컴포넌트입니다.
+ * 콘텐츠 사이를 시각적으로 분리해주는 구분선 컴포넌트입니다.
  */
 export const Divider = ({
     layout = "horizontal",

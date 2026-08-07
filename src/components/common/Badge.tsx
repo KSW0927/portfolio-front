@@ -23,7 +23,7 @@ export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 /**
- * @description 상태, 알림, 카테고리 등을 강조하여 표시하는 뱃지 컴포넌트입니다.
+ * 상태, 알림, 카테고리 등을 강조하여 표시하는 뱃지 컴포넌트입니다.
  */
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     (

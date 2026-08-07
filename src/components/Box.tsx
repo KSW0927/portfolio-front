@@ -33,7 +33,7 @@ export interface BoxProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * @description 컨텐츠 그룹을 시각적으로 묶어주는 기본 박스 컨테이너 컴포넌트입니다.
+ * 컨텐츠 그룹을 시각적으로 묶어주는 기본 박스 컨테이너 컴포넌트입니다.
  */
 export const Box = ({
     variant = "default",

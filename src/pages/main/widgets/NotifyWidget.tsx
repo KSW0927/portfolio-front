@@ -31,7 +31,6 @@ const showNotifyDetail = (item: NotifyItem) => {
 
 /**
  * 실시간 알림 위젯 컴포넌트
- * @description
  */
 export const NotifyWidget = (props: WidgetCardProps) => {
     const { activeKebabId, widget, changeActiveKebab, changeHide, changeExpand } = props;

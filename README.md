@@ -10,9 +10,9 @@ This is a React application built with Vite, TypeScript, Zustand, Tailwind CSS, 
 |---|---|---|
 | user-auth-service (:8081) | REST (로그인/회원가입/로그아웃) | `src/api/auth.ts`, `src/store/authStore.ts` |
 | order-service (:8082) | REST (상품조회/주문/재고초기화, 락 전략 NONE/PESSIMISTIC/DISTRIBUTED 선택 포함) | `src/api/order.ts`, `src/store/orderSimulationStore.ts` |
-| realtime-gateway-service (:8084) | WebSocket(STOMP, `/ws` → `/topic/notifications` 구독) | `src/store/notifyStore.ts` |
+| realtime-gateway-service (:8084) | WebSocket(STOMP, `/ws` > `/topic/notifications` 구독) | `src/store/notifyStore.ts` |
 
-주문 처리 결과는 order-service → Kafka → notify-service → Kafka → realtime-gateway-service를 거쳐 STOMP로 브로드캐스트되고, `notifyStore`가 이를 구독해서 메인 대시보드의 알림 위젯(`src/pages/main/widgets/NotifyWidget.tsx`)에 실시간으로 반영합니다. 백엔드 쪽 이벤트 흐름 전체는 backend 리포지토리 README를 참고하세요.
+주문 처리 결과는 order-service > Kafka > notify-service > Kafka > realtime-gateway-service를 거쳐 STOMP로 브로드캐스트되고, `notifyStore`가 이를 구독해서 메인 대시보드의 알림 위젯(`src/pages/main/widgets/NotifyWidget.tsx`)에 실시간으로 반영합니다. 백엔드 쪽 이벤트 흐름 전체는 backend 리포지토리 README를 참고하세요.
 
 각 서비스 URL은 `.env`/`.env.development`의 `VITE_ORDER_API_URL`, `VITE_GATEWAY_WS_URL` 등으로 설정합니다.
 

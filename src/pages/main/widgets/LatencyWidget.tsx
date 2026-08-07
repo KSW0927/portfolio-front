@@ -5,7 +5,7 @@ import { useOrderSimulationStore } from "@/store/orderSimulationStore";
 
 /**
  * 응답시간 위젯 컴포넌트
- * @description 주문 시뮬레이션의 평균/P50/P95/P99 응답시간(ms)을 실시간으로 표시.
+ * 주문 시뮬레이션의 평균/P50/P95/P99 응답시간(ms)을 실시간으로 표시.
  */
 export const LatencyWidget = (props: WidgetCardProps) => {
     const { } = props;

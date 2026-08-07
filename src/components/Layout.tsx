@@ -81,7 +81,7 @@ const Col = ({ layout = "vertical", width, className = "", gap, justify, align, 
 };
 
 /**
- * @description GNB/LNB를 포함한 전체 페이지 골격(LayoutWrapper)은 라이브 렌더 트리 어디서도
+ * GNB/LNB를 포함한 전체 페이지 골격(LayoutWrapper)은 라이브 렌더 트리 어디서도
  * 쓰이지 않아 제거함. Layout.Row/Layout.Col만 위젯들에서 실제로 사용 중이라 유지.
  */
 export const Layout = {

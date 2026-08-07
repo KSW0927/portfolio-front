@@ -59,7 +59,7 @@ export interface ListItemProps extends HTMLAttributes<HTMLElement> {
 }
 
 /**
- * @description 정보를 나열할 때 사용하는 List 컴포넌트입니다.
+ * 정보를 나열할 때 사용하는 List 컴포넌트입니다.
  * Compound Component 패턴을 사용하며, `<List.Item>`의 `label` 속성 유무에 따라 유연하게 렌더링됩니다.
  */
 export const List = Object.assign(

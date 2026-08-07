@@ -6,7 +6,7 @@ import type { LockStrategy } from "@/api/order";
 
 /**
  * 락 전략 선택지 - 3단계 세그먼트 버튼으로 표시
- * @description NONE(락 없음)/PESSIMISTIC(DB 락)/DISTRIBUTED(분산락) 중 하나를 골라
+ * NONE(락 없음)/PESSIMISTIC(DB 락)/DISTRIBUTED(분산락) 중 하나를 골라
  * 동시 요청이 몰릴 때 재고 차감을 어떻게 순차화할지 비교 시연함.
  */
 const LOCK_STRATEGIES: { value: LockStrategy; label: string; color: string }[] = [
@@ -17,7 +17,7 @@ const LOCK_STRATEGIES: { value: LockStrategy; label: string; color: string }[] =
 
 /**
  * 옵션 설정 위젯 컴포넌트
- * @description 100/500/1000건 주문 시뮬레이션 실행 + 재고 초기화 버튼 + 락 전략(락없음/DB락/분산락) 선택.
+ * 100/500/1000건 주문 시뮬레이션 실행 + 재고 초기화 버튼 + 락 전략(락없음/DB락/분산락) 선택.
  * 락 없음을 고르면 동시 요청 시 lost-update(오버셀)가 재현되어 락의 효과를 비교 시연할 수 있음.
  * 실제 동작은 orderSimulationStore(zustand)에 있고, 이 위젯은 그 액션을 호출만 함.
  */

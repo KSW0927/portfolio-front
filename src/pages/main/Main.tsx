@@ -9,7 +9,7 @@ import { useOrderSimulationStore, type OrderRow, type OrderStatus } from "@/stor
 import { useIsMobile } from "@/hooks/useIsMobile";
 
 /* 주문 시뮬레이션
- * @description order-service의 실제 주문 API(Pessimistic Lock 기반 재고 차감)를 호출해서
+ * order-service의 실제 주문 API(Pessimistic Lock 기반 재고 차감)를 호출해서
  * 동시 주문 처리 흐름을 그리드에 실시간으로 보여줍니다.
  * 구매자는 로그인한 나 한 명이 아니라, 2000명짜리 테스트 구매자 풀 중 매 건마다 랜덤으로 배정해서
  * "여러 명이 동시에 주문한 것"처럼 재현합니다. 요청 자체는 내 로그인 토큰으로 인증됨.
@@ -20,7 +20,7 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 
 /**
  * 메인 대시보드 페이지
- * @description 포털 메인화면
+ * 포털 메인화면
  */
 export default function Main() {
     const headerRef = useRef<HTMLDivElement>(null);

@@ -16,7 +16,7 @@ export interface TableProps {
 }
 
 /**
- * @description 데이터를 표 형태로 구성하는 통합 Table 컴포넌트입니다.
+ * 데이터를 표 형태로 구성하는 통합 Table 컴포넌트입니다.
  * 웹 표준 및 WAI-ARIA 접근성 지침을 준수합니다.
  */
 const TableWrapper = ({ children, variant = "default", className = "", caption }: TableProps) => {

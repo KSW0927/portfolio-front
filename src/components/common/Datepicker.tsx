@@ -81,7 +81,7 @@ const getDateTypeDescription = (dateType: DatePickerType, isTimer: boolean): str
 };
 
 /**
- * @description 단일 날짜 또는 기간을 선택할 수 있는 DatePicker 컴포넌트입니다.
+ * 단일 날짜 또는 기간을 선택할 수 있는 DatePicker 컴포넌트입니다.
  */
 export const DatePicker = forwardRef<HTMLDivElement, DatePickerProps>((props, ref) => {
     const {
@@ -284,7 +284,7 @@ export interface DateRangePickerProps extends BaseDatePickerProps {
 }
 
 /**
- * @description 시작일과 종료일을 각각 개별 필드로 입력받아 기간을 설정하는 DateRangePicker 컴포넌트입니다.
+ * 시작일과 종료일을 각각 개별 필드로 입력받아 기간을 설정하는 DateRangePicker 컴포넌트입니다.
  */
 export const DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(
     (

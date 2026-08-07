@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { fetchProducts, placeOrder, resetStock, reportBatchResult, randomBuyerUserNo, type ProductItem, type LockStrategy } from '@/api/order';
+import { fetchProducts, placeOrder, resetStock, reportBatchResult, randomBuyerUserNo, type ProductItem, type LockStrategy, type OversoldProduct } from '@/api/order';
 import { AlertService } from '@/utils/AlertService';
 import { useNotifyStore } from '@/store/notifyStore';
 
@@ -67,10 +67,51 @@ const EMPTY_STATS: OrderStats = {
 const PUBLISH_INTERVAL_MS = 120;
 const CONCURRENCY = 20;
 
-function calcPercentile(sortedLatencies: number[], percentile: number): number {
+export function calcPercentile(sortedLatencies: number[], percentile: number): number {
     if (sortedLatencies.length === 0) return 0;
     const index = Math.min(sortedLatencies.length - 1, Math.ceil((percentile / 100) * sortedLatencies.length) - 1);
     return sortedLatencies[Math.max(0, index)];
+}
+
+/**
+ * 배치 종료 후 재고 정합성 계산
+ * "화면 재고 = DB 재고"는 배치 종료 후 화면이 DB를 다시 읽어오는 순간 항상 참이 되는
+ * 동어반복이라 경합 여부를 증명하지 못한다. 진짜 확인해야 할 건 "성공 건수만큼 실제로 줄었는가":
+ * expectedTotal(배치 시작 시점 재고 총합 - 성공 건수)과 actualTotal(배치 종료 후 다시 읽은 재고 총합)을
+ * 비교해서, lostUnits(=actualTotal - expectedTotal)가 0보다 크면 그만큼의 감소분이 유실된 것 -
+ * 락 없이 동시 요청이 몰려 lost-update(오버셀)가 실제로 발생했다는 증거.
+ */
+export function calcStockIntegrity(
+    initialTotal: number,
+    successCount: number,
+    actualTotal: number,
+): { expectedTotal: number; lostUnits: number } {
+    const expectedTotal = initialTotal - successCount;
+    const lostUnits = actualTotal - expectedTotal;
+    return { expectedTotal, lostUnits };
+}
+
+/**
+ * 상품별 오버셀 수량 계산
+ * 상품마다 "배치 시작 시점 재고 - 그 상품의 성공 건수"가 기대치이고, 배치 종료 후
+ * 실제 재고가 그보다 많이 남아있으면(=예상보다 덜 줄었으면) 그 차이만큼 오버셀된 것.
+ * 오버셀이 없는(0 이하) 상품은 결과에서 제외한다 - 서버가 이 수량만큼만 사후 취소를 실행하기 때문에
+ * 0 이하 값을 보내면 취소 대상이 없는데도 요청을 보내는 꼴이 된다.
+ */
+export function calcOversoldProducts(
+    products: ProductItem[],
+    initialStockByDetail: Map<number, number>,
+    successCountByDetail: Map<number, number>,
+): OversoldProduct[] {
+    return products
+        .map((p) => {
+            const initial = initialStockByDetail.get(p.detailId) ?? 0;
+            const success = successCountByDetail.get(p.detailId) ?? 0;
+            const expected = initial - success;
+            const lostUnits = p.stock - expected;
+            return { detailId: p.detailId, lostUnits };
+        })
+        .filter((p) => p.lostUnits > 0);
 }
 
 interface OrderSimulationState {
@@ -219,14 +260,14 @@ export const useOrderSimulationStore = create<OrderSimulationState>((set, get) =
             // 진행률/통계는 일정 주기로만 갱신(리렌더 폭주 방지)
             publishIntervalId = window.setInterval(() => publishSnapshot(), PUBLISH_INTERVAL_MS);
 
-            // 개별 주문 1건 처리: 실제 API 호출 + 왕복시간 측정
+            // 개별 주문 1건 처리: 실제 API 호출 + 서버 처리시간 측정
             const processOne = async (idx: number) => {
                 ordersRef[idx] = { ...ordersRef[idx], status: '처리중' };
                 const start = performance.now();
                 try {
                     const row = ordersRef[idx];
                     const result = await placeOrder(row.detailId, row.buyerUserNo, lockStrategy);
-                    const latency = Math.round(performance.now() - start);
+                    const latency = result.processingMs ?? Math.round(performance.now() - start);
                     ordersRef[idx] = {
                         ...ordersRef[idx],
                         orderId: result.orderId,
@@ -276,8 +317,7 @@ export const useOrderSimulationStore = create<OrderSimulationState>((set, get) =
                 const freshProducts = await fetchProducts();
                 productsRef = freshProducts;
                 const actualTotalStock = freshProducts.reduce((sum, p) => sum + p.stock, 0);
-                const expectedTotalStock = initialTotalStock - successRef;
-                const lostUnits = actualTotalStock - expectedTotalStock;
+                const { expectedTotal: expectedTotalStock, lostUnits } = calcStockIntegrity(initialTotalStock, successRef, actualTotalStock);
                 set({
                     stockIntegrity: {
                         lockStrategy,
@@ -289,21 +329,13 @@ export const useOrderSimulationStore = create<OrderSimulationState>((set, get) =
                 });
 
                 // 오버셀은 개별 주문 이벤트로는 알 수 없고 배치가 다 끝나야 계산되는 값이지만,
-                // 다른 알림과 동일하게 Kafka(stock-integrity-events)→notify-service→WebSocket
+                // 다른 알림과 동일하게 Kafka(stock-integrity-events)>notify-service>WebSocket
                 // 경로를 태워서 알림 목록에 반영한다(우선순위 알림이라 최상단 고정 정렬됨).
                 if (lostUnits > 0) {
                     // 전체 합계와 별개로, 상품 단위로 "예상보다 재고가 몇 개나 덜 줄었는지"를 따져서
                     // 오버셀이 발생한 상품마다 정확한 수량을 실어보낸다 - 서버가 이 수량만큼
                     // 해당 상품의 최근 성공 주문을 사후 취소하는 기준값으로 쓴다.
-                    const oversoldProducts = freshProducts
-                        .map((p) => {
-                            const initial = initialStockByDetail.get(p.detailId) ?? 0;
-                            const success = successCountByDetail.get(p.detailId) ?? 0;
-                            const expected = initial - success;
-                            const productLostUnits = p.stock - expected;
-                            return { detailId: p.detailId, lostUnits: productLostUnits };
-                        })
-                        .filter((p) => p.lostUnits > 0);
+                    const oversoldProducts = calcOversoldProducts(freshProducts, initialStockByDetail, successCountByDetail);
 
                     reportBatchResult({
                         expectedTotal: expectedTotalStock,
@@ -357,8 +389,6 @@ export const useOrderSimulationStore = create<OrderSimulationState>((set, get) =
             ordersRef[idx] = { ...ordersRef[idx], status: '결제완료' };
             paymentCompletedRef += 1;
 
-            // 결제 확정은 배치가 이미 다 끝난 뒤(publishIntervalId가 정리된 뒤)에도 한 건씩 트리클로
-            // 들어오므로, 주기적 갱신에 기대지 않고 즉시 반영한다.
             set((state) => ({
                 orderRows: [...ordersRef],
                 orderStats: { ...state.orderStats, paymentCompleted: paymentCompletedRef },

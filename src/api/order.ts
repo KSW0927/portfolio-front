@@ -2,7 +2,6 @@ import axios from 'axios';
 
 /**
  * 주문 API 클라이언트
- * @description
  * order-service는 아직 게이트웨이/프록시 대상이 아니라
  * 다른 서비스와 별도로 직접 baseURL을 지정해서 호출합니다.
  */
@@ -58,6 +57,8 @@ export interface OrderResult {
   buyerUserNo: number;
   success: boolean;
   status: 'SUCCESS' | 'OUT_OF_STOCK';
+  /** 서버가 이 요청을 처리하는 데 걸린 시간(ms, 락 획득 대기시간 포함) - 응답시간 위젯이 이 값을 사용 */
+  processingMs?: number;
 }
 
 /**

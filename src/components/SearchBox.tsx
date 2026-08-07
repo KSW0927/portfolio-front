@@ -24,7 +24,7 @@ export interface SearchBoxItemProps extends SearchBoxProps {
 }
 
 /**
- * @description 복잡한 검색 필터를 구성하는 컨테이너 컴포넌트입니다.
+ * 복잡한 검색 필터를 구성하는 컨테이너 컴포넌트입니다.
  */
 export const SearchBox = ({ children, className = "" }: SearchBoxProps) => {
     const classes = ["searchbox", className].filter(Boolean).join(" ");

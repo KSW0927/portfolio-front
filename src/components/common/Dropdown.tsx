@@ -54,7 +54,7 @@ export interface DropdownProps {
 }
 
 /**
- * @description 옵션 목록에서 하나를 선택하는 드롭다운 (Select) 컴포넌트입니다.
+ * 옵션 목록에서 하나를 선택하는 드롭다운 (Select) 컴포넌트입니다.
  */
 export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
     (

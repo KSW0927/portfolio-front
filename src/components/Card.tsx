@@ -17,7 +17,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * @description 콘텐츠를 묶어 독립적인 그룹으로 표현하는 카드 컨테이너 컴포넌트입니다.
+ * 콘텐츠를 묶어 독립적인 그룹으로 표현하는 카드 컨테이너 컴포넌트입니다.
  */
 const CardWrapper = React.forwardRef<HTMLDivElement, CardProps>(
     (

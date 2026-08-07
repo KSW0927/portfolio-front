@@ -47,7 +47,7 @@ const defaultElementMap: Record<TypographyVariant, ElementType> = {
 };
 
 /**
- * @description 시스템 디자인의 타이포그래피 규칙을 일관되게 적용하는 텍스트 컴포넌트입니다.
+ * 시스템 디자인의 타이포그래피 규칙을 일관되게 적용하는 텍스트 컴포넌트입니다.
  */
 export const Typography = <T extends ElementType = "span">({
     variant,

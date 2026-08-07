@@ -16,7 +16,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
 }
 
 /**
- * @description 시스템 전반에서 사용되는 아이콘을 렌더링하는 공통 컴포넌트입니다.
+ * 시스템 전반에서 사용되는 아이콘을 렌더링하는 공통 컴포넌트입니다.
  */
 export const Icon = React.forwardRef<HTMLElement, IconProps>(
     (

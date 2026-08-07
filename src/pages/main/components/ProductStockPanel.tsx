@@ -34,7 +34,7 @@ interface ProductStockListProps {
 
 /**
  * 모델별 재고 목록 (Card 래퍼 없이 내용만)
- * @description ProductStockPanel(데스크톱 단독 카드)과 StatusWidget(모바일, 처리현황 위젯 내부 여백)에서
+ * ProductStockPanel(데스크톱 단독 카드)과 StatusWidget(모바일, 처리현황 위젯 내부 여백)에서
  * 같은 목록 렌더링 로직을 공유하기 위해 분리.
  */
 export function ProductStockList({ products, maxHeight = 250 }: ProductStockListProps) {
@@ -75,7 +75,7 @@ export function ProductStockList({ products, maxHeight = 250 }: ProductStockList
 
 /**
  * 제품별 남은 재고 패널
- * @description 주문 시뮬레이션 진행 중 실시간으로 갱신되는 제품별 재고 현황.
+ * 주문 시뮬레이션 진행 중 실시간으로 갱신되는 제품별 재고 현황.
  * 모델별로 줄을 나눠서 표시하고, 품절(0개)은 빨간색으로 강조.
  * 위젯 카드(widget-card)와 동일한 컨테이너 스타일을 써서 대시보드 톤을 맞춘다.
  */

@@ -25,7 +25,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 /**
- * @description 사용자 인터랙션을 유도하는 기본 단일 버튼 컴포넌트입니다.
+ * 사용자 인터랙션을 유도하는 기본 단일 버튼 컴포넌트입니다.
  */
 export const ButtonSingle = React.forwardRef<HTMLButtonElement, ButtonProps>(
     (
@@ -107,7 +107,7 @@ export interface ButtonFileUploadProps extends Omit<InputHTMLAttributes<HTMLInpu
 }
 
 /**
- * @description 숨겨진 file input과 커스텀 버튼을 연결하여 파일을 업로드하는 컴포넌트입니다.
+ * 숨겨진 file input과 커스텀 버튼을 연결하여 파일을 업로드하는 컴포넌트입니다.
  */
 const FileUpload = React.forwardRef<HTMLInputElement, ButtonFileUploadProps>(
     ({ buttonText = "파일선택", placeholder = "선택된 파일이 없습니다.", buttonProps, className = "", onChange, ...props }, ref) => {

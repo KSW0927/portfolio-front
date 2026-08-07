@@ -50,7 +50,7 @@ export interface ModalProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * @description 화면 최상단에 띄워져 입력 폼, 데이터 그리드 등 복잡한 사용자 화면을 렌더링하는 모달 컴포넌트입니다.
+ * 화면 최상단에 띄워져 입력 폼, 데이터 그리드 등 복잡한 사용자 화면을 렌더링하는 모달 컴포넌트입니다.
  */
 const ModalWrapper = ({
                           isOpen,
@@ -197,7 +197,7 @@ interface ModalHeaderProps extends Omit<HTMLAttributes<HTMLDivElement>, "title">
 }
 
 /**
- * @description 모달의 헤더 영역을 구성합니다. title과 닫기 버튼을 포함할 수 있습니다.
+ * 모달의 헤더 영역을 구성합니다. title과 닫기 버튼을 포함할 수 있습니다.
  */
 const Header = ({
                     title,
@@ -246,7 +246,7 @@ interface ModalBodyProps extends Omit<HTMLAttributes<HTMLDivElement>, "title"> {
 }
 
 /**
- * @description 모달의 주된 컨텐츠 영역을 구성합니다.
+ * 모달의 주된 컨텐츠 영역을 구성합니다.
  */
 const Body = ({ title, children, className = "", ...props }: ModalBodyProps) => {
     const classes = ["modal-body", className].filter(Boolean).join(" ");
@@ -272,7 +272,7 @@ interface ModalFooterProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * @description 모달의 푸터 영역을 구성합니다. 주로 확인, 취소 등의 액션 버튼을 배치합니다.
+ * 모달의 푸터 영역을 구성합니다. 주로 확인, 취소 등의 액션 버튼을 배치합니다.
  */
 const Footer = ({
                     children,

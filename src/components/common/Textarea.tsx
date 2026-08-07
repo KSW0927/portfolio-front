@@ -25,7 +25,7 @@ export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 }
 
 /**
- * @description 여러 줄의 텍스트를 입력받는 텍스트 영역 컴포넌트입니다.
+ * 여러 줄의 텍스트를 입력받는 텍스트 영역 컴포넌트입니다.
  */
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     (

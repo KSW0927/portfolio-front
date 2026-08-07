@@ -9,7 +9,7 @@ export interface PopupProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 /**
- * @description AlertService.custom() 내부에서 렌더링될 사용자 정의 팝업 콘텐츠 레이아웃 컴포넌트입니다.
+ * AlertService.custom() 내부에서 렌더링될 사용자 정의 팝업 콘텐츠 레이아웃 컴포넌트입니다.
  */
 const PopupWrapper = ({ children, className = "", ...props }: PopupProps) => {
     const classes = ["popup-content-wrap", className].filter(Boolean).join(" ");
@@ -28,7 +28,7 @@ interface PopupDescProps extends HTMLAttributes<HTMLParagraphElement> {
     children: ReactNode;
 }
 
-/** * @description 팝업 최상단에 위치하는 안내 문구 영역입니다.
+/** * 팝업 최상단에 위치하는 안내 문구 영역입니다.
  */
 const Desc = ({ children, className = "", ...props }: PopupDescProps) => {
     const classes = ["popup-header-desc", className].filter(Boolean).join(" ");
@@ -44,7 +44,7 @@ interface PopupBodyProps extends HTMLAttributes<HTMLDivElement> {
     children: ReactNode;
 }
 
-/** * @description 팝업의 메인 컨텐츠 영역입니다.
+/** * 팝업의 메인 컨텐츠 영역입니다.
  */
 const Body = ({ scrollable = true, children, className = "", ...props }: PopupBodyProps) => {
     const classes = [
@@ -56,7 +56,7 @@ const Body = ({ scrollable = true, children, className = "", ...props }: PopupBo
     return <div className={classes} {...props}>{children}</div>;
 };
 
-/** * @description 팝업 내에서 시각적으로 분리되는 구역입니다.
+/** * 팝업 내에서 시각적으로 분리되는 구역입니다.
  */
 const Section = ({ children, className = "", ...props }: HTMLAttributes<HTMLDivElement>) => {
     const classes = ["popup-section", className].filter(Boolean).join(" ");

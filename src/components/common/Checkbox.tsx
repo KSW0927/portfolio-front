@@ -15,7 +15,7 @@ export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElemen
 }
 
 /**
- * @description 단일 다중 선택을 위한 체크박스 컴포넌트입니다.
+ * 단일 다중 선택을 위한 체크박스 컴포넌트입니다.
  */
 const CheckboxSingle = forwardRef<HTMLInputElement, CheckboxProps>(
     ({ label, description, className = "", wrapperClassName = "", disabled, readOnly, id, onClick, onChange, variant = "default", ...props }, ref) => {
@@ -123,7 +123,7 @@ export interface CheckboxGroupProps {
 }
 
 /**
- * @description 여러 개의 체크박스를 묶어서 관리하는 그룹 컴포넌트입니다.
+ * 여러 개의 체크박스를 묶어서 관리하는 그룹 컴포넌트입니다.
  */
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
     options,

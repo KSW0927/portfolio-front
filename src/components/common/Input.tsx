@@ -34,7 +34,7 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
 }
 
 /**
- * @description 텍스트 데이터를 입력받는 기본 인풋 필드 컴포넌트입니다.
+ * 텍스트 데이터를 입력받는 기본 인풋 필드 컴포넌트입니다.
  */
 export const Input = forwardRef<HTMLInputElement, InputProps>(
     (

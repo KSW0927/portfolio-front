@@ -29,7 +29,7 @@ export interface TagsInputProps {
 }
 
 /**
- * @description 자동완성 드롭다운을 통해 값을 검색하고, 선택한 항목이 인풋 하단에 태그로 나열되는 컴포넌트입니다.
+ * 자동완성 드롭다운을 통해 값을 검색하고, 선택한 항목이 인풋 하단에 태그로 나열되는 컴포넌트입니다.
  */
 export const TagsInput = forwardRef<HTMLInputElement, TagsInputProps>(
     (

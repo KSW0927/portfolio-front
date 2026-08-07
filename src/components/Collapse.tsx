@@ -18,7 +18,7 @@ export interface CollapseProps {
 }
 
 /**
- * @description 상세 내용을 숨기거나 펼칠 수 있는 아코디언 형태의 컴포넌트입니다.
+ * 상세 내용을 숨기거나 펼칠 수 있는 아코디언 형태의 컴포넌트입니다.
  */
 export const Collapse = forwardRef<HTMLDivElement, CollapseProps>(
     ({ title, isOpen: controlledOpen, onToggle, children, className = "" }, ref) => {
