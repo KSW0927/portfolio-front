@@ -8,16 +8,6 @@ import { ProductStockPanel } from "./components/ProductStockPanel";
 import { useOrderSimulationStore, type OrderRow, type OrderStatus } from "@/store/orderSimulationStore";
 import { useIsMobile } from "@/hooks/useIsMobile";
 
-/* 주문 시뮬레이션
- * order-service의 실제 주문 API(Pessimistic Lock 기반 재고 차감)를 호출해서
- * 동시 주문 처리 흐름을 그리드에 실시간으로 보여줍니다.
- * 구매자는 로그인한 나 한 명이 아니라, 2000명짜리 테스트 구매자 풀 중 매 건마다 랜덤으로 배정해서
- * "여러 명이 동시에 주문한 것"처럼 재현합니다. 요청 자체는 내 로그인 토큰으로 인증됨.
- *
- * 시뮬레이션 실행/재고초기화 버튼과 성능 지표는 위젯(주문 테스트/처리 현황/응답시간/처리량/지연·오류율)으로
- * 이동했습니다. 이 페이지와 위젯들은 모두 useOrderSimulationStore()를 공유해서 같은 데이터를 보여줍니다.
- */
-
 /**
  * 메인 대시보드 페이지
  * 포털 메인화면

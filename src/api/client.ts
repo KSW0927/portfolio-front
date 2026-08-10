@@ -26,6 +26,20 @@ function clearAccessToken(): void {
     sessionStorage.removeItem(ACCESS_TOKEN_KEY);
 }
 
+// zustand persist가 sessionStorage에 저장해둔 auth-store에서 userId만 꺼낸다.
+// (client.ts는 auth.ts가 apiClient를 가져다 쓰는 쪽이라, 순환 참조를 피하려고
+// auth.ts의 logout()을 import하지 않고 여기서 직접 최소한만 구현한다.)
+function getStoredUserId(): string | null {
+    try {
+        const raw = sessionStorage.getItem('auth-store');
+        if (!raw) return null;
+        const parsed = JSON.parse(raw);
+        return parsed?.state?.user?.id ?? null;
+    } catch {
+        return null;
+    }
+}
+
 // Axios의 RequestConfig 타입을 확장하여 커스텀 옵션 추가
 declare module 'axios' {
     export interface InternalAxiosRequestConfig {
@@ -81,11 +95,23 @@ apiClient.interceptors.response.use(
         const isLoginPage = window.location.pathname === '/login';
         if (error.response?.status === 401 && !isLoginPage && !isRedirecting) {
             isRedirecting = true; // 플래그 차단
-            clearAccessToken();
 
-            // 알림을 보여주고 이동
-            alert('인증이 만료되었습니다. 다시 로그인해주세요.');
-            window.location.replace('/login');
+            // 이미 만료된 액세스 토큰으로 호출하는 거라 이 요청도 401로 실패할 수 있지만,
+            // (비활동 자동로그아웃과 동일하게) refresh token 정리를 best-effort로 시도한다.
+            // 실패해도 아래 로컬 정리/리다이렉트는 그대로 진행.
+            const userId = getStoredUserId();
+            const cleanup = userId
+                ? apiClient.post(`/api/users/logout/${userId}`).catch(() => {})
+                : Promise.resolve();
+
+            cleanup.finally(() => {
+                clearAccessToken();
+                sessionStorage.removeItem('auth-store');
+
+                // 알림을 보여주고 이동
+                alert('인증이 만료되었습니다. 다시 로그인해주세요.');
+                window.location.replace('/login');
+            });
         }
 
         return Promise.reject(error);

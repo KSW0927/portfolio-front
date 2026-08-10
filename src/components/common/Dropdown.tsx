@@ -82,6 +82,7 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
         const baseId = useId();
         const listboxId = `${baseId}-listbox`;
         const labelId = `${baseId}-label`;
+        const comboboxId = `${baseId}-combobox`;
 
         const [isOpen, setIsOpen] = useState(false);
         const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
@@ -257,13 +258,14 @@ export const Dropdown = forwardRef<HTMLDivElement, DropdownProps>(
             <>
                 <div className={groupClasses} style={containerStyle} ref={ref}>
                     {label && (
-                        <label id={labelId} className="form-label" onClick={handleToggle}>
+                        <label id={labelId} htmlFor={comboboxId} className="form-label" onClick={handleToggle}>
                             {label}
                         </label>
                     )}
 
                     <div className={wrapperClasses} ref={wrapRef}>
                         <div
+                            id={comboboxId}
                             className={fieldClasses}
                             onClick={handleToggle}
                             onKeyDown={handleKeyDown}
